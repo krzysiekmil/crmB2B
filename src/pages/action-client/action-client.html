@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ActionClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ActionClient</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-list>
+  <ion-card (click)="ShowDetail()">
+    <ion-item>
+      Type
+    </ion-item>
+    <ion-item>
+      Date
+    </ion-item>
+  </ion-card>
+</ion-list>
+</ion-content>
+<ion-footer>
+  <button ion-button clear full (click)="AddAction()" >
+    Add Action
+  </button>
+</ion-footer>
