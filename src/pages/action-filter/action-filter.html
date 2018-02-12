@@ -7,17 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button  ion-button menuToggle="filter">
+      <button end ion-button  menuToggle="filter">
         <ion-icon name="build">
         </ion-icon>
       </button>
-    </ion-buttons>
+    <ion-toolbar>
+      <ion-searchbar>
+
+      </ion-searchbar>
+    </ion-toolbar>
   </ion-navbar>
 
 </ion-header>
@@ -35,6 +36,21 @@
         <p>TEST </p>
       </ion-item>
       <ion-card-content>
+        <ion-col left>
+        <button ion-button clear >
+          Szczegóły klienta
+        </button>
+        </ion-col>
+        <ion-col>
+        <button ion-button clear  text-justify="center">
+          Szczególy działania
+        </button>
+        </ion-col>
+        <ion-col right>
+        <button ion-button clear  >
+          Nowe dziłanie
+        </button>
+        </ion-col>
       </ion-card-content>
     </ion-card>
   </ion-list>

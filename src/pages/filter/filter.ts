@@ -50,8 +50,6 @@ export class FilterPage {
               private menuCtrl: MenuController)
   {
     this.initializeOptions();
-    console.log(this.sideMenuSettings);
-    console.log(this.options);
   }
 
 
@@ -63,8 +61,8 @@ export class FilterPage {
     // ------------------------------------------
     this.options.push({
       iconName: 'home',
-      displayName: 'Home',
-      component: HomePage,
+      displayName: 'Nazwa klienta',
+      component: ActionFilterPage,
 
       // This option is already selected
       selected: true
@@ -72,100 +70,91 @@ export class FilterPage {
 
     this.options.push({
       iconName: 'analytics',
-      displayName: 'Option 1',
-      component: ActionFilterPage
-    });
-
-    this.options.push({
-      iconName: 'apps',
-      displayName: 'Option 2',
-      component: ActionFilterPage
-    });
-
-    this.options.push({
-      iconName: 'bowtie',
-      displayName: 'With Badge',
-      badge: ArrayObservable.of('NEW'),
+      displayName: 'Nazwisko Managera B2B',
       component: ActionFilterPage
     });
 
     // Load options with nested items (with icons)
     // -----------------------------------------------
     this.options.push({
-      displayName: 'Sub options with icons',
+      displayName: 'Rodzaj działania',
       subItems: [
         {
-          iconName: 'basket',
+          displayName: 'Rozmowa telefoniczna',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Spotkanie',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Zgoda na Seminarium',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Zgoda na IQOS Space',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Uruchomienie IQOS Space',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Seminarium',
+          component: ActionFilterPage
+        }
+      ]
+    });
+    this.options.push({
+      displayName: 'Liczba pracowników',
+      subItems: [
+        {
+          displayName: '<15',
+          component: ActionFilterPage
+        },
+        {
+          displayName: '<50',
+          component: ActionFilterPage
+        },
+        {
+          displayName: '<100',
+          badge: this.unreadCountObservable,
+          component: ActionFilterPage
+        }
+      ]
+    });
+    this.options.push({
+      displayName: 'Wojewodztwo/Region',
+      subItems: [
+        {
           displayName: 'Sub Option 1',
           component: ActionFilterPage
         },
         {
-          iconName: 'bookmark',
           displayName: 'Sub Option 2',
           component: ActionFilterPage
         },
         {
-          iconName: 'bug',
           displayName: 'With Badge',
           badge: this.unreadCountObservable,
           component: ActionFilterPage
         }
       ]
     });
-
-    // Load options with nested items (without icons)
-    // -----------------------------------------------
     this.options.push({
-      displayName: 'Sub options without icons',
+      displayName: 'Miasto',
       subItems: [
         {
-          displayName: 'Sub Option 4',
+          displayName: 'Sub Option 1',
           component: ActionFilterPage
         },
         {
-          displayName: 'Sub Option 5',
+          displayName: 'Sub Option 2',
           component: ActionFilterPage
         },
-        {
-          displayName: 'Sub Option 6',
-          component: ActionFilterPage
-        },
-        {
-          displayName: 'Sub Option 7',
-          component: ActionFilterPage
-        }
       ]
     });
 
-    // Load special options
-    // -----------------------------------------------
-    this.options.push({
-      displayName: 'Special options',
-      subItems: [
-        {
-          iconName: 'log-in',
-          displayName: 'Login',
-          custom: {
-            isLogin: true
-          }
-        },
-        {
-          iconName: 'log-out',
-          displayName: 'Logout',
-          custom: {
-            isLogout: true
-          }
-        },
-        {
-          iconName: 'globe',
-          displayName: 'Open Google',
-          custom: {
-            isExternalLink: true,
-            externalUrl: 'http://www.google.com'
-          }
-        }
-      ]
-    });
   }
 
   public selectOption(option: MenuOptionModel): void {

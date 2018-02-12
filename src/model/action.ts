@@ -9,6 +9,11 @@ export class Action{
   czyPmiUczestniczyl?:boolean;
   daneIQOS?:Array<string>;
   liczbaUczestnikow?:number;
+  nazwiskoB2BManagera?:string;
+  region?:string;
+  numberOfEmployees?:number;
+  nameOfClient?:string;
+
 
   constructor(){
 

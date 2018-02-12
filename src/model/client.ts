@@ -3,6 +3,9 @@ export class Client{
   nip:number;
   adress:string;
   pmigo:boolean;
+  nazwiskoB2BManagera?:string;
+  region?:string;
+  liczbaOfEmployees?:number;
   constructor(){
 
   }
