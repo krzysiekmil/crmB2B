@@ -12,6 +12,11 @@ import {ActionDetailPageModule} from "../pages/action-detail/action-detail.modul
 import {ContactDetailPageModule} from "../pages/contact-detail/contact-detail.module";
 import {AddContactPageModule} from "../pages/add-contact/add-contact.module";
 import {ActionClientPageModule} from "../pages/action-client/action-client.module";
+import {ModalPageModule} from "../pages/modal/modal.module";
+import {MenuPageModule} from "../pages/menu/menu.module";
+import {MainPageModule} from "../pages/main/main.module";
+import {MenuPage} from "../pages/menu/menu";
+import {SideMenuContentComponent} from "../shared/side-menu-content/side-menu-content.component";
 
 
 @NgModule({
@@ -27,6 +32,9 @@ import {ActionClientPageModule} from "../pages/action-client/action-client.modul
     ContactDetailPageModule,
     AddContactPageModule,
     ActionClientPageModule,
+    ModalPageModule,
+    MenuPageModule,
+    MainPageModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

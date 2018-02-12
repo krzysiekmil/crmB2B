@@ -29,11 +29,8 @@ export class LoginPage {
   }
 
   login(){}
-  tak(){
-    this.navCtrl.setRoot('AddClientPage');
-  }
-  nie(){
-    this.navCtrl.setRoot('ClientListPage');
+  rak(){
+    this.navCtrl.setRoot('MenuPage');
   }
 
   remindPassword(){

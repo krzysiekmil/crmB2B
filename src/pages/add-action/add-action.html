@@ -25,7 +25,7 @@
       <ion-label>
         Type
       </ion-label>
-      <ion-select [(ngModel)]="type">
+      <ion-select [(ngModel)]="action.type">
         <ion-option >
           Rozmowa telefoniczna
         </ion-option>
@@ -63,27 +63,27 @@
       <ion-input>
       </ion-input>
     </ion-item>
-    <ion-item *ngIf="type==='ZgodaNaSeminarium'">
+    <ion-item *ngIf="action.type==='ZgodaNaSeminarium'">
       <ion-label>
         Localisation
       </ion-label>
       <ion-input text-end></ion-input>
     </ion-item>
-    <ion-item *ngIf="type==='ZgodaNaSeminarium'">
+    <ion-item *ngIf="action.type==='ZgodaNaSeminarium'">
       <ion-label>
         Spodziewana liczba osób
       </ion-label>
       <ion-input text-end>
       </ion-input>
     </ion-item>
-    <ion-item *ngIf="type==='ZgodaNaSeminarium'">
+    <ion-item *ngIf="action.type==='ZgodaNaSeminarium'">
       <ion-label >
       Liczba IQOS Coachy
       </ion-label>
       <ion-input text-end>
       </ion-input>
     </ion-item>
-    <ion-item *ngIf="type==='Seminarium'">
+    <ion-item *ngIf="action.type==='Seminarium'">
       <ion-label>
       Czy PMI GO uczestniczył
       </ion-label>
@@ -91,7 +91,7 @@
 
       </ion-checkbox>
     </ion-item>
-    <ion-item *ngIf="type==='Seminarium'">
+    <ion-item *ngIf="action.type==='Seminarium'">
       <ion-label>
       Dane IQOS Coachy
       </ion-label>
@@ -99,7 +99,7 @@
 
       </ion-input>
     </ion-item>
-    <ion-item *ngIf="type==='Seminarium'">
+    <ion-item *ngIf="action.type==='Seminarium'">
       <ion-label>
         Liczba uczestników
       </ion-label>
@@ -110,5 +110,5 @@
   </ion-list>
 </ion-content>
 <ion-footer >
-  <button ion-button  clear full  disabled>Add Action</button>
+  <button ion-button  clear full  (click)="AddAction()">Add Action</button>
 </ion-footer>

@@ -24,7 +24,7 @@
       </ion-col>
       <ion-col >
         <ion-label text-end>
-          ASd
+          {{action.contact}}
         </ion-label>
       </ion-col>
     </ion-row>
@@ -38,7 +38,7 @@
       </ion-col>
       <ion-col >
         <ion-label text-end>
-          ASd
+          {{action.comment}}
         </ion-label>
       </ion-col>
     </ion-row>
@@ -47,52 +47,87 @@
     <ion-row>
       <ion-col>
         <ion-label>
-          Powiazany kontakt:
+          Type:
         </ion-label>
       </ion-col>
       <ion-col >
         <ion-label text-end>
-          ASd
+          {{action.type}}
         </ion-label>
       </ion-col>
     </ion-row>
   </ion-card>
-  <ion-card>
+  <ion-card *ngIf="action.type==='ZgodaNaSeminarium'">
     <ion-row>
       <ion-col>
         <ion-label>
-          Powiazany kontakt:
+          Spodziewana liczba osob :
         </ion-label>
       </ion-col>
       <ion-col >
         <ion-label text-end>
-          ASd
+          {{action.spodziewanaLiczbaOsob}}
         </ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
     <ion-col>
       <ion-label>
-        Powiazany kontakt:
+        Lokalizacja:
       </ion-label>
     </ion-col>
     <ion-col >
       <ion-label text-end>
-        ASd
+        {{action.lokalizacja}}
       </ion-label>
     </ion-col>
     </ion-row>
   <ion-row>
     <ion-col>
       <ion-label>
-        Powiazany kontakt:
+        Liczba IQOS Coachy
       </ion-label>
     </ion-col>
     <ion-col >
       <ion-label text-end>
-        ASd
+        {{action.liczbaIQOS}}
       </ion-label>
     </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card *ngIf="action.type==='Seminarium'">
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          Czy PmiGo uczestniczył :
+        </ion-label>
+      </ion-col>
+      <ion-col end>
+       <ion-icon *ngIf="action.czyPmiUczestniczyl==true" item-end name="checkmark" isActive align-items-end>
+       </ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          Dane IQOS Coachy:
+        </ion-label>
+      </ion-col>
+      <ion-col right>
+        <button ion-button  clear  (click)="openModalWithParams()">+</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+        Liczba uczestnikow :
+        </ion-label>
+      </ion-col>
+      <ion-col >
+        <ion-label text-end>
+          {{action.liczbaUczestnikow}}
+        </ion-label>
+      </ion-col>
     </ion-row>
   </ion-card>
 </ion-list>

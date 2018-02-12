@@ -7,20 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ActionClient</ion-title>
+    <ion-buttons>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<ion-list>
-  <ion-card (click)="ShowDetail()">
+<ion-list *ngFor="let action of actionList">
+  <ion-card (click)="ShowDetail(action)">
     <ion-item>
-      Type
+      Type : {{action.type}}
     </ion-item>
     <ion-item>
-      Date
+      Date : {{action.data}}
     </ion-item>
   </ion-card>
 </ion-list>

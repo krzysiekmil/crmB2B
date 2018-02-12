@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {Action} from "../../model/action";
+import {ModalPage} from "../modal/modal";
 
 /**
  * Generated class for the ActionDetailPage page.
@@ -13,10 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-action-detail',
   templateUrl: 'action-detail.html',
 })
-export class ActionDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class ActionDetailPage {
+  action:Action;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl:ModalController) {
+  this.action=this.navParams.get('action');
   }
+
+  openModalWithParams() {
+    let myModal = this.modalCtrl.create(ModalPage, { 'IQOSCoach': this.action.daneIQOS });
+    myModal.present();
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActionDetailPage');
