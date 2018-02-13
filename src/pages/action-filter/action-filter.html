@@ -11,13 +11,11 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <button end ion-button  menuToggle="filter">
-        <ion-icon name="build">
+        <ion-icon name="options">
         </ion-icon>
       </button>
-    <ion-toolbar>
-      <ion-searchbar>
-
-      </ion-searchbar>
+    <ion-toolbar no-border-top>
+      <ion-searchbar placeholder="Filter Items" (ionInput)="filterSearchBar($event)"></ion-searchbar>
     </ion-toolbar>
   </ion-navbar>
 
@@ -25,15 +23,18 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-item>
+    {{actionList.length}}
+  </ion-item>
+  <ion-list *ngFor="let action of actionList">
     <ion-card>
       <ion-item>
         <ion-avatar item-start>
           <img src="https://www.w3schools.com/howto/img_avatar.png">
         </ion-avatar>
-        <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
-        <p>TEST </p>
+        <h2>{{action.nameOfClient}}</h2>
+        <p>{{action.type}}</p>
+        <p>{{action.data}}</p>
       </ion-item>
       <ion-card-content>
         <ion-col left>

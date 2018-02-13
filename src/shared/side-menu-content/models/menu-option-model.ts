@@ -25,4 +25,8 @@ export interface MenuOptionModel {
 
     // List of sub items if any
     subItems?: Array<MenuOptionModel>;
+
+    param?:string;
+
+    value?:string;
 }

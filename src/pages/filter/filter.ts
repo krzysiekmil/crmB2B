@@ -59,7 +59,13 @@ export class FilterPage {
 
     // Load simple menu options
     // ------------------------------------------
-    this.options.push({
+    this.options.push(
+      {
+        iconName:'more',
+        displayName:'Brak',
+        component:ActionFilterPage
+      },
+      {
       iconName: 'home',
       displayName: 'Nazwa klienta',
       component: ActionFilterPage,
@@ -81,27 +87,41 @@ export class FilterPage {
       subItems: [
         {
           displayName: 'Rozmowa telefoniczna',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'Rozmowa telefoniczna'
         },
         {
           displayName: 'Spotkanie',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'Spotkanie'
+
         },
         {
           displayName: 'Zgoda na Seminarium',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'ZgodaNaSeminarium'
         },
         {
           displayName: 'Zgoda na IQOS Space',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'ZgodaNaIQOSSpace'
         },
         {
           displayName: 'Uruchomienie IQOS Space',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'UruchomienieIQOSSpace'
         },
         {
           displayName: 'Seminarium',
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'type',
+          value:'Seminarium'
+
         }
       ]
     });
@@ -109,17 +129,23 @@ export class FilterPage {
       displayName: 'Liczba pracowników',
       subItems: [
         {
-          displayName: '<15',
-          component: ActionFilterPage
+          displayName: '   ...<15  ',
+          component: ActionFilterPage,
+          param:'NumberOfEmployees',
+          value:'0<..<15'
         },
         {
-          displayName: '<50',
-          component: ActionFilterPage
+          displayName: '15< ... <50',
+          component: ActionFilterPage,
+          param:'NumberOfEmployees',
+          value:'15<...<50'
         },
         {
-          displayName: '<100',
+          displayName: '50< ... <100',
           badge: this.unreadCountObservable,
-          component: ActionFilterPage
+          component: ActionFilterPage,
+          param:'NumberOfEmployees',
+          value:'50<...<100'
         }
       ]
     });
@@ -127,16 +153,15 @@ export class FilterPage {
       displayName: 'Wojewodztwo/Region',
       subItems: [
         {
-          displayName: 'Sub Option 1',
+          displayName: 'Warszawa',
           component: ActionFilterPage
         },
         {
-          displayName: 'Sub Option 2',
+          displayName: 'Krakow',
           component: ActionFilterPage
         },
         {
-          displayName: 'With Badge',
-          badge: this.unreadCountObservable,
+          displayName: 'Gdansk',
           component: ActionFilterPage
         }
       ]
@@ -145,13 +170,37 @@ export class FilterPage {
       displayName: 'Miasto',
       subItems: [
         {
-          displayName: 'Sub Option 1',
+          displayName: 'Warszawa',
           component: ActionFilterPage
         },
         {
-          displayName: 'Sub Option 2',
+          displayName: 'Lodz',
           component: ActionFilterPage
         },
+        {
+          displayName: 'Gdansk',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Krakow',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Poznan',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Wroclaw',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Szczecin',
+          component: ActionFilterPage
+        },
+        {
+          displayName: 'Olsztyn',
+          component: ActionFilterPage
+        }
       ]
     });
 
@@ -168,7 +217,7 @@ export class FilterPage {
         window.open(url, '_blank');
       } else {
         // Redirect to the selected page
-        this.navCtrl.setRoot(option.component || ActionFilterPage, { 'title': option.displayName });
+        this.navCtrl.setRoot(option.component || ActionFilterPage, { 'title': option.displayName,'param': option.param,'value':option.value });
       }
     });
   }

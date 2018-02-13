@@ -55,6 +55,13 @@ export class MenuPage {
           icon:'calendar'
         }
         ,
+        {
+
+          name:'Ankieta',
+          componentName:'InquiryPage',
+          icon:'calendar'
+        }
+        ,
       {
         name:'Wyloguj',
         componentName:'ClientListPage',
