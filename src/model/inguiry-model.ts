@@ -13,7 +13,9 @@ export interface Answer {
   id:number;
   label:string;
   value:number;
-  answerValueRules?:Array<ValueRule>;
+  ValueRules?: Array<ValueRule>;
+  ActivityRules?: Array<ActivityRule>;
+  VisibilityRules?: Array<Visibility>;
 }
 
 export interface ActivityRule {
@@ -26,15 +28,14 @@ export interface Question {
   id:number;
   label:string;
   type:string;
-  questionVisibility?:Array<Visibility>;
+  answer: any;
+  VisibilityRules?: Array<Visibility>;
   defaultValue:number;
-  questionValueRules?:Array<ValueRule>;
+  ValueRules?: Array<ValueRule>;
   questionAnswers:Array<Answer>;
-  activityRules?:Array<ActivityRule>
+  ActivityRules?: Array<ActivityRule>
 }
-export interface questionClick{
 
-}
 
 export interface Section {
   name:string;

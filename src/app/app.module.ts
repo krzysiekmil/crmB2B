@@ -18,6 +18,7 @@ import {MainPageModule} from "../pages/main/main.module";
 import {MenuPage} from "../pages/menu/menu";
 import {SideMenuContentComponent} from "../shared/side-menu-content/side-menu-content.component";
 import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
+import {HttpModule} from "@angular/http";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
     MenuPageModule,
     MainPageModule,
     InquiryPageModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
