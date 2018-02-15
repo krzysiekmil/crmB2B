@@ -18,12 +18,10 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-
-
-<ion-content padding>
+<ion-content padding *ngFor="let section of sectionList">
   <ion-slides #mySlider (ionDidChange)="onSlideChanged($event)">
-    <ion-slide *ngFor="let section of sectionList">
-      <ion-list *ngFor="let question of section.questionsList">
+    <ion-slide>
+      <ion-list *ngFor="let question of section.questionsList" scroll="true">
         <ion-card (*ngIf)="visibilityQuestion(question)" id="{{question.id}}">
           <ion-card-header>
             <ion-card-title>
@@ -70,6 +68,8 @@
     </ion-slide>
   </ion-slides>
 </ion-content>
+
+
 <ion-footer>
   <ion-label>
     TWOJ WYNIK: {{sectionResult}}/{{section.maxValue}}
