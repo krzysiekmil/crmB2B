@@ -21,7 +21,7 @@ export interface Answer {
 export interface ActivityRule {
   targetQuestion:number;
   type:string;
-  value:number;
+  value: any;
 }
 
 export interface Question {
@@ -29,11 +29,13 @@ export interface Question {
   label:string;
   type:string;
   answer: any;
-  VisibilityRules?: Array<Visibility>;
+  active: string;
+  disabled: boolean;
+  visibilityRules?: Array<Visibility>;
   defaultValue:number;
   ValueRules?: Array<ValueRule>;
   questionAnswers:Array<Answer>;
-  ActivityRules?: Array<ActivityRule>
+  activityRules?: Array<ActivityRule>
 }
 
 

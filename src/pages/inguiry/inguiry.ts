@@ -1,7 +1,6 @@
-import {Component, DoCheck, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {Content, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
-import {Answer, Question, Section} from "../../model/inguiry-model";
-import {isUndefined} from "ionic-angular/util/util";
+import {ActivityRule, Question, Section} from "../../model/inguiry-model";
 
 /**
  * Generated class for the InquiryPage page.
@@ -15,22 +14,42 @@ import {isUndefined} from "ionic-angular/util/util";
   selector: 'page-inguiry',
   templateUrl: 'inguiry.html',
 })
-export class InquiryPage implements DoCheck {
+export class InquiryPage implements DoCheck, OnInit {
   @ViewChild(Content) content: Content;
-  questionInput: Question = {
-    id: 1,
-    label: "Czy krowa to ptak?",
-    type: 'input',
-    defaultValue: 10,
-    answer: '',
-    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
-  };
+  @ViewChild('mySlider') slider: Slides;
+  selectedSegment: string;
+  slides: any;
+  activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
   questionInput2: Question = {
     id: 2,
     label: "Czy krowa to ptak?",
     type: 'input',
     defaultValue: 10,
     answer: '',
+    active: 'active',
+    disabled: null,
+    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}],
+    activityRules: [this.activityRule]
+  };
+  questionCheckBox2: Question = {
+    id: 4,
+    label: "Czy krowa to ptak?",
+    type: 'checkbox',
+    defaultValue: 10,
+    answer: false,
+    active: 'active',
+    disabled: null,
+    questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}],
+    activityRules: [this.activityRule]
+  };
+  questionInput: Question = {
+    id: 1,
+    label: "Czy krowa to ptak?",
+    type: 'input',
+    defaultValue: 10,
+    answer: '',
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionCheckBox: Question = {
@@ -39,14 +58,8 @@ export class InquiryPage implements DoCheck {
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
-    questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}]
-  };
-  questionCheckBox2: Question = {
-    id: 4,
-    label: "Czy krowa to ptak?",
-    type: 'checkbox',
-    defaultValue: 10,
-    answer: false,
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}]
   };
   questionSelectBox: Question = {
@@ -55,6 +68,8 @@ export class InquiryPage implements DoCheck {
     type: 'select',
     defaultValue: 10,
     answer: '',
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBox2: Question = {
@@ -63,6 +78,8 @@ export class InquiryPage implements DoCheck {
     type: 'select',
     defaultValue: 10,
     answer: '',
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti: Question = {
@@ -71,6 +88,8 @@ export class InquiryPage implements DoCheck {
     type: 'selectMultiple',
     defaultValue: 12,
     answer: '',
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti2: Question = {
@@ -79,6 +98,8 @@ export class InquiryPage implements DoCheck {
     type: 'selectMultiple',
     defaultValue: 12,
     answer: '',
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionRange: Question = {
@@ -87,6 +108,8 @@ export class InquiryPage implements DoCheck {
     type: 'range',
     defaultValue: 10,
     answer: null,
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   questionRange2: Question = {
@@ -95,6 +118,8 @@ export class InquiryPage implements DoCheck {
     type: 'range',
     defaultValue: 10,
     answer: null,
+    active: 'active',
+    disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   section: Section = {
@@ -105,17 +130,39 @@ export class InquiryPage implements DoCheck {
       , this.questionSelectBoxMulti, this.questionSelectBoxMulti2
       , this.questionRange, this.questionRange2]
   };
-  sections: Array<Section> = [this.section, this.section];
-  selectedSegment: string;
-  slides: any;
+  sectionList: Array<Section> = [this.section, this.section];
+  disabled: boolean;
+  selectedQuestionId: number;
   selectedQuestion: number;
   sectionResult: number;
-  seletedAnswer: any;
-  anwsersValue: number;
+  answerValue: number;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedQuestion = 1;
+    this.selectedQuestionId = 0;
+    this.selectedSegment = 'first';
+    this.slides = [
+      {
+        id: "first",
+        title: "First Slide"
+      },
+      {
+        id: "second",
+        title: "Second Slide"
+      },
+      {
+        id: "third",
+        title: "Third Slide"
+      }
+    ];
+  }
 
+  ngOnInit() {
+    // this.section.questionsList=this.section.questionsList.filter(question=>{
+    //   console.log(question.id,this.visibilityQuestion(question));
+    //   return this.visibilityQuestion(question)
+    // })
   }
 
   ngDoCheck() {
@@ -129,60 +176,169 @@ export class InquiryPage implements DoCheck {
   }
 
   nextQuestionButton() {
-    let yOffset = document.getElementById(this.selectedQuestion.toString()).offsetTop;
-    this.selectedQuestion++;
-    this.content.scrollTo(0, yOffset + 100, 650);
+    if (this.selectedQuestionId < this.section.questionsList.length - 1)
+      if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
+        let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
+        if (this.selectedQuestion + 1 != this.section.questionsList[this.selectedQuestionId].id)
+          this.selectedQuestion = this.section.questionsList[this.selectedQuestionId + 1].id;
+        else {
+          this.selectedQuestion++;
+        }
+        this.content.scrollTo(0, yOffset + 105, 650).catch(err => {
+          console.error(err)
+        });
 
+      }
+      else {
+        while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
+          this.selectedQuestion++;
+          this.selectedQuestionId++;
+        }
+        let yOffset = document.getElementById(this.selectedQuestion.toString()).offsetTop;
+        this.selectedQuestion++;
+        this.content.scrollTo(0, yOffset, 650).catch(err => {
+          console.error(err)
+        });
+      }
+    if (this.selectedQuestionId < this.section.questionsList.length - 2)
+      this.selectedQuestionId++;
+    console.log(this.selectedQuestionId, this.selectedQuestion, this.section.questionsList)
   }
 
   selectQuestion(id: number) {
-    if (this.selectedQuestion == id)
+    if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
+      this.selectedQuestionId == null;
+    }
     else {
-      if (id > this.selectedQuestion) {
+      if (id > this.selectedQuestion && this.selectedQuestion != null) {
         this.selectedQuestion = id;
+        this.selectedQuestionId = this.section.questionsList.map(question => {
+          return question.id
+        }).indexOf(this.selectedQuestion);
         let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
-        this.content.scrollTo(0, yOffset - 125, 650);
+        this.content.scrollTo(0, yOffset - 125, 650).catch(err => console.error(err));
       }
       else {
         this.selectedQuestion = id;
+        this.selectedQuestionId = this.section.questionsList.map(question => {
+          return question.id
+        }).indexOf(this.selectedQuestion);
         let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
         this.content.scrollTo(0, yOffset, 650);
       }
     }
+    console.log(this.selectedQuestionId, this.selectedQuestion, this.section.questionsList)
+
   }
 
-  disabled(question: Question) {
-    return true;
+  disabledQuestion(question: Question): boolean {
+    question.disabled = false;
+    if (question.activityRules != null) {
+      question.disabled = true;
+      question.activityRules.forEach(rule => {
+          switch (rule.type) {
+            case "VALUE_COMPARE_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer.toLocaleLowerCase().trim() === (rule.value.toString().toLocaleLowerCase().trim()))
+                question.disabled = false;
+              break;
+            }
+            case "VALUE_COMPARE_GREATER": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer > (rule.value))
+                question.disabled = true;
+              break;
+            }
+            case "VALUE_COMPARE_GREATER_OR_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer >= (rule.value))
+                question.disabled = true;
+              break;
+            }
+            case "VALUE_COMPARE_SMALLER": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer < (rule.value))
+                question.disabled = true;
+              break;
+            }
+            case "VALUE_COMPARE_SMALLER_OR_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer <= (rule.value))
+                question.disabled = true;
+              break;
+            }
+            case "VALUE_COMPARE_NOT_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer.toString().toLocaleLowerCase().trim() !== (rule.value.toString().toLocaleLowerCase().trim()))
+                question.disabled = true;
+              break;
+            }
+          }
+        }
+      );
+    }
+    return question.disabled;
+  }
+
+  visibilityQuestion(question: Question) {
+    let visibility = true;
+    if (question.activityRules != null) {
+      visibility = false;
+      question.activityRules.forEach(rule => {
+          switch (rule.type) {
+            case "VALUE_COMPARE_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer.toLocaleLowerCase().trim() === (rule.value.toString().toLocaleLowerCase().trim()))
+                visibility = true;
+              break;
+            }
+            case "VALUE_COMPARE_GREATER": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer > (rule.value))
+                visibility = true;
+              break;
+            }
+            case "VALUE_COMPARE_GREATER_OR_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer >= (rule.value))
+                visibility = true;
+              break;
+            }
+            case "VALUE_COMPARE_SMALLER": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer < (rule.value))
+                visibility = true;
+              break;
+            }
+            case "VALUE_COMPARE_SMALLER_OR_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer <= (rule.value))
+                visibility = true;
+              break;
+            }
+            case "VALUE_COMPARE_NOT_EQUAL": {
+              if (this.section.questionsList[rule.targetQuestion - 1].answer.toString().toLocaleLowerCase().trim() !== (rule.value.toString().toLocaleLowerCase().trim()))
+                visibility = true;
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+        }
+      );
+    }
+    return visibility;
   }
 
 
   checkAnswer() {
     this.section.questionsList.forEach(question => {
         if (question.answer != null && question.answer !== '') {
-          this.anwsersValue = 0;
+          this.answerValue = 0;
           question.questionAnswers.forEach(answer => {
               if (question.answer.toString().toLowerCase().includes(answer.label.toString().toLowerCase().trim())) {
-                this.anwsersValue = this.anwsersValue + answer.value;
+                this.answerValue = this.answerValue + answer.value;
               }
             }
           );
-          if (this.anwsersValue >= 100) {
+          if (this.answerValue >= 100) {
             this.sectionResult = this.sectionResult + question.defaultValue;
           }
         }
-        ;
       }
     );
   }
-
-
-  onSlideChanged(slider) {
-    console.log('Slide changed');
-    const currentSlide = this.slides[slider.activeIndex];
-    this.selectedSegment = currentSlide.id;
-  }
-
   setInputPlaceHolder(id: number) {
     let placeholder = '';
     this.section.questionsList[id - 1].questionAnswers.forEach(answer => {
@@ -194,8 +350,18 @@ export class InquiryPage implements DoCheck {
     return placeholder;
   }
 
-  sectionValue() {
+  onSegmentChanged(segmentButton) {
+    console.log("Segment changed to", segmentButton.value);
+    const selectedIndex = this.slides.findIndex((slide) => {
+      return slide.id === segmentButton.value;
+    });
+    this.slider.slideTo(selectedIndex);
+  }
 
+  onSlideChanged(slider) {
+    console.log('Slide changed');
+    const currentSlide = this.slides[slider.activeIndex];
+    this.selectedSegment = currentSlide.id;
   }
 
 }
