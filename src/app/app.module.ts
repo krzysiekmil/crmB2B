@@ -15,10 +15,9 @@ import {ActionClientPageModule} from "../pages/action-client/action-client.modul
 import {ModalPageModule} from "../pages/modal/modal.module";
 import {MenuPageModule} from "../pages/menu/menu.module";
 import {MainPageModule} from "../pages/main/main.module";
-import {MenuPage} from "../pages/menu/menu";
-import {SideMenuContentComponent} from "../shared/side-menu-content/side-menu-content.component";
 import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
+import {SuperTabsModule} from "ionic2-super-tabs";
 
 
 @NgModule({

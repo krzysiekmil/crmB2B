@@ -1,5 +1,5 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {Content, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {Component, DoCheck, OnInit, ViewChild, ViewChildDecorator} from '@angular/core';
+import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
 import {ActivityRule, Question, Section} from "../../model/inguiry-model";
 
 /**
@@ -15,10 +15,12 @@ import {ActivityRule, Question, Section} from "../../model/inguiry-model";
   templateUrl: 'inguiry.html',
 })
 export class InquiryPage implements DoCheck, OnInit {
+  @ViewChild(Slides) slides: Slides;
   @ViewChild(Content) content: Content;
-  @ViewChild('mySlider') slider: Slides;
+  @ViewChild(Scroll) scroll: Scroll;
+  @ViewChild(Slide) slide: Slide;
   selectedSegment: string;
-  slides: any;
+  slides2: any;
   activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
   questionInput2: Question = {
     id: 2,
@@ -123,6 +125,7 @@ export class InquiryPage implements DoCheck, OnInit {
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   section: Section = {
+    id: 1,
     name: 'sekcja 1', maxValue: 100, relativeValue: 50,
     questionsList: [this.questionInput, this.questionInput2
       , this.questionCheckBox, this.questionCheckBox2
@@ -130,7 +133,16 @@ export class InquiryPage implements DoCheck, OnInit {
       , this.questionSelectBoxMulti, this.questionSelectBoxMulti2
       , this.questionRange, this.questionRange2]
   };
-  sectionList: Array<Section> = [this.section, this.section];
+  section2: Section = {
+    id: 2,
+    name: 'sekcja 2', maxValue: 100, relativeValue: 50,
+    questionsList: [this.questionInput, this.questionInput2
+      , this.questionCheckBox, this.questionCheckBox2
+      , this.questionSelectBox, this.questionSelectBox2
+      , this.questionSelectBoxMulti, this.questionSelectBoxMulti2
+      , this.questionRange, this.questionRange2]
+  };
+  sectionList: Array<Section> = [this.section, this.section2];
   disabled: boolean;
   selectedQuestionId: number;
   selectedQuestion: number;
@@ -141,21 +153,6 @@ export class InquiryPage implements DoCheck, OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedQuestion = 1;
     this.selectedQuestionId = 0;
-    this.selectedSegment = 'first';
-    this.slides = [
-      {
-        id: "first",
-        title: "First Slide"
-      },
-      {
-        id: "second",
-        title: "Second Slide"
-      },
-      {
-        id: "third",
-        title: "Third Slide"
-      }
-    ];
   }
 
   ngOnInit() {
@@ -163,6 +160,7 @@ export class InquiryPage implements DoCheck, OnInit {
     //   console.log(question.id,this.visibilityQuestion(question));
     //   return this.visibilityQuestion(question)
     // })
+
   }
 
   ngDoCheck() {
@@ -184,7 +182,7 @@ export class InquiryPage implements DoCheck, OnInit {
         else {
           this.selectedQuestion++;
         }
-        this.content.scrollTo(0, yOffset + 105, 650).catch(err => {
+        this.content.scrollTo(0, yOffset + 108, 650).catch(err => {
           console.error(err)
         });
 
@@ -202,10 +200,10 @@ export class InquiryPage implements DoCheck, OnInit {
       }
     if (this.selectedQuestionId < this.section.questionsList.length - 2)
       this.selectedQuestionId++;
-    console.log(this.selectedQuestionId, this.selectedQuestion, this.section.questionsList)
   }
 
   selectQuestion(id: number) {
+
     if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
       this.selectedQuestionId == null;
@@ -228,7 +226,6 @@ export class InquiryPage implements DoCheck, OnInit {
         this.content.scrollTo(0, yOffset, 650);
       }
     }
-    console.log(this.selectedQuestionId, this.selectedQuestion, this.section.questionsList)
 
   }
 
@@ -321,7 +318,6 @@ export class InquiryPage implements DoCheck, OnInit {
     return visibility;
   }
 
-
   checkAnswer() {
     this.section.questionsList.forEach(question => {
         if (question.answer != null && question.answer !== '') {
@@ -339,6 +335,7 @@ export class InquiryPage implements DoCheck, OnInit {
       }
     );
   }
+
   setInputPlaceHolder(id: number) {
     let placeholder = '';
     this.section.questionsList[id - 1].questionAnswers.forEach(answer => {
@@ -352,15 +349,14 @@ export class InquiryPage implements DoCheck, OnInit {
 
   onSegmentChanged(segmentButton) {
     console.log("Segment changed to", segmentButton.value);
-    const selectedIndex = this.slides.findIndex((slide) => {
+    const selectedIndex = this.slides2.findIndex((slide) => {
       return slide.id === segmentButton.value;
     });
-    this.slider.slideTo(selectedIndex);
   }
 
   onSlideChanged(slider) {
     console.log('Slide changed');
-    const currentSlide = this.slides[slider.activeIndex];
+    const currentSlide = this.slides2[slider.activeIndex];
     this.selectedSegment = currentSlide.id;
   }
 

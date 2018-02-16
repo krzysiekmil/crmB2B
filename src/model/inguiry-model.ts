@@ -40,6 +40,7 @@ export interface Question {
 
 
 export interface Section {
+  id: number;
   name:string;
   sectionVisibility?:Array<Visibility>
   maxValue:number;

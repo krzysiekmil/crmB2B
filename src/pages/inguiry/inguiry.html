@@ -1,28 +1,18 @@
 <ion-header>
   <ion-navbar>
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
-      <ion-segment-button value="first">
-        First
-      </ion-segment-button>
-      <ion-segment-button value="second">
-        Second
-      </ion-segment-button>
-      <ion-segment-button value="third">
-        Third
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
 </ion-header>
-<ion-content padding *ngFor="let section of sectionList">
-  <ion-slides #mySlider (ionDidChange)="onSlideChanged($event)">
+<ion-content padding>
+  <ion-slides>
     <ion-slide>
-      <ion-list *ngFor="let question of section.questionsList" scroll="true">
-        <ion-card (*ngIf)="visibilityQuestion(question)" id="{{question.id}}">
+      <ion-scroll scrollY="true">
+        <ion-list>
+          <ion-card *ngFor="let question of section.questionsList" (*ngIf)="visibilityQuestion(question)"
+                    id="{{question.id}}">
           <ion-card-header>
             <ion-card-title>
               <ion-label>
@@ -65,6 +55,7 @@
           </ion-card-content>
         </ion-card>
       </ion-list>
+      </ion-scroll>
     </ion-slide>
   </ion-slides>
 </ion-content>
