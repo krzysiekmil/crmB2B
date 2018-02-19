@@ -45,12 +45,15 @@ export interface Section {
   sectionVisibility?:Array<Visibility>
   maxValue:number;
   relativeValue:number;
+  result: number;
   questionsList:Array<Question>;
 }
 
-export interface inquiry{
+export interface Inquiry {
+  id: number;
   name:string;
-  visibilityList:Array<Visibility>;
+  visibilityList?: Array<Visibility>;
+  result: number;
   sectionsList:Array<Section>;
 
 }
