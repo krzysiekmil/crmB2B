@@ -57,4 +57,37 @@ side-menu-content {
       font-weight: 700;
     }
   }
+  .popover-md.popover-content {
+    width: 20%;
+    top: 70px;
+    left: 30px;
+    bottom: 70px
+  }
+  .custom-popover.popover-content {
+    width: 80%;
+    top: 70px;
+    left: 30px;
+    bottom: 70px
+  }
+  .popover-content {
+    height: 280px;
+  }
+  .popover-md.popover-content.popover-viewport {
+    width: 20%;
+    top: 70px;
+    left: 30px;
+    bottom: 70px
+  }
+  .popover-viewport {
+    width: 123px;
+  }
+  .popover-md {
+    width: 123px;
+  }
+  .contact-popover .popover-content {
+    width: 320px;
+  }
+  popover-md-width: 320px;
+  popover-ios-width: 320px;
+  popover-wp-width: 320px;
 }

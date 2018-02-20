@@ -18,10 +18,12 @@ import {MainPageModule} from "../pages/main/main.module";
 import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
 import {SuperTabsModule} from "ionic2-super-tabs";
+import {ConfirmPage} from "../pages/confirm/confirm";
 
 
 @NgModule({
   declarations: [
+    ConfirmPage,
     MyApp
   ],
   imports: [
@@ -42,6 +44,7 @@ import {SuperTabsModule} from "ionic2-super-tabs";
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    ConfirmPage,
     MyApp,
 
   ],

@@ -2,6 +2,7 @@ import {Component, DoCheck, OnChanges, OnInit, ViewChild, ViewChildDecorator} fr
 import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
 import {ActivityRule, Inquiry, Question, Section} from "../../model/inguiry-model";
 import {InquirySectionPage} from "../inquiry-section/inquiry-section";
+import {Observable} from "rxjs/Observable";
 
 /**
  * Generated class for the InquiryPage page.
@@ -156,7 +157,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'range',
     defaultValue: 10,
-    answer: null,
+    answer: "0",
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
@@ -166,7 +167,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'range',
     defaultValue: 10,
-    answer: null,
+    answer: 0,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
@@ -199,10 +200,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     result: 0
   }
   disabled: boolean;
-  selectedQuestionId: number;
-  selectedQuestion: number;
   sectionResult: number;
-  answerValue: number;
   selectedSection: number;
 
 
@@ -213,7 +211,6 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
 
   ngOnInit() {
-    console.log(this.selectedSection, this.inquiry,)
 
     // this.section.questionsList=this.section.questionsList.filter(question=>{
     //   console.log(question.id,this.visibilityQuestion(question));
@@ -228,13 +225,11 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
-    console.log(this.selectedSection);
     this.checkAnswer();
     this.countPoints();
   }
 
   ngOnChanges() {
-    console.log("onchanges")
   }
 
 
@@ -279,7 +274,6 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   next() {
-    this.selectedQuestionId = 0;
     this.slides.slideNext(700);
   }
 

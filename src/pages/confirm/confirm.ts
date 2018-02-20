@@ -9,7 +9,6 @@ import {Client} from "../../model/client";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-confirm',
   templateUrl: 'confirm.html',
