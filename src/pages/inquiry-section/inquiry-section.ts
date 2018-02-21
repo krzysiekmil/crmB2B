@@ -2,7 +2,7 @@ import {
   Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {AlertController, Content, IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {AlertController, Content, IonicPage, NavController, NavParams, Popover, PopoverController} from 'ionic-angular';
 import {ActivityRule, Question, Section} from "../../model/inguiry-model";
 import {isUndefined} from "ionic-angular/es2015/util/util";
 import {ConfirmPage} from "../confirm/confirm";
@@ -18,18 +18,21 @@ import {ConfirmPage} from "../confirm/confirm";
   selector: 'page-inquiry-section',
   templateUrl: 'inquiry-section.html',
 })
-export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
+export class InquirySectionPage implements OnInit, DoCheck {
   @ViewChild(Content) content: Content;
   @Input() @Output() sectionList: Array<Section>;
   @Input() @Output() sectionResult: number;
   @Input() @Output() selectedSection: number;
   @Output() slides = new EventEmitter();
-  selectedQuestionId: number;
+  @Input() @Output() selectedQuestionId: number;
   section: Section;
   disabled: boolean;
   selectedQuestion: number;
   rangeMin: number = 0;
   rangeMax: number = 0;
+  sectionConst: number;
+  popOver: Popover;
+  count: number = 0;
 
   constructor(private popover: PopoverController, public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
     this.selectedQuestion = 1;
@@ -37,24 +40,35 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
     this.selectedSection = 0;
   }
 
-  ngOnInit() {
-  }
 
-  ngDoCheck() {
+  ngOnInit() {
+    this.selectedQuestion = 1;
+    this.selectedQuestionId = 0;
+    this.selectedSection = 0;
+    this.sectionConst = 0;
     this.section = this.sectionList[this.selectedSection];
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-
-    console.log("ASD")
-
+  ngDoCheck() {
+    if (this.sectionConst != this.selectedSection) {
+      this.section = this.sectionList[this.selectedSection];
+      this.sectionConst = this.selectedSection;
+      this.selectedQuestion = 1;
+      this.selectedQuestionId = 0;
+      this.content.scrollToTop();
+    }
   }
 
   questionSelected(id: number) {
     return this.selectedQuestion == id;
   }
 
+  test() {
+    this.count++;
+  }
+
   nextQuestionButton() {
+    console.log(this.selectedQuestionId, this.selectedQuestion);
     if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
       this.slides.next();
     }
@@ -74,14 +88,19 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
       }
       else {
         while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
-          this.selectedQuestion++;
           this.selectedQuestionId++;
         }
+        this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
         let yOffset = document.getElementById(this.selectedQuestion.toString()).offsetTop;
         this.selectedQuestion++;
-        this.content.scrollTo(0, yOffset, 650).catch(err => {
+        if (this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId - 1]))
+          this.content.scrollTo(0, yOffset - 86, 650).catch(err => {
           console.error(err)
         });
+        else
+          this.content.scrollTo(0, yOffset - 20, 650).catch(err => {
+            console.error(err)
+          });
       }
     if (this.selectedQuestionId < this.section.questionsList.length - 1)
       this.selectedQuestionId++;
@@ -105,6 +124,7 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
         this.content.scrollTo(0, yOffset - 108, 650).catch(err => console.error(err));
       }
       else {
+
         this.selectedQuestion = id;
         this.selectedQuestionId = this.section.questionsList.map(question => {
           return question.id
@@ -241,26 +261,29 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
     }
   }
 
-  showAlert() {
+  showAlert(question: Question) {
     let alert = this.alertCtr.create({
-      title: 'Sprzedawco !!',
-      message: 'Są jeszcze poprawne odpowiedzi do wybrania , chcesz poprawić ?',
+      title: question.label,
+      message: 'tutaj tekst o tym, ze z krowy kiepski jest ptak',
       buttons: [
         {
-          text: 'Nie',
+          text: 'Popraw',
           handler: () => {
-            this.nextQuestionButton()
           }
         },
         {
-          text: 'Tak',
+          text: 'Nastepne pytanie',
           handler: () => {
+            this.nextQuestionButton()
           }
         }
       ]
     });
 
     alert.present();
+    setTimeout(() => {
+      alert.dismiss()
+    }, 22000)
   }
 
   maxQuestionValue(question: Question) {
@@ -272,7 +295,7 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
           }
         }
       );
-      if (answerValue >= 100) {
+      if (answerValue < 100 && question.answer != null && question.answer !== '') {
         return true;
       }
       else
@@ -280,12 +303,20 @@ export class InquirySectionPage implements OnInit, DoCheck, OnChanges {
     }
   }
 
-  popoverQuestion() {
-    let popover = this.popover.create(ConfirmPage, {}, {cssClass: 'contact-popover'});
-    popover.present();
-    popover.onWillDismiss(() => {
-
-    })
+  popoverQuestion(question: Question) {
+    this.popOver = this.popover.create(ConfirmPage, {question: question}, {cssClass: "contact", showBackdrop: true});
+    let ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: 359
+          };
+        }
+      }
+    };
+    this.popOver.present({duration: 350, ev});
+    console.log(document.getElementById((2).toString()).offsetTop + 112);
+    setTimeout(() => this.popOver.dismiss({}, null, {duration: 3500}), 12000)
 
   }
 

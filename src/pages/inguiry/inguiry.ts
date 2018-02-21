@@ -19,6 +19,7 @@ import {Observable} from "rxjs/Observable";
 export class InquiryPage implements DoCheck, OnInit, OnChanges {
   @ViewChild(InquirySectionPage) inquirySection;
   @ViewChild(Slides) slides: Slides;
+  selectedQuestionId: number;
   activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
   questionInput2: Question = {
     id: 2,
@@ -202,11 +203,14 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   disabled: boolean;
   sectionResult: number;
   selectedSection: number;
+  modelAnswer: any = '';
 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.selectedQuestionId)
     this.selectedSection = 0;
+    this.selectedQuestionId = 0;
   }
 
 
@@ -225,11 +229,16 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
-    this.checkAnswer();
-    this.countPoints();
+    console.log(this.selectedQuestionId);
+    if (this.modelAnswer != this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].answer) {
+      this.checkAnswer();
+      this.countPoints();
+      this.modelAnswer = this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].answer
+    }
   }
 
   ngOnChanges() {
+    console.log("ASD")
   }
 
 
@@ -275,6 +284,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
   next() {
     this.slides.slideNext(700);
+    this.selectedSection = this.slides.realIndex;
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Client} from "../../model/client";
+import {Question} from "../../model/inguiry-model";
 
 /**
  * Generated class for the ConfirmPage page.
@@ -13,17 +14,18 @@ import {Client} from "../../model/client";
   selector: 'page-confirm',
   templateUrl: 'confirm.html',
 })
-export class ConfirmPage {
-  client:Client;
+export class ConfirmPage implements OnInit {
+  question: Question;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.client=this.navParams.get("client");
-  console.log(this.client);
+
+  }
+
+  ngOnInit() {
+    this.question = this.navParams.get('question')
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfirmPage');
-  }
+
 
 }

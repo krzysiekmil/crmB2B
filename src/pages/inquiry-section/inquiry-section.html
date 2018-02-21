@@ -1,72 +1,73 @@
 <ion-content>
-  <ion-list style="width: 100%">
-    <ion-card *ngFor="let question of section.questionsList" (*ngIf)="visibilityQuestion(question)"
+  <ion-list margin-bottom="0">
+    <ion-item margin-bottom="0" *ngFor="let question of section.questionsList"
+              style="width: 100%;border: none ;height: 100%;padding-left: 0;padding-right: 0;" no-border no-lines
               id="{{question.id}}">
-      <ion-card-header>
-        <ion-card-title>
-          <ion-label>
+      <ion-card>
+        <ion-card-title text-center>
+          <button ion-button [color]='' clear text-justify
+                  (click)="selectQuestion(question.id)"
+                  [disabled]="disabledQuestion(question)">
             {{question.id}}. {{question.label}}
-            <button ion-button icon-only *ngIf="question.id!=selectedQuestion" item-right clear
-                    (click)="selectQuestion(question.id)"
-                    [disabled]="disabledQuestion(question)">
-              <ion-icon name="arrow-up"></ion-icon>
+            <ion-icon id="arrow-button" name="arrow-down" item-end float-end float-right>
+            </ion-icon>
             </button>
-            <button ion-button icon-only *ngIf="question.id==selectedQuestion" item-right clear
-                    (click)="selectQuestion(question.id)"
-                    [disabled]="disabledQuestion(question)">
-              <ion-icon name="arrow-down"></ion-icon>
-            </button>
-          </ion-label>
         </ion-card-title>
-      </ion-card-header>
-      <ion-card-content *ngIf="questionSelected(question.id)">
-        <ion-item *ngIf="question.type==='input'">
-          <ion-input [placeholder]='setInputPlaceHolder(question.id)' [(ngModel)]="question.answer">
-          </ion-input>
-        </ion-item>
-        <ion-item *ngIf="question.type ==='checkbox'">
-          <ion-checkbox [(ngModel)]="question.answer"></ion-checkbox>
-          <ion-label float-end>
-            {{question.answer}}
-          </ion-label>
-          <ion-label float-end *ngIf="question.answer==false">
-            0 pkt.
-          </ion-label>
-          <ion-label float-end *ngIf="question.answer==true">
-            +{{question.defaultValue}} pkt.
-          </ion-label>
-        </ion-item>
-        <ion-item *ngIf="question.type==='select'">
-          <ion-select [(ngModel)]="question.answer" interface="popover" [placeholder]="setSelectPlaceholder(question)">
-            <ion-option *ngFor="let answer of question.questionAnswers">
-              {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
-            </ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item *ngIf="question.type==='selectMultiple'">
-          <ion-select float-end [(ngModel)]="question.answer" interface="popover" multiple="true"
-                      [placeholder]="setSelectPlaceholder(question)">
-            <ion-option *ngFor="let answer of question.questionAnswers">
-              {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
-            </ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item *ngIf="question.type==='range'">
-          <ion-label>
-            Wybrany wynik
-            <ion-badge>
+        <ion-card-content *ngIf="questionSelected(question.id)">
+          <ion-item *ngIf="question.type==='input'">
+            <ion-input [placeholder]='setInputPlaceHolder(question.id)' [(ngModel)]="question.answer">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="question.type ==='checkbox'">
+            <ion-checkbox [(ngModel)]="question.answer"></ion-checkbox>
+            <ion-label float-end>
               {{question.answer}}
-            </ion-badge>
-          </ion-label>
-          <ion-range snaps [(ngModel)]="question.answer" [min]="setRangeValue(question,'min')"
-                     [max]="setRangeValue(question,'max')" pin="true">
-            <ion-label range-left>{{rangeMin}}</ion-label>
-            <ion-label range-right>{{rangeMax}}</ion-label>
-          </ion-range>
-        </ion-item>
-        <button ion-button clear (click)="popoverQuestion($event)">Dalej</button>
-        <!--<button ion-button clear *ngIf="maxQuestionValue(question)" (click)="popoverQuestion()">Dalej</button>-->
-      </ion-card-content>
-    </ion-card>
+            </ion-label>
+            <ion-label float-end *ngIf="question.answer==false">
+              0 pkt.
+            </ion-label>
+            <ion-label float-end *ngIf="question.answer==true">
+              +{{question.defaultValue}} pkt.
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="question.type==='select'">
+            <ion-select [(ngModel)]="question.answer" interface="popover"
+                        [placeholder]="setSelectPlaceholder(question)">
+              <ion-option *ngFor="let answer of question.questionAnswers">
+                {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="question.type==='selectMultiple'">
+            <ion-select float-end [(ngModel)]="question.answer" interface="popover" multiple="true"
+                        [placeholder]="setSelectPlaceholder(question)">
+              <ion-option *ngFor="let answer of question.questionAnswers">
+                {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="question.type==='range'">
+            <ion-label>
+              Wybrany wynik
+              <ion-badge>
+                {{question.answer}}
+              </ion-badge>
+            </ion-label>
+            <ion-range snaps [(ngModel)]="question.answer" [min]="setRangeValue(question,'min')"
+                       [max]="setRangeValue(question,'max')" pin="true">
+              <ion-label range-left>{{rangeMin}}</ion-label>
+              <ion-label range-right>{{rangeMax}}</ion-label>
+            </ion-range>
+          </ion-item>
+          <button ion-button full clear text-wrap *ngIf="(maxQuestionValue(question)&&questionSelected(question.id))"
+                  (click)="showAlert(question)">Dalej
+          </button>
+          <button ion-button full clear text-center
+                  *ngIf="!(maxQuestionValue(question)||!questionSelected(question.id))" (click)="nextQuestionButton()">
+            Dalej
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
   </ion-list>
 </ion-content>

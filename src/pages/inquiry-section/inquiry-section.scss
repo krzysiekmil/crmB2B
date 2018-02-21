@@ -1,7 +1,40 @@
+$animation-duration: 0.3s;
 page-inquiry-section {
   .scroll-content {
     height: 100%;
     width: 100%;
   }
+  .contact {
+    width: 120px;
+  }
+  ion-label.label.label-md {
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+  ion-list.list.list-md {
+    margin-bottom: 0;
+  }
+  ion-icon.header-icon {
+    will-change: transform;
+    transition: transform $animation-duration ease;
 
+    &.rotate {
+      -webkit-transform: rotate(-180deg);
+      -moz-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+      -o-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+    }
+  }
+  div.options {
+    will-change: height;
+    transition: height $animation-duration ease;
+    overflow-y: hidden;
+    height: 0;
+  }
+  .rotate-90 {
+    display: inline-block;
+    transform: rotate(90deg);
+    transition-duration: 12s;
+  }
 }
