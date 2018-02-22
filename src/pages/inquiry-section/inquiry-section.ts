@@ -1,5 +1,8 @@
 import {
-  Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges,
+  animate,
+  Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, state, style,
+  transition,
+  trigger,
   ViewChild
 } from '@angular/core';
 import {AlertController, Content, IonicPage, NavController, NavParams, Popover, PopoverController} from 'ionic-angular';
@@ -15,39 +18,63 @@ import {ConfirmPage} from "../confirm/confirm";
  */
 
 @Component({
+  animations: [
+    trigger('rotate', [
+
+      state('open', style({
+        transform: 'rotate(0deg)'
+      })),
+      state('close', style({
+        transform: 'rotate(-180deg)'
+      })),
+      transition(':enter', animate('1000ms ease'))
+    ]),
+    trigger('rotates', [
+      state('open', style({
+        transform: 'rotate(0deg)'
+      })),
+      state('close', style({
+        transform: 'rotate(90deg)'
+      })),
+      transition('close=>open', animate('1000ms ease'))
+    ]),
+  ],
   selector: 'page-inquiry-section',
   templateUrl: 'inquiry-section.html',
 })
 export class InquirySectionPage implements OnInit, DoCheck {
+  @Output() test = new EventEmitter<number>();
+  state: string = 'open';
   @ViewChild(Content) content: Content;
   @Input() @Output() sectionList: Array<Section>;
   @Input() @Output() sectionResult: number;
   @Input() @Output() selectedSection: number;
   @Output() slides = new EventEmitter();
-  @Input() @Output() selectedQuestionId: number;
+  selectedQuestionId: number;
   section: Section;
   disabled: boolean;
   selectedQuestion: number;
   rangeMin: number = 0;
   rangeMax: number = 0;
   sectionConst: number;
-  popOver: Popover;
-  count: number = 0;
+  questionIdConst: number;
 
-  constructor(private popover: PopoverController, public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
-    this.selectedQuestion = 1;
-    this.selectedQuestionId = 0;
-    this.selectedSection = 0;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
+    console.log("constructor")
+    this.questionIdConst = 1;
+
   }
-
 
   ngOnInit() {
-    this.selectedQuestion = 1;
-    this.selectedQuestionId = 0;
+    console.log("oninit")
     this.selectedSection = 0;
+    this.selectedQuestionId = 0;
     this.sectionConst = 0;
     this.section = this.sectionList[this.selectedSection];
+    this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
   }
+
 
   ngDoCheck() {
     if (this.sectionConst != this.selectedSection) {
@@ -63,75 +90,55 @@ export class InquirySectionPage implements OnInit, DoCheck {
     return this.selectedQuestion == id;
   }
 
-  test() {
-    this.count++;
-  }
 
   nextQuestionButton() {
-    console.log(this.selectedQuestionId, this.selectedQuestion);
     if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
       this.slides.next();
     }
-    console.log(this.selectedQuestionId, this.selectedQuestion);
-    if (this.selectedQuestionId < this.section.questionsList.length - 1)
+    else {
+      let yOffset = 0;
       if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
-        let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
-        if (this.selectedQuestion + 1 != this.section.questionsList[this.selectedQuestionId].id)
-          this.selectedQuestion = this.section.questionsList[this.selectedQuestionId + 1].id;
-        else {
-          this.selectedQuestion++;
-        }
-        this.content.scrollTo(0, yOffset + 108, 650).catch(err => {
-          console.error(err)
-        });
-
+        yOffset = 108;
       }
       else {
         while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
           this.selectedQuestionId++;
         }
-        this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
-        let yOffset = document.getElementById(this.selectedQuestion.toString()).offsetTop;
-        this.selectedQuestion++;
-        if (this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId - 1]))
-          this.content.scrollTo(0, yOffset - 86, 650).catch(err => {
-          console.error(err)
-        });
-        else
-          this.content.scrollTo(0, yOffset - 20, 650).catch(err => {
-            console.error(err)
-          });
+        this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id
       }
-    if (this.selectedQuestionId < this.section.questionsList.length - 1)
-      this.selectedQuestionId++;
-
-
+      yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
+      this.selectedQuestion = this.section.questionsList[this.selectedQuestionId + 1].id;
+      this.content.scrollTo(0, yOffset - 20, 650)
+        .then(() => {
+            this.selectedQuestionId = this.section.questionsList.map(question => {
+              return question.id
+            }).indexOf(this.selectedQuestion);
+          }
+        ).catch(err => {
+        console.error(err)
+      });
+    }
   }
 
+
   selectQuestion(id: number) {
+    this.state = (this.state === 'open' ? 'close' : 'open');
 
     if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
       this.selectedQuestionId == null;
     }
     else {
-      if (id > this.selectedQuestion && this.selectedQuestion != null) {
-        this.selectedQuestion = id;
-        this.selectedQuestionId = this.section.questionsList.map(question => {
-          return question.id
-        }).indexOf(this.selectedQuestion);
-        let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
-        this.content.scrollTo(0, yOffset - 108, 650).catch(err => console.error(err));
-      }
-      else {
+      let yOffset = 0
+      if (id > this.selectedQuestion && this.selectedQuestion != null)
+        yOffset = -108;
 
-        this.selectedQuestion = id;
-        this.selectedQuestionId = this.section.questionsList.map(question => {
-          return question.id
-        }).indexOf(this.selectedQuestion);
-        let yOffset = document.getElementById((this.selectedQuestion).toString()).offsetTop;
-        this.content.scrollTo(0, yOffset, 650);
-      }
+      this.selectedQuestion = id;
+      this.selectedQuestionId = this.section.questionsList.map(question => {
+        return question.id
+      }).indexOf(this.selectedQuestion);
+      yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
+      this.content.scrollTo(0, yOffset, 650);
     }
 
   }
@@ -303,22 +310,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
     }
   }
 
-  popoverQuestion(question: Question) {
-    this.popOver = this.popover.create(ConfirmPage, {question: question}, {cssClass: "contact", showBackdrop: true});
-    let ev = {
-      target: {
-        getBoundingClientRect: () => {
-          return {
-            top: 359
-          };
-        }
-      }
-    };
-    this.popOver.present({duration: 350, ev});
-    console.log(document.getElementById((2).toString()).offsetTop + 112);
-    setTimeout(() => this.popOver.dismiss({}, null, {duration: 3500}), 12000)
-
-  }
 
 
 }

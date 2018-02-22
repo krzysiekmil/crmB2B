@@ -4,12 +4,14 @@
               style="width: 100%;border: none ;height: 100%;padding-left: 0;padding-right: 0;" no-border no-lines
               id="{{question.id}}">
       <ion-card>
-        <ion-card-title text-center>
-          <button ion-button [color]='' clear text-justify
+        <ion-card-title>
+          <button ion-button clear block
                   (click)="selectQuestion(question.id)"
-                  [disabled]="disabledQuestion(question)">
-            {{question.id}}. {{question.label}}
-            <ion-icon id="arrow-button" name="arrow-down" item-end float-end float-right>
+                  [disabled]="disabledQuestion(question)" [color]="questionSelected(question.id)? 'default':'gray'">
+            <ion-title text-left>
+              {{question.id}}. {{question.label}}
+            </ion-title>
+            <ion-icon [@rotates]="state" id="arrow-button" name='arrow-up' item-right float-right>
             </ion-icon>
             </button>
         </ion-card-title>

@@ -1,3 +1,5 @@
+import {Component} from "@angular/core";
+
 export interface Visibility {
   name:string;
   comparator:string;

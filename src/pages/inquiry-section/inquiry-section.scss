@@ -37,4 +37,39 @@ page-inquiry-section {
     transform: rotate(90deg);
     transition-duration: 12s;
   }
+  .toolbar-title.toolbar-title-md {
+    color: inherit;
+  }
+  .spin {
+    animation-name: spin;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .rotate180 {
+    display: inline-block;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all linear 200ms;
+    transition: all linear 200ms;
+  }
+
+  .rotate-back {
+    display: inline-block;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all linear 200ms;
+    transition: all linear 200ms;
+  }
+
+
 }

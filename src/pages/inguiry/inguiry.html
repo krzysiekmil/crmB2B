@@ -17,8 +17,7 @@
   <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide *ngFor="let section of sectionList">
       <page-inquiry-section [(sectionList)]="sectionList" [(sectionResult)]="sectionResult"
-                            [(selectedSection)]="selectedSection" (slides)="next()"
-                            [(selectedQuestionId)]="selectedQuestionId"
+                            [(selectedSection)]="selectedSection" (test)="test3($event)" (slides)="next()"
       ></page-inquiry-section>
     </ion-slide>
   </ion-slides>

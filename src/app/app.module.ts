@@ -17,8 +17,8 @@ import {MenuPageModule} from "../pages/menu/menu.module";
 import {MainPageModule} from "../pages/main/main.module";
 import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
-import {SuperTabsModule} from "ionic2-super-tabs";
 import {ConfirmPage} from "../pages/confirm/confirm";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import {ConfirmPage} from "../pages/confirm/confirm";
     MenuPageModule,
     MainPageModule,
     InquiryPageModule,
+    BrowserAnimationsModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],

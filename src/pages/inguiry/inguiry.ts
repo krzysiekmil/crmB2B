@@ -1,8 +1,13 @@
-import {Component, DoCheck, OnChanges, OnInit, ViewChild, ViewChildDecorator} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, ViewChild,
+  ViewChildDecorator
+} from '@angular/core';
 import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
 import {ActivityRule, Inquiry, Question, Section} from "../../model/inguiry-model";
 import {InquirySectionPage} from "../inquiry-section/inquiry-section";
 import {Observable} from "rxjs/Observable";
+import {isUndefined} from "ionic-angular/umd/util/util";
 
 /**
  * Generated class for the InquiryPage page.
@@ -10,6 +15,7 @@ import {Observable} from "rxjs/Observable";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+//https://codepen.io/LOTUSMS/pen/pRNLwo
 
 @IonicPage()
 @Component({
@@ -19,7 +25,6 @@ import {Observable} from "rxjs/Observable";
 export class InquiryPage implements DoCheck, OnInit, OnChanges {
   @ViewChild(InquirySectionPage) inquirySection;
   @ViewChild(Slides) slides: Slides;
-  selectedQuestionId: number;
   activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
   questionInput2: Question = {
     id: 2,
@@ -203,14 +208,10 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   disabled: boolean;
   sectionResult: number;
   selectedSection: number;
-  modelAnswer: any = '';
 
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.selectedQuestionId)
+  constructor(public navCtrl: NavController, public navParams: NavParams, private changeDetectionRef: ChangeDetectorRef) {
     this.selectedSection = 0;
-    this.selectedQuestionId = 0;
   }
 
 
@@ -229,16 +230,13 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
-    console.log(this.selectedQuestionId);
-    if (this.modelAnswer != this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].answer) {
-      this.checkAnswer();
-      this.countPoints();
-      this.modelAnswer = this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].answer
-    }
+    this.checkAnswer();
+    this.countPoints();
   }
 
+
   ngOnChanges() {
-    console.log("ASD")
+
   }
 
 
