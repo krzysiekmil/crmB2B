@@ -1,15 +1,19 @@
 import {
-  animate,
-  Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, state, style,
-  transition,
-  trigger,
+  Component, DoCheck, EventEmitter, Input, OnInit, Output,
+
   ViewChild
 } from '@angular/core';
-import {AlertController, Content, IonicPage, NavController, NavParams, Popover, PopoverController} from 'ionic-angular';
-import {ActivityRule, Question, Section} from "../../model/inguiry-model";
-import {isUndefined} from "ionic-angular/es2015/util/util";
-import {ConfirmPage} from "../confirm/confirm";
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  query,
+  animateChild
+} from '@angular/animations';
+import {AlertController, Content, NavController, NavParams} from 'ionic-angular';
+import {Question, Section} from "../../model/inguiry-model";
 /**
  * Generated class for the InquirySectionPage page.
  *
@@ -20,29 +24,54 @@ import {ConfirmPage} from "../confirm/confirm";
 @Component({
   animations: [
     trigger('rotate', [
-
       state('open', style({
         transform: 'rotate(0deg)'
       })),
       state('close', style({
-        transform: 'rotate(-180deg)'
+        transform: 'rotate(180deg)'
       })),
-      transition(':enter', animate('1000ms ease'))
+      transition('*=>*', animate('500ms linear')),
     ]),
-    trigger('rotates', [
-      state('open', style({
-        transform: 'rotate(0deg)'
-      })),
-      state('close', style({
-        transform: 'rotate(90deg)'
-      })),
-      transition('close=>open', animate('1000ms ease'))
-    ]),
+    // trigger('panelInOut', [
+    //   transition('void => *', [
+    //     style({transform: 'rotate(180deg)'}),
+    //     animate(800)
+    //   ]),
+    //   transition('* => void', [
+    //     animate(800, style({transform: 'rotate(180deg)'}))
+    //   ])
+    // ]),
+    //   trigger('enlarge', [
+    //       state('small', style({
+    //         height: '100px',
+    //         transform: 'translateY(0)',
+    //       })),
+    //       state('large', style({
+    //         height: '200px',
+    //         transform: 'translateY(-300px)',
+    //         background: 'red'
+    //       }))
+    //   ]),
+    // trigger('ngIfAnimation', [
+    //   transition(':enter, :leave', [
+    //     query('@*', animateChild())
+    //   ])
+    // ]),
+    // trigger('easeInOut', [
+    //   transition('void => *', [
+    //     animate(1000, style({transform: 'rotate(-180deg)'}))
+    //   ]),
+    //   transition('* => void', [
+    //     animate(1000, style({transform: 'rotate(180deg)'}))
+    //
+    //   ])
+    // ])
   ],
   selector: 'page-inquiry-section',
   templateUrl: 'inquiry-section.html',
 })
 export class InquirySectionPage implements OnInit, DoCheck {
+  hint: boolean;
   @Output() test = new EventEmitter<number>();
   state: string = 'open';
   @ViewChild(Content) content: Content;
@@ -58,11 +87,21 @@ export class InquirySectionPage implements OnInit, DoCheck {
   rangeMax: number = 0;
   sectionConst: number;
   questionIdConst: number;
-
+  jobs = [
+    {id: 11, title: 'Item 1', state: 'small'},
+    {id: 12, title: 'Item 2', state: 'small'},
+    {id: 13, title: 'Item 3', state: 'small'},
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
     console.log("constructor")
     this.questionIdConst = 1;
+    this.hint = true;
+
+  }
+
+  enlarge(index) {
+    index.state = (index.state === 'small' ? 'large' : 'small');
 
   }
 
@@ -120,8 +159,8 @@ export class InquirySectionPage implements OnInit, DoCheck {
     }
   }
 
-
   selectQuestion(id: number) {
+
     this.state = (this.state === 'open' ? 'close' : 'open');
 
     if (this.selectedQuestion == id) {
@@ -269,18 +308,43 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   showAlert(question: Question) {
+
+
     let alert = this.alertCtr.create({
       title: question.label,
       message: 'tutaj tekst o tym, ze z krowy kiepski jest ptak',
+      inputs: [
+        {
+          name: 'hint',
+          type: 'checkbox',
+          label: 'Nie wyswietlaj podowiedzi',
+          value: 'true',
+          checked: !this.hint
+        }
+      ],
       buttons: [
         {
           text: 'Popraw',
-          handler: () => {
+          handler: (data) => {
+            if (data[0] !== 'true') {
+              this.hint = true;
+            }
+            else {
+              this.hint = false;
+            }
+            console.log(this.hint);
           }
         },
         {
           text: 'Nastepne pytanie',
-          handler: () => {
+          handler: (data) => {
+            if (data[0] !== 'true') {
+              this.hint = true;
+            }
+            else {
+              this.hint = false;
+            }
+            console.log(this.hint)
             this.nextQuestionButton()
           }
         }
@@ -288,9 +352,9 @@ export class InquirySectionPage implements OnInit, DoCheck {
     });
 
     alert.present();
-    setTimeout(() => {
-      alert.dismiss()
-    }, 22000)
+    // setTimeout(() => {
+    //   alert.dismiss()
+    // }, 22000)
   }
 
   maxQuestionValue(question: Question) {

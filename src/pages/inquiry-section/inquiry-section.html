@@ -11,9 +11,9 @@
             <ion-title text-left>
               {{question.id}}. {{question.label}}
             </ion-title>
-            <ion-icon [@rotates]="state" id="arrow-button" name='arrow-up' item-right float-right>
-            </ion-icon>
-            </button>
+            <ion-icon class="spiral" name='arrow-up' item-right float-right></ion-icon>
+          </button>
+
         </ion-card-title>
         <ion-card-content *ngIf="questionSelected(question.id)">
           <ion-item *ngIf="question.type==='input'">
@@ -61,11 +61,13 @@
               <ion-label range-right>{{rangeMax}}</ion-label>
             </ion-range>
           </ion-item>
-          <button ion-button full clear text-wrap *ngIf="(maxQuestionValue(question)&&questionSelected(question.id))"
+          <button ion-button full clear text-wrap
+                  *ngIf="(maxQuestionValue(question)&&questionSelected(question.id))&&hint==true"
                   (click)="showAlert(question)">Dalej
           </button>
           <button ion-button full clear text-center
-                  *ngIf="!(maxQuestionValue(question)||!questionSelected(question.id))" (click)="nextQuestionButton()">
+                  *ngIf="!(maxQuestionValue(question)||!questionSelected(question.id))||hint==false"
+                  (click)="nextQuestionButton()">
             Dalej
           </button>
         </ion-card-content>
@@ -73,3 +75,12 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer *ngIf="hint==false">
+  <ion-item>
+    <ion-label style="font-size: small">
+      Wyswietlac podpowiedzi
+    </ion-label>
+    <ion-checkbox [(ngModel)]="hint">
+    </ion-checkbox>
+  </ion-item>
+</ion-footer>

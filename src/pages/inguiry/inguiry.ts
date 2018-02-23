@@ -1,13 +1,12 @@
 import {
   ChangeDetectorRef,
-  Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, ViewChild,
+  Component, ContentChild, Directive, DoCheck, ElementRef, Input, OnChanges, OnInit, Pipe, ViewChild,
   ViewChildDecorator
 } from '@angular/core';
 import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
 import {ActivityRule, Inquiry, Question, Section} from "../../model/inguiry-model";
 import {InquirySectionPage} from "../inquiry-section/inquiry-section";
-import {Observable} from "rxjs/Observable";
-import {isUndefined} from "ionic-angular/umd/util/util";
+
 
 /**
  * Generated class for the InquiryPage page.

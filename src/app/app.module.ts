@@ -19,12 +19,13 @@ import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
 import {ConfirmPage} from "../pages/confirm/confirm";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
   declarations: [
     ConfirmPage,
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
