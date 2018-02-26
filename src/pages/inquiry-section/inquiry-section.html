@@ -5,13 +5,20 @@
               no-lines
               id="{{question.id}}">
         <ion-card-title>
-          <button ion-button clear block
+
+          <button ion-button clear block style="padding-left: 0"
                   (click)="selectQuestion(question.id)"
                   [disabled]="disabledQuestion(question)" [color]="questionSelected(question.id)? 'default':'gray'">
-            <ion-label text-left style="font-size: large;">
-              {{question.id}}. {{question.label}}
-            </ion-label>
-            <ion-icon [@rotate]="question.selected" class="spiral" name='arrow-up' item-right float-right></ion-icon>
+            <ion-item>
+              <ion-avatar item-start>
+                <img style="background-color:cornflowerblue">
+              </ion-avatar>
+              <ion-label [color]="questionSelected(question.id)? 'primary':'gray'" text-left
+                         style="font-size: large; padding-left: 10px">
+                {{question.id}}. {{question.label}}
+              </ion-label>
+            </ion-item>
+            <ion-icon [@rotate]="question.selected" name='arrow-up' item-right float-right></ion-icon>
           </button>
         </ion-card-title>
       <ion-card-content no-padding [ngSwitch]="question.type" [@expand]="question.selected"
@@ -50,8 +57,11 @@
             </ion-select>
           </ion-item>
         <ion-item *ngSwitchCase="'range'">
+          <ion-label style="font-size: small;margin-top: 8px">
+            Twoj wynik {{question.answer}}
+          </ion-label>
             <ion-range snaps [(ngModel)]="question.answer" [min]="setRangeValue(question,'min')"
-                       [max]="setRangeValue(question,'max')" pin="true" style="padding-bottom: 0">
+                       [max]="setRangeValue(question,'max')" pin="true" style="padding-bottom: 0 ; padding-top: 18px">
               <ion-badge range-left>{{rangeMin}}</ion-badge>
               <ion-badge range-right>{{rangeMax}}</ion-badge>
             </ion-range>
@@ -69,12 +79,4 @@
       </ion-card>
   </ion-list>
 </ion-content>
-<ion-footer *ngIf="hint==false">
-  <ion-item>
-    <ion-label style="font-size: small">
-      Wyswietlac podpowiedzi
-    </ion-label>
-    <ion-checkbox [(ngModel)]="hint">
-    </ion-checkbox>
-  </ion-item>
-</ion-footer>
+

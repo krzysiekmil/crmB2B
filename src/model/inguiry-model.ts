@@ -43,6 +43,7 @@ export interface Question {
 
 
 export interface Section {
+  hint: boolean;
   id: number;
   name:string;
   sectionVisibility?:Array<Visibility>

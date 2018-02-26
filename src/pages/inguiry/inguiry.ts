@@ -193,6 +193,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   section2: Section = {
+    hint: false,
     result: 0,
     id: 1,
     name: 'sekcja 2', maxValue: 100, relativeValue: 50,
@@ -203,6 +204,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
       , this.questionRange3]
   };
   section: Section = {
+    hint: true,
     result: 0,
     id: 0,
     name: 'sekcja 1', maxValue: 100, relativeValue: 50,
@@ -231,6 +233,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   setSelectedQuestionId(id: number) {
+    console.log("setSelectedQuestionId");
     this.selectedQuestionId = id;
   }
 
@@ -250,8 +253,8 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
-    this.checkAnswer();
-    this.countPoints();
+    // this.checkAnswer();
+    // this.countPoints();
   }
 
 

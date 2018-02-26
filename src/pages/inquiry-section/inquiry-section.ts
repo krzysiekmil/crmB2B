@@ -25,13 +25,14 @@ import {Question, Section} from "../../model/inguiry-model";
       state('true', style({transform: 'rotate(0deg)'})),
       state('false', style({transform: 'rotate(180deg)'})),
       transition('void=>*', animate('0s')),
-      transition('*=>*', animate('525ms linear')),
+      transition('*=>*', animate('300ms linear')),
     ]),
     trigger('expand', [
       state('true', style({height: '*'})),
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
-      transition('* => *', animate('650ms ease-in-out'))
+      transition('false => true', animate('3000ms ease-in-out')),
+      transition('tru=>false', animate('10ms ease-in-out'))
 
     ])
   ],
@@ -60,24 +61,27 @@ export class InquirySectionPage implements OnInit, DoCheck {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
     console.log("constructor")
     this.questionIdConst = 1;
-    this.hint = true;
 
   }
 
   ngOnInit() {
-    console.log("onInit")
+    console.log("Init")
     this.selectedSection = 0;
     this.selectedQuestionId = 0;
     this.sectionConst = 0;
     this.section = this.sectionList[this.selectedSection];
     this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
+    this.hint = this.section.hint;
   }
 
 
   ngDoCheck() {
     if (this.sectionConst != this.selectedSection) {
+      console.log("doCheckIf")
       this.section.questionsList[this.selectedQuestionId].selected = false;
       this.section = this.sectionList[this.selectedSection];
+      this.hint = this.section.hint;
+      console.log(this.section.hint, this.section.id);
       this.sectionConst = this.selectedSection;
       this.selectedQuestion = 1;
       this.selectedQuestionId = 0;
@@ -103,24 +107,24 @@ export class InquirySectionPage implements OnInit, DoCheck {
       }
       else {
         while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
+          console.log()
           this.selectedQuestionId++;
         }
         this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id
       }
       yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
-      this.selectedQuestion = this.section.questionsList[this.selectedQuestionId + 1].id;
-      this.content.scrollTo(0, yOffset - 20, 850)
+      this.selectedQuestion = this.section.questionsList[++this.selectedQuestionId].id;
+
+      this.content.scrollTo(0, yOffset - 20, 650)
         .then(() => {
           }
         ).catch(err => {
         console.error(err)
       });
-      this.selectedQuestionId = this.section.questionsList.map(question => {
-        return question.id
-      }).indexOf(this.selectedQuestion);
+
       this.section.questionsList[this.selectedQuestionId].selected = true;
     }
-    this.test.emit(this.selectedQuestionId);
+    // this.test.emit(this.selectedQuestionId);
   }
 
   checkQuestion(id: number): boolean {
@@ -128,6 +132,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   selectQuestion(id: number) {
+    console.log("Select question")
     this.section.questionsList[this.selectedQuestionId].selected = false;
     if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
@@ -144,9 +149,9 @@ export class InquirySectionPage implements OnInit, DoCheck {
       }).indexOf(this.selectedQuestion);
       yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
       this.section.questionsList[this.selectedQuestionId].selected = true;
-      this.content.scrollTo(0, yOffset, 850);
+      this.content.scrollTo(0, yOffset, 650);
     }
-    this.test.emit(this.selectedQuestionId);
+    // this.test.emit(this.selectedQuestionId);
 
   }
 
@@ -281,44 +286,46 @@ export class InquirySectionPage implements OnInit, DoCheck {
     let alert = this.alertCtr.create({
       title: question.label,
       message: 'tutaj tekst o tym, ze z krowy kiepski jest ptak',
-      inputs: [
-        {
-          name: 'hint',
-          type: 'checkbox',
-          label: 'Nie wyswietlaj podowiedzi',
-          value: 'true',
-          checked: !this.hint
-        }
-      ],
+      // inputs: [
+      //   {
+      //     name: 'hint',
+      //     type: 'checkbox',
+      //     label: 'Nie wyswietlaj podowiedzi',
+      //     value: 'true',
+      //     checked: !this.hint,
+      //     id:'1'
+      //   }
+      // ],
       buttons: [
         {
           text: 'Popraw',
           handler: (data) => {
-            if (data[0] !== 'true') {
-              this.hint = true;
-            }
-            else {
-              this.hint = false;
-            }
-            console.log(this.hint);
+            // if (data[0] !== 'true') {
+            //   this.hint = true;
+            // }
+            // else {
+            //   this.hint = false;
+            // }
+            // console.log(this.hint);
           }
         },
         {
           text: 'Nastepne pytanie',
           handler: (data) => {
-            if (data[0] !== 'true') {
-              this.hint = true;
-            }
-            else {
-              this.hint = false;
-            }
-            console.log(this.hint)
+            // console.log(data)
+            // if (data[0] !== 'true') {
+            //   this.hint = true;
+            // }
+            // else {
+            //   this.hint = false;
+            // }
+            // console.log(this.hint)
             this.nextQuestionButton()
           }
         }
-      ]
+      ],
+      cssClass: ''
     });
-
     alert.present();
     // setTimeout(() => {
     //   alert.dismiss()
