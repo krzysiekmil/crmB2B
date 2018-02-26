@@ -27,6 +27,7 @@ export interface ActivityRule {
 }
 
 export interface Question {
+  selected: boolean;
   id:number;
   label:string;
   type:string;

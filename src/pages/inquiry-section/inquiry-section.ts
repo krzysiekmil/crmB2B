@@ -9,8 +9,6 @@ import {
   style,
   animate,
   transition,
-  query,
-  animateChild
 } from '@angular/animations';
 import {AlertController, Content, NavController, NavParams} from 'ionic-angular';
 import {Question, Section} from "../../model/inguiry-model";
@@ -24,55 +22,25 @@ import {Question, Section} from "../../model/inguiry-model";
 @Component({
   animations: [
     trigger('rotate', [
-      state('open', style({
-        transform: 'rotate(0deg)'
-      })),
-      state('close', style({
-        transform: 'rotate(180deg)'
-      })),
-      transition('*=>*', animate('500ms linear')),
+      state('true', style({transform: 'rotate(0deg)'})),
+      state('false', style({transform: 'rotate(180deg)'})),
+      transition('void=>*', animate('0s')),
+      transition('*=>*', animate('525ms linear')),
     ]),
-    // trigger('panelInOut', [
-    //   transition('void => *', [
-    //     style({transform: 'rotate(180deg)'}),
-    //     animate(800)
-    //   ]),
-    //   transition('* => void', [
-    //     animate(800, style({transform: 'rotate(180deg)'}))
-    //   ])
-    // ]),
-    //   trigger('enlarge', [
-    //       state('small', style({
-    //         height: '100px',
-    //         transform: 'translateY(0)',
-    //       })),
-    //       state('large', style({
-    //         height: '200px',
-    //         transform: 'translateY(-300px)',
-    //         background: 'red'
-    //       }))
-    //   ]),
-    // trigger('ngIfAnimation', [
-    //   transition(':enter, :leave', [
-    //     query('@*', animateChild())
-    //   ])
-    // ]),
-    // trigger('easeInOut', [
-    //   transition('void => *', [
-    //     animate(1000, style({transform: 'rotate(-180deg)'}))
-    //   ]),
-    //   transition('* => void', [
-    //     animate(1000, style({transform: 'rotate(180deg)'}))
-    //
-    //   ])
-    // ])
+    trigger('expand', [
+      state('true', style({height: '*'})),
+      state('false', style({height: '0'})),
+      transition('void=>*', animate('0s')),
+      transition('* => *', animate('650ms ease-in-out'))
+
+    ])
   ],
   selector: 'page-inquiry-section',
   templateUrl: 'inquiry-section.html',
 })
 export class InquirySectionPage implements OnInit, DoCheck {
   hint: boolean;
-  @Output() test = new EventEmitter<number>();
+  @Output() test = new EventEmitter<any>();
   state: string = 'open';
   @ViewChild(Content) content: Content;
   @Input() @Output() sectionList: Array<Section>;
@@ -87,11 +55,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
   rangeMax: number = 0;
   sectionConst: number;
   questionIdConst: number;
-  jobs = [
-    {id: 11, title: 'Item 1', state: 'small'},
-    {id: 12, title: 'Item 2', state: 'small'},
-    {id: 13, title: 'Item 3', state: 'small'},
-  ];
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
     console.log("constructor")
@@ -100,13 +64,8 @@ export class InquirySectionPage implements OnInit, DoCheck {
 
   }
 
-  enlarge(index) {
-    index.state = (index.state === 'small' ? 'large' : 'small');
-
-  }
-
   ngOnInit() {
-    console.log("oninit")
+    console.log("onInit")
     this.selectedSection = 0;
     this.selectedQuestionId = 0;
     this.sectionConst = 0;
@@ -117,10 +76,12 @@ export class InquirySectionPage implements OnInit, DoCheck {
 
   ngDoCheck() {
     if (this.sectionConst != this.selectedSection) {
+      this.section.questionsList[this.selectedQuestionId].selected = false;
       this.section = this.sectionList[this.selectedSection];
       this.sectionConst = this.selectedSection;
       this.selectedQuestion = 1;
       this.selectedQuestionId = 0;
+      this.section.questionsList[this.selectedQuestionId].selected = true
       this.content.scrollToTop();
     }
   }
@@ -135,9 +96,10 @@ export class InquirySectionPage implements OnInit, DoCheck {
       this.slides.next();
     }
     else {
+      this.section.questionsList[this.selectedQuestionId].selected = false;
       let yOffset = 0;
       if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
-        yOffset = 108;
+        yOffset = 98;
       }
       else {
         while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
@@ -147,38 +109,44 @@ export class InquirySectionPage implements OnInit, DoCheck {
       }
       yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
       this.selectedQuestion = this.section.questionsList[this.selectedQuestionId + 1].id;
-      this.content.scrollTo(0, yOffset - 20, 650)
+      this.content.scrollTo(0, yOffset - 20, 850)
         .then(() => {
-            this.selectedQuestionId = this.section.questionsList.map(question => {
-              return question.id
-            }).indexOf(this.selectedQuestion);
           }
         ).catch(err => {
         console.error(err)
       });
+      this.selectedQuestionId = this.section.questionsList.map(question => {
+        return question.id
+      }).indexOf(this.selectedQuestion);
+      this.section.questionsList[this.selectedQuestionId].selected = true;
     }
+    this.test.emit(this.selectedQuestionId);
+  }
+
+  checkQuestion(id: number): boolean {
+    return id == this.selectedQuestionId;
   }
 
   selectQuestion(id: number) {
-
-    this.state = (this.state === 'open' ? 'close' : 'open');
-
+    this.section.questionsList[this.selectedQuestionId].selected = false;
     if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
       this.selectedQuestionId == null;
+
     }
     else {
       let yOffset = 0
       if (id > this.selectedQuestion && this.selectedQuestion != null)
         yOffset = -108;
-
       this.selectedQuestion = id;
       this.selectedQuestionId = this.section.questionsList.map(question => {
         return question.id
       }).indexOf(this.selectedQuestion);
       yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
-      this.content.scrollTo(0, yOffset, 650);
+      this.section.questionsList[this.selectedQuestionId].selected = true;
+      this.content.scrollTo(0, yOffset, 850);
     }
+    this.test.emit(this.selectedQuestionId);
 
   }
 

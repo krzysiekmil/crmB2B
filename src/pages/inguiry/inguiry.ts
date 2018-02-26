@@ -26,6 +26,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   @ViewChild(Slides) slides: Slides;
   activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
   questionInput2: Question = {
+    selected: false,
     id: 2,
     label: "Czy krowa to ptak?",
     type: 'input',
@@ -37,6 +38,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     activityRules: [this.activityRule]
   };
   questionCheckBox2: Question = {
+    selected: false,
     id: 4,
     label: "Czy krowa to ptak?",
     type: 'checkbox',
@@ -48,6 +50,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     activityRules: [this.activityRule]
   };
   questionInput: Question = {
+    selected: false,
     id: 1,
     label: "Czy krowa to ptak?",
     type: 'input',
@@ -58,6 +61,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionInput3: Question = {
+    selected: false,
     id: 1,
     label: "Czy krowa to ptak?",
     type: 'input',
@@ -68,6 +72,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionCheckBox: Question = {
+    selected: false,
     id: 3,
     label: "Czy krowa to ptak?",
     type: 'checkbox',
@@ -78,6 +83,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}]
   };
   questionCheckBox3: Question = {
+    selected: false,
     id: 3,
     label: "Czy krowa to ptak?",
     type: 'checkbox',
@@ -88,6 +94,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}]
   };
   questionSelectBox: Question = {
+    selected: false,
     id: 5,
     label: "Czy krowa to ptak?",
     type: 'select',
@@ -98,6 +105,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBox3: Question = {
+    selected: false,
     id: 5,
     label: "Czy krowa to ptak?",
     type: 'select',
@@ -108,6 +116,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBox2: Question = {
+    selected: false,
     id: 6,
     label: "Czy krowa to ptak?",
     type: 'select',
@@ -118,6 +127,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti: Question = {
+    selected: false,
     id: 7,
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
@@ -128,6 +138,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti3: Question = {
+    selected: false,
     id: 7,
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
@@ -138,6 +149,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti2: Question = {
+    selected: false,
     id: 8,
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
@@ -148,6 +160,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionRange3: Question = {
+    selected: false,
     id: 9,
     label: "Czy krowa to ptak?",
     type: 'range',
@@ -158,6 +171,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   questionRange: Question = {
+    selected: false,
     id: 9,
     label: "Czy krowa to ptak?",
     type: 'range',
@@ -168,6 +182,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
   questionRange2: Question = {
+    selected: false,
     id: 10,
     label: "Czy krowa to ptak?",
     type: 'range',
@@ -207,10 +222,16 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   disabled: boolean;
   sectionResult: number;
   selectedSection: number;
+  selectedQuestionId: number = 0;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private changeDetectionRef: ChangeDetectorRef) {
     this.selectedSection = 0;
+    this.inquiry.sectionsList[0].questionsList[0].selected = true;
+  }
+
+  setSelectedQuestionId(id: number) {
+    this.selectedQuestionId = id;
   }
 
 
@@ -276,11 +297,12 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
   onSlideChanged(slider) {
     console.log('Slide changed');
+    // this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected=false;
     this.selectedSection = slider.realIndex;
   }
 
   next() {
-    this.slides.slideNext(700);
+    this.slides.slideNext(1000);
     this.selectedSection = this.slides.realIndex;
   }
 
