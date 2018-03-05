@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component, DoCheck, EventEmitter, Input, OnInit, Output,
 
   ViewChild
@@ -11,7 +12,7 @@ import {
   transition,
 } from '@angular/animations';
 import {AlertController, Content, NavController, NavParams} from 'ionic-angular';
-import {Question, Section} from "../../model/inguiry-model";
+import {Question, QuestionState, Section} from "../../model/inguiry-model";
 /**
  * Generated class for the InquirySectionPage page.
  *
@@ -25,15 +26,24 @@ import {Question, Section} from "../../model/inguiry-model";
       state('true', style({transform: 'rotate(0deg)'})),
       state('false', style({transform: 'rotate(180deg)'})),
       transition('void=>*', animate('0s')),
-      transition('*=>*', animate('300ms linear')),
+      transition('false=>true', animate('600ms linear')),
+      transition('true=>false', animate('300ms linear'))
     ]),
     trigger('expand', [
       state('true', style({height: '*'})),
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
-      transition('false => true', animate('3000ms ease-in-out')),
-      transition('tru=>false', animate('10ms ease-in-out'))
-
+      transition('false => true', animate('650ms linear')),
+      transition('true=>false', animate('150ms linear'))
+    ]),
+    trigger('state', [
+      state('active', style({backgroundColor: '#6495ED'})),
+      state('wrong', style({backgroundColor: '#ff1c15'})),
+      state('correct', style({backgroundColor: '#32CD32'})),
+      state('special', style({backgroundColor: '#8A2BE2'})),
+      state('notClicked', style({backgroundColor: '#8a8a8a'})),
+      transition('void=>*', animate('0s')),
+      transition('*=>*', animate('1000ms linear'))
     ])
   ],
   selector: 'page-inquiry-section',
@@ -53,14 +63,15 @@ export class InquirySectionPage implements OnInit, DoCheck {
   disabled: boolean;
   selectedQuestion: number;
   rangeMin: number = 0;
-  rangeMax: number = 0;
+  rangeMax: number = 100;
   sectionConst: number;
   questionIdConst: number;
+  questionAnswerConst: any;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
+  constructor(private cdr: ChangeDetectorRef, public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
     console.log("constructor")
     this.questionIdConst = 1;
+    this.questionAnswerConst = null;
 
   }
 
@@ -68,76 +79,118 @@ export class InquirySectionPage implements OnInit, DoCheck {
     console.log("Init")
     this.selectedSection = 0;
     this.selectedQuestionId = 0;
-    this.sectionConst = 0;
     this.section = this.sectionList[this.selectedSection];
     this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
     this.hint = this.section.hint;
+    this.sectionList.forEach(section => {
+      section.questionsList.forEach(question => {
+        if (question.type === 'input') {
+          question.placeholder = this.setInputPlaceHolder(question.id);
+        }
+        else if (question.type === 'select' || question.type === 'selectMultiple') {
+          question.placeholder = this.setSelectPlaceholder(question);
+        }
+        if (question.selected == true)
+          question.state = 'active';
+        else
+          question.state = 'notClicked'
+      });
+    });
+
   }
 
 
   ngDoCheck() {
-    if (this.sectionConst != this.selectedSection) {
-      console.log("doCheckIf")
+    console.log(this.sectionConst, this.selectedSection);
+    if (this.sectionConst !== this.selectedSection) {
+      this.sectionConst = this.selectedSection;
+      console.log("doCheckIf", this.sectionConst, this.selectedSection);
       this.section.questionsList[this.selectedQuestionId].selected = false;
       this.section = this.sectionList[this.selectedSection];
       this.hint = this.section.hint;
-      console.log(this.section.hint, this.section.id);
-      this.sectionConst = this.selectedSection;
       this.selectedQuestion = 1;
       this.selectedQuestionId = 0;
-      this.section.questionsList[this.selectedQuestionId].selected = true
+      this.section.questionsList[this.selectedQuestionId].selected = true;
       this.content.scrollToTop();
+      this.section.questionsList.forEach(question => {
+        if (question.type === 'input') {
+          question.placeholder = this.setInputPlaceHolder(question.id);
+        }
+        else if (question.type === 'select' || question.type === 'selectMultiple') {
+          question.placeholder = this.setSelectPlaceholder(question);
+        }
+      });
+    }
+    if ((this.questionAnswerConst != this.section.questionsList[this.selectedQuestionId].answer) && (this.selectedQuestionId != this.questionIdConst)) {
+      this.questionAnswerConst = this.section.questionsList[this.selectedQuestionId].answer;
+      this.questionIdConst == this.selectedQuestionId;
+      console.log("doCheckquestion")
+      this.section.questionsList.forEach(question => {
+        this.disabledQuestion(question)
+      })
+      this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId]);
     }
   }
 
-  questionSelected(id: number) {
+  questionSelected(id: number, name?: string) {
+    console.log(Date.now(), id, name);
     return this.selectedQuestion == id;
   }
 
 
+
   nextQuestionButton() {
-    if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
-      this.slides.next();
-    }
-    else {
-      this.section.questionsList[this.selectedQuestionId].selected = false;
-      let yOffset = 0;
-      if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
-        yOffset = 98;
+    if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
+      this.section.questionsList[this.selectedQuestionId].state = 'wrong';
+    setTimeout(() => {
+      if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
+        this.slides.next();
       }
       else {
-        while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
-          console.log()
-          this.selectedQuestionId++;
+        this.section.questionsList[this.selectedQuestionId].selected = false;
+        let yOffset = 0;
+        if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
+          yOffset = 98;
         }
-        this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id
-      }
-      yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
-      this.selectedQuestion = this.section.questionsList[++this.selectedQuestionId].id;
-
-      this.content.scrollTo(0, yOffset - 20, 650)
-        .then(() => {
+        else {
+          while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
+            this.selectedQuestionId++;
           }
-        ).catch(err => {
-        console.error(err)
-      });
+          this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id
+        }
+        yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
+        this.selectedQuestion = this.section.questionsList[++this.selectedQuestionId].id;
+        this.section.questionsList[this.selectedQuestionId].selected = true;
+        if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
+          this.section.questionsList[this.selectedQuestionId].state = 'active';
+        this.content.scrollTo(0, yOffset - 20, 750)
+          .then(() => {
+            }
+          ).catch(err => {
+          console.error(err)
+        });
+        this.cdr.detectChanges();
+      }
+    }, 150);
 
-      this.section.questionsList[this.selectedQuestionId].selected = true;
+
     }
+
     // this.test.emit(this.selectedQuestionId);
-  }
+
 
   checkQuestion(id: number): boolean {
     return id == this.selectedQuestionId;
   }
 
-  selectQuestion(id: number) {
+  clickQuestion(id: number) {
     console.log("Select question")
     this.section.questionsList[this.selectedQuestionId].selected = false;
+    if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
+      this.section.questionsList[this.selectedQuestionId].state = 'wrong';
     if (this.selectedQuestion == id) {
       this.selectedQuestion = null;
       this.selectedQuestionId == null;
-
     }
     else {
       let yOffset = 0
@@ -149,13 +202,16 @@ export class InquirySectionPage implements OnInit, DoCheck {
       }).indexOf(this.selectedQuestion);
       yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
       this.section.questionsList[this.selectedQuestionId].selected = true;
-      this.content.scrollTo(0, yOffset, 650);
+      if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
+        this.section.questionsList[this.selectedQuestionId].state = 'active';
+      this.content.scrollTo(0, yOffset, 750);
     }
     // this.test.emit(this.selectedQuestionId);
 
   }
 
   disabledQuestion(question: Question): boolean {
+    console.log('disabledQuestion');
     question.disabled = false;
     if (question.activityRules != null) {
       question.disabled = true;
@@ -196,6 +252,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
       );
     }
     return question.disabled;
+
   }
 
   visibilityQuestion(question: Question) {
@@ -245,6 +302,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   setInputPlaceHolder(id: number) {
+    console.log('inputPlaceholder');
     let placeholder = '';
     this.section.questionsList[id - 1].questionAnswers.forEach(answer => {
       if (placeholder === "")
@@ -256,11 +314,13 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   setSelectPlaceholder(question: Question) {
+    console.log('selectPlaceholder');
     return question.questionAnswers[0].label.toString()
 
   }
 
   setRangeValue(question: Question, type: string): number {
+    console.log(question.id, type)
     if (type === "max") {
       question.questionAnswers.forEach(question => {
           if (question.value > this.rangeMax) {
@@ -333,6 +393,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   maxQuestionValue(question: Question) {
+    console.log('maxQuestionValue');
     let answerValue = 0;
     if (question.answer != null && question.answer !== '') {
       question.questionAnswers.forEach(answer => {
@@ -342,13 +403,13 @@ export class InquirySectionPage implements OnInit, DoCheck {
         }
       );
       if (answerValue < 100 && question.answer != null && question.answer !== '') {
+        question.state = 'active';
         return true;
       }
-      else
+      else {
+        question.state = 'correct';
         return false;
+      }
     }
   }
-
-
-
 }

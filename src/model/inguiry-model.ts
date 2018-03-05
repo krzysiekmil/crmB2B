@@ -27,13 +27,17 @@ export interface ActivityRule {
 }
 
 export interface Question {
-  selected: boolean;
   id:number;
   label:string;
   type:string;
-  answer: any;
+  answer?: any;
   active: string;
   disabled: boolean;
+  selected?: boolean;
+  state?: any;
+  placeholder?: any;
+  min?: number;
+  max?: number;
   visibilityRules?: Array<Visibility>;
   defaultValue:number;
   ValueRules?: Array<ValueRule>;
@@ -59,5 +63,12 @@ export interface Inquiry {
   visibilityList?: Array<Visibility>;
   result: number;
   sectionsList:Array<Section>;
+}
 
+export interface QuestionState {
+  id: number;
+  state: string;
+  disabled: boolean;
+  selected: boolean;
+  placeholder: any;
 }

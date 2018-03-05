@@ -31,7 +31,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'input',
     defaultValue: 10,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}],
@@ -66,7 +66,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'input',
     defaultValue: 10,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -99,7 +99,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'select',
     defaultValue: 10,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -110,7 +110,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'select',
     defaultValue: 10,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -121,7 +121,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'select',
     defaultValue: 10,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -132,7 +132,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
     defaultValue: 12,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -143,7 +143,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
     defaultValue: 12,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -154,7 +154,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'selectMultiple',
     defaultValue: 12,
-    answer: '',
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
@@ -176,7 +176,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'range',
     defaultValue: 10,
-    answer: "0",
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
@@ -187,7 +187,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     label: "Czy krowa to ptak?",
     type: 'range',
     defaultValue: 10,
-    answer: 0,
+    answer: null,
     active: 'active',
     disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
@@ -253,6 +253,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
+    console.log(this.selectedSection);
     // this.checkAnswer();
     // this.countPoints();
   }
@@ -294,6 +295,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   onSegmentChanged(segmentButton) {
     console.log('Segment changed')
     this.selectedSection = segmentButton.value;
+    console.log(this.selectedSection, segmentButton.value);
     this.slides.slideTo(segmentButton.value)
 
   }
@@ -301,12 +303,14 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   onSlideChanged(slider) {
     console.log('Slide changed');
     // this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected=false;
-    this.selectedSection = slider.realIndex;
+    // this.selectedSection = slider.realIndex;
   }
 
   next() {
-    this.slides.slideNext(1000);
+    console.log(this.selectedSection, this.slides.realIndex);
     this.selectedSection = this.slides.realIndex;
+    this.slides.slideNext(1000);
+
   }
 
 }

@@ -5,15 +5,14 @@
               no-lines
               id="{{question.id}}">
         <ion-card-title>
-
           <button ion-button clear block style="padding-left: 0"
-                  (click)="selectQuestion(question.id)"
-                  [disabled]="disabledQuestion(question)" [color]="questionSelected(question.id)? 'default':'gray'">
+                  (click)="clickQuestion(question.id)"
+                  [disabled]="question.disabled" [color]="question.state">
             <ion-item>
               <ion-avatar item-start>
-                <img style="background-color:cornflowerblue">
+                <img [@state]="question.state" style="margin-top: 7px;width: 30px;height: 30px">
               </ion-avatar>
-              <ion-label [color]="questionSelected(question.id)? 'primary':'gray'" text-left
+              <ion-label [color]="question.state" text-left
                          style="font-size: large; padding-left: 10px">
                 {{question.id}}. {{question.label}}
               </ion-label>
@@ -24,7 +23,7 @@
       <ion-card-content no-padding [ngSwitch]="question.type" [@expand]="question.selected"
                         style="padding-bottom: 8px;">
         <ion-item *ngSwitchCase="'input'">
-            <ion-input [placeholder]='setInputPlaceHolder(question.id)' [(ngModel)]="question.answer">
+          <ion-input [placeholder]='question.placeholder' [(ngModel)]="question.answer">
             </ion-input>
           </ion-item>
         <ion-item *ngSwitchCase="'checkbox'">
@@ -42,7 +41,7 @@
           </ion-item>
         <ion-item *ngSwitchCase="'select'">
             <ion-select [(ngModel)]="question.answer" interface="popover"
-                        [placeholder]="setSelectPlaceholder(question)">
+                        [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
                 {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
               </ion-option>
@@ -50,30 +49,26 @@
           </ion-item>
         <ion-item *ngSwitchCase="'selectMultiple'">
             <ion-select float-end [(ngModel)]="question.answer" interface="popover" multiple="true"
-                        [placeholder]="setSelectPlaceholder(question)">
+                        [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
                 {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
               </ion-option>
             </ion-select>
           </ion-item>
-        <ion-item *ngSwitchCase="'range'">
-          <ion-label style="font-size: small;margin-top: 8px">
-            Twoj wynik {{question.answer}}
-          </ion-label>
-            <ion-range snaps [(ngModel)]="question.answer" [min]="setRangeValue(question,'min')"
-                       [max]="setRangeValue(question,'max')" pin="true" style="padding-bottom: 0 ; padding-top: 18px">
-              <ion-badge range-left>{{rangeMin}}</ion-badge>
-              <ion-badge range-right>{{rangeMax}}</ion-badge>
-            </ion-range>
-          </ion-item>
-        <button ion-button full clear text-wrap style="padding-bottom: 0"
-                *ngIf="(maxQuestionValue(question)&&questionSelected(question.id))&&hint==true"
-                (click)="showAlert(question)">Dalej
-          </button>
-        <button ion-button full clear text-center style="padding-bottom: 0"
-                *ngIf="!(maxQuestionValue(question)||!questionSelected(question.id))||hint==false"
-                (click)="nextQuestionButton()">
-            Dalej
+        <!--<ion-item *ngSwitchCase="'range'">-->
+        <!--<ion-label style="font-size: small;margin-top: 8px">-->
+        <!--Twoj wynik {{question.answer}}-->
+        <!--</ion-label>-->
+        <!--<ion-range snaps [(ngModel)]="question.answer" min="question.min"-->
+        <!--max="question.max" pin="true" style="padding-bottom: 0 ; padding-top: 18px">-->
+        <!--<ion-badge range-left>{{rangeMin}}</ion-badge>-->
+        <!--<ion-badge range-right>{{rangeMax}}</ion-badge>-->
+        <!--</ion-range>-->
+        <!--</ion-item>-->
+        <button ion-button full clear text-wrap style="padding-bottom: 0;font-weight: bold"
+                [color]="question.state"
+                (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton():nextQuestionButton()">
+          Dalej
           </button>
         </ion-card-content>
       </ion-card>
