@@ -26,15 +26,15 @@ import {Question, QuestionState, Section} from "../../model/inguiry-model";
       state('true', style({transform: 'rotate(0deg)'})),
       state('false', style({transform: 'rotate(180deg)'})),
       transition('void=>*', animate('0s')),
-      transition('false=>true', animate('600ms linear')),
-      transition('true=>false', animate('300ms linear'))
+      transition('false=>true', animate('400ms linear')),
+      transition('true=>false', animate('100ms linear'))
     ]),
     trigger('expand', [
       state('true', style({height: '*'})),
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
-      transition('false => true', animate('650ms linear')),
-      transition('true=>false', animate('150ms linear'))
+      transition('false => true', animate('350ms linear')),
+      transition('true=>false', animate('75ms linear'))
     ]),
     trigger('state', [
       state('active', style({backgroundColor: '#6495ED'})),
@@ -43,7 +43,7 @@ import {Question, QuestionState, Section} from "../../model/inguiry-model";
       state('special', style({backgroundColor: '#8A2BE2'})),
       state('notClicked', style({backgroundColor: '#8a8a8a'})),
       transition('void=>*', animate('0s')),
-      transition('*=>*', animate('1000ms linear'))
+      transition('*=>*', animate('350ms linear'))
     ])
   ],
   selector: 'page-inquiry-section',
@@ -101,7 +101,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
 
 
   ngDoCheck() {
-    console.log(this.sectionConst, this.selectedSection);
     if (this.sectionConst !== this.selectedSection) {
       this.sectionConst = this.selectedSection;
       console.log("doCheckIf", this.sectionConst, this.selectedSection);
@@ -111,6 +110,8 @@ export class InquirySectionPage implements OnInit, DoCheck {
       this.selectedQuestion = 1;
       this.selectedQuestionId = 0;
       this.section.questionsList[this.selectedQuestionId].selected = true;
+      if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
+        this.section.questionsList[this.selectedQuestionId].state = 'active';
       this.content.scrollToTop();
       this.section.questionsList.forEach(question => {
         if (question.type === 'input') {
@@ -124,11 +125,13 @@ export class InquirySectionPage implements OnInit, DoCheck {
     if ((this.questionAnswerConst != this.section.questionsList[this.selectedQuestionId].answer) && (this.selectedQuestionId != this.questionIdConst)) {
       this.questionAnswerConst = this.section.questionsList[this.selectedQuestionId].answer;
       this.questionIdConst == this.selectedQuestionId;
-      console.log("doCheckquestion")
-      this.section.questionsList.forEach(question => {
-        this.disabledQuestion(question)
-      })
-      this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId]);
+      if (this.questionAnswerConst != null && this.section.questionsList[this.selectedQuestionId].state !== 'correct') {
+        console.log("doCheckquestion")
+        this.section.questionsList.forEach(question => {
+          this.disabledQuestion(question)
+        })
+        this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId]);
+      }
     }
   }
 
@@ -142,7 +145,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
   nextQuestionButton() {
     if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
       this.section.questionsList[this.selectedQuestionId].state = 'wrong';
-    setTimeout(() => {
       if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
         this.slides.next();
       }
@@ -171,7 +173,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
         });
         this.cdr.detectChanges();
       }
-    }, 150);
+
 
 
     }
@@ -184,7 +186,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   clickQuestion(id: number) {
-    console.log("Select question")
+    console.log("click question")
     this.section.questionsList[this.selectedQuestionId].selected = false;
     if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
       this.section.questionsList[this.selectedQuestionId].state = 'wrong';
@@ -206,7 +208,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
         this.section.questionsList[this.selectedQuestionId].state = 'active';
       this.content.scrollTo(0, yOffset, 750);
     }
-    // this.test.emit(this.selectedQuestionId);
 
   }
 

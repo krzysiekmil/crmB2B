@@ -253,7 +253,6 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   ngDoCheck() {
-    console.log(this.selectedSection);
     // this.checkAnswer();
     // this.countPoints();
   }
@@ -293,17 +292,18 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   onSegmentChanged(segmentButton) {
-    console.log('Segment changed')
+    console.log('Segment changed');
+    this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected = false;
+    if (this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state !== 'correct')
+      this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state = 'wrong';
     this.selectedSection = segmentButton.value;
-    console.log(this.selectedSection, segmentButton.value);
     this.slides.slideTo(segmentButton.value)
 
   }
 
   onSlideChanged(slider) {
     console.log('Slide changed');
-    // this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected=false;
-    // this.selectedSection = slider.realIndex;
+    this.selectedSection = slider.realIndex;
   }
 
   next() {
