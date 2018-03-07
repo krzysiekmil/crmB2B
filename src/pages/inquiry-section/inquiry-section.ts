@@ -1,7 +1,5 @@
 import {
-  ChangeDetectorRef,
-  Component, DoCheck, EventEmitter, Input, OnInit, Output,
-
+  Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {
@@ -12,7 +10,7 @@ import {
   transition,
 } from '@angular/animations';
 import {AlertController, Content, NavController, NavParams} from 'ionic-angular';
-import {Question, QuestionState, Section} from "../../model/inguiry-model";
+import {Question, Section} from "../../model/inguiry-model";
 /**
  * Generated class for the InquirySectionPage page.
  *
@@ -34,7 +32,7 @@ import {Question, QuestionState, Section} from "../../model/inguiry-model";
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
       transition('false => true', animate('350ms linear')),
-      transition('true=>false', animate('75ms linear'))
+      transition('true=>false', animate('125ms linear'))
     ]),
     trigger('state', [
       state('active', style({backgroundColor: '#6495ED'})),
@@ -49,170 +47,138 @@ import {Question, QuestionState, Section} from "../../model/inguiry-model";
   selector: 'page-inquiry-section',
   templateUrl: 'inquiry-section.html',
 })
-export class InquirySectionPage implements OnInit, DoCheck {
+export class InquirySectionPage implements OnInit, OnChanges {
   hint: boolean;
   @Output() test = new EventEmitter<any>();
-  state: string = 'open';
   @ViewChild(Content) content: Content;
-  @Input() @Output() sectionList: Array<Section>;
-  @Input() @Output() sectionResult: number;
-  @Input() @Output() selectedSection: number;
+  @Input() sectionList: Array<Section>;
+  @Input() sectionResult: number;
+  @Input() selectedSection: number;
   @Output() slides = new EventEmitter();
   selectedQuestionId: number;
   section: Section;
-  disabled: boolean;
-  selectedQuestion: number;
   rangeMin: number = 0;
   rangeMax: number = 100;
-  sectionConst: number;
-  questionIdConst: number;
-  questionAnswerConst: any;
 
-  constructor(private cdr: ChangeDetectorRef, public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
-    console.log("constructor")
-    this.questionIdConst = 1;
-    this.questionAnswerConst = null;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
+    this.selectedSection = 0;
+    this.selectedQuestionId = 0;
 
   }
 
   ngOnInit() {
-    console.log("Init")
-    this.selectedSection = 0;
+    this.init();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.content.scrollToTop().catch(err => {
+      console.error(err);
+    });
+    this.changeSection();
+  }
+
+  changeSection(): void {
     this.selectedQuestionId = 0;
     this.section = this.sectionList[this.selectedSection];
-    this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id;
+    this.section.questionsList[this.selectedQuestionId].selected = true;
+    this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
+    this.hint = this.section.hint;
+  }
+
+  init(): void {
+    this.selectedQuestionId = 0;
+    this.section = this.sectionList[this.selectedSection];
     this.hint = this.section.hint;
     this.sectionList.forEach(section => {
       section.questionsList.forEach(question => {
-        if (question.type === 'input') {
-          question.placeholder = this.setInputPlaceHolder(question.id);
-        }
-        else if (question.type === 'select' || question.type === 'selectMultiple') {
-          question.placeholder = this.setSelectPlaceholder(question);
-        }
-        if (question.selected == true)
-          question.state = 'active';
-        else
-          question.state = 'notClicked'
+        this.disabledQuestion(question);
+        this.placeholderQuestion(question);
+        this.initStateQuestion(question);
       });
     });
 
   }
 
+  initStateQuestion(question: Question): void {
+    if (question.selected == true)
+      question.state = 'active';
+    else
+      question.state = 'notClicked'
+  };
 
-  ngDoCheck() {
-    if (this.sectionConst !== this.selectedSection) {
-      this.sectionConst = this.selectedSection;
-      console.log("doCheckIf", this.sectionConst, this.selectedSection);
-      this.section.questionsList[this.selectedQuestionId].selected = false;
-      this.section = this.sectionList[this.selectedSection];
-      this.hint = this.section.hint;
-      this.selectedQuestion = 1;
-      this.selectedQuestionId = 0;
-      this.section.questionsList[this.selectedQuestionId].selected = true;
-      if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
-        this.section.questionsList[this.selectedQuestionId].state = 'active';
-      this.content.scrollToTop();
-      this.section.questionsList.forEach(question => {
-        if (question.type === 'input') {
-          question.placeholder = this.setInputPlaceHolder(question.id);
-        }
-        else if (question.type === 'select' || question.type === 'selectMultiple') {
-          question.placeholder = this.setSelectPlaceholder(question);
-        }
-      });
+  setQuestionState(question: Question, state: string): void {
+    if (question.state !== 'correct')
+      question.state = state;
+  }
+
+  placeholderQuestion(question: Question) {
+    if (question.type === 'input') {
+      question.placeholder = this.setInputPlaceHolder(question.id);
     }
-    if ((this.questionAnswerConst != this.section.questionsList[this.selectedQuestionId].answer) && (this.selectedQuestionId != this.questionIdConst)) {
-      this.questionAnswerConst = this.section.questionsList[this.selectedQuestionId].answer;
-      this.questionIdConst == this.selectedQuestionId;
-      if (this.questionAnswerConst != null && this.section.questionsList[this.selectedQuestionId].state !== 'correct') {
-        console.log("doCheckquestion")
-        this.section.questionsList.forEach(question => {
-          this.disabledQuestion(question)
-        })
-        this.maxQuestionValue(this.section.questionsList[this.selectedQuestionId]);
-      }
+    else if (question.type === 'select' || question.type === 'selectMultiple') {
+      question.placeholder = this.setSelectPlaceholder(question);
     }
   }
 
-  questionSelected(id: number, name?: string) {
-    console.log(Date.now(), id, name);
-    return this.selectedQuestion == id;
+  onChangeModel() {
+    this.section.questionsList.forEach(question => {
+      this.disabledQuestion(question);
+      this.maxQuestionValue(question);
+    });
   }
 
 
-
-  nextQuestionButton() {
-    if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
-      this.section.questionsList[this.selectedQuestionId].state = 'wrong';
-      if (this.selectedQuestionId >= this.section.questionsList.length - 1) {
+  nextQuestionButton(question: Question, id?: number) {
+    this.setQuestionState(question, 'wrong');
+    if (id >= this.section.questionsList.length - 1) {
         this.slides.next();
       }
       else {
-        this.section.questionsList[this.selectedQuestionId].selected = false;
+      this.section.questionsList[id].selected = false;
         let yOffset = 0;
-        if (this.section.questionsList[this.selectedQuestionId + 1].disabled == false) {
-          yOffset = 98;
-        }
-        else {
-          while (this.section.questionsList[this.selectedQuestionId + 1].disabled == true) {
-            this.selectedQuestionId++;
-          }
-          this.selectedQuestion = this.section.questionsList[this.selectedQuestionId].id
-        }
-        yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
-        this.selectedQuestion = this.section.questionsList[++this.selectedQuestionId].id;
-        this.section.questionsList[this.selectedQuestionId].selected = true;
-        if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
-          this.section.questionsList[this.selectedQuestionId].state = 'active';
+      while (this.section.questionsList[++id].disabled == true) {
+      }
+      this.selectedQuestionId = id;
+      yOffset += document.getElementById((this.selectedQuestionId).toString()).offsetTop;
+
         this.content.scrollTo(0, yOffset - 20, 750)
           .then(() => {
+            this.section.questionsList[this.selectedQuestionId].selected = true;
+            this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
             }
           ).catch(err => {
           console.error(err)
-        });
-        this.cdr.detectChanges();
+          }
+        );
       }
-
-
-
-    }
-
-    // this.test.emit(this.selectedQuestionId);
-
-
-  checkQuestion(id: number): boolean {
-    return id == this.selectedQuestionId;
   }
 
   clickQuestion(id: number) {
-    console.log("click question")
-    this.section.questionsList[this.selectedQuestionId].selected = false;
-    if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
-      this.section.questionsList[this.selectedQuestionId].state = 'wrong';
-    if (this.selectedQuestion == id) {
-      this.selectedQuestion = null;
-      this.selectedQuestionId == null;
+    if (this.selectedQuestionId != null) {
+      this.section.questionsList[this.selectedQuestionId].selected = false;
+      this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'wrong');
+    }
+    if (this.selectedQuestionId == id) {
+      this.selectedQuestionId = null;
     }
     else {
-      let yOffset = 0
-      if (id > this.selectedQuestion && this.selectedQuestion != null)
-        yOffset = -108;
-      this.selectedQuestion = id;
-      this.selectedQuestionId = this.section.questionsList.map(question => {
-        return question.id
-      }).indexOf(this.selectedQuestion);
-      yOffset += document.getElementById((this.selectedQuestion).toString()).offsetTop;
-      this.section.questionsList[this.selectedQuestionId].selected = true;
-      if (this.section.questionsList[this.selectedQuestionId].state !== 'correct')
-        this.section.questionsList[this.selectedQuestionId].state = 'active';
-      this.content.scrollTo(0, yOffset, 750);
-    }
 
+      let yOffset = 0;
+      if (id > this.selectedQuestionId && this.selectedQuestionId != null)
+        yOffset = -108;
+      this.selectedQuestionId = id;
+      yOffset += document.getElementById((id).toString()).offsetTop;
+      this.content.scrollTo(0, yOffset, 750).then(() => {
+        this.section.questionsList[id].selected = true;
+        this.setQuestionState(this.section.questionsList[id], 'active');
+      }).catch(err => {
+        console.error(err);
+      });
+    }
   }
 
-  disabledQuestion(question: Question): boolean {
-    console.log('disabledQuestion');
+  disabledQuestion(question: Question) {
     question.disabled = false;
     if (question.activityRules != null) {
       question.disabled = true;
@@ -252,8 +218,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
         }
       );
     }
-    return question.disabled;
-
   }
 
   visibilityQuestion(question: Question) {
@@ -303,7 +267,6 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   setInputPlaceHolder(id: number) {
-    console.log('inputPlaceholder');
     let placeholder = '';
     this.section.questionsList[id - 1].questionAnswers.forEach(answer => {
       if (placeholder === "")
@@ -315,13 +278,11 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   setSelectPlaceholder(question: Question) {
-    console.log('selectPlaceholder');
     return question.questionAnswers[0].label.toString()
 
   }
 
   setRangeValue(question: Question, type: string): number {
-    console.log(question.id, type)
     if (type === "max") {
       question.questionAnswers.forEach(question => {
           if (question.value > this.rangeMax) {
@@ -333,7 +294,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
             }
           }
         }
-      )
+      );
       if (type === 'max')
         return this.rangeMax;
       else
@@ -381,7 +342,7 @@ export class InquirySectionPage implements OnInit, DoCheck {
             //   this.hint = false;
             // }
             // console.log(this.hint)
-            this.nextQuestionButton()
+            this.nextQuestionButton(question)
           }
         }
       ],
@@ -394,23 +355,23 @@ export class InquirySectionPage implements OnInit, DoCheck {
   }
 
   maxQuestionValue(question: Question) {
-    console.log('maxQuestionValue');
-    let answerValue = 0;
-    if (question.answer != null && question.answer !== '') {
-      question.questionAnswers.forEach(answer => {
-          if (question.answer.toString().toLowerCase().includes(answer.label.toString().toLowerCase().trim())) {
-            answerValue = answerValue + answer.value;
+    if (question.state !== 'notClicked') {
+      let answerValue = 0;
+      if (question.answer != null && question.answer !== '') {
+        question.questionAnswers.forEach(answer => {
+            if (question.answer.toString().toLowerCase().includes(answer.label.toString().toLowerCase().trim())) {
+              answerValue = answerValue + answer.value;
+            }
           }
+        );
+        if (answerValue < 100 && question.answer != null && question.answer !== '') {
+          question.state = 'wrong';
         }
-      );
-      if (answerValue < 100 && question.answer != null && question.answer !== '') {
-        question.state = 'active';
-        return true;
-      }
-      else {
-        question.state = 'correct';
-        return false;
+        else {
+          question.state = 'correct';
+        }
       }
     }
+
   }
 }

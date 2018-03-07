@@ -1,12 +1,12 @@
 <ion-content>
   <ion-list margin-bottom="0">
-    <ion-card margin-bottom="0" *ngFor="let question of section.questionsList"
+    <ion-card margin-bottom="0" *ngFor="let question of section.questionsList ;index as id; "
               style="border: none ;max-height: 210px;padding-left: 0;padding-right: 0; padding-top: 0" no-border
               no-lines
-              id="{{question.id}}">
+              id="{{id}}">
         <ion-card-title>
           <button ion-button clear block style="padding-left: 0"
-                  (click)="clickQuestion(question.id)"
+                  (click)="clickQuestion(id)"
                   [disabled]="question.disabled" [color]="question.state">
             <ion-item>
               <ion-avatar item-start>
@@ -23,7 +23,8 @@
       <ion-card-content no-padding [ngSwitch]="question.type" [@expand]="question.selected"
                         style="padding-bottom: 8px;">
         <ion-item *ngSwitchCase="'input'">
-          <ion-input [placeholder]='question.placeholder' [(ngModel)]="question.answer">
+          <ion-input [placeholder]='question.placeholder' [(ngModel)]="question.answer"
+                     (ngModelChange)="onChangeModel()">
             </ion-input>
           </ion-item>
         <ion-item *ngSwitchCase="'checkbox'">
@@ -37,19 +38,20 @@
           <ion-label float-right *ngIf="question.answer==true">
               +{{question.defaultValue}} pkt.
             </ion-label>
-          <ion-checkbox [(ngModel)]="question.answer"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()"></ion-checkbox>
           </ion-item>
         <ion-item *ngSwitchCase="'select'">
-            <ion-select [(ngModel)]="question.answer" interface="popover"
-                        [placeholder]="question.placeholder">
+          <ion-select [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()" interface="popover"
+                      [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
                 {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
               </ion-option>
             </ion-select>
           </ion-item>
         <ion-item *ngSwitchCase="'selectMultiple'">
-            <ion-select float-end [(ngModel)]="question.answer" interface="popover" multiple="true"
-                        [placeholder]="question.placeholder">
+          <ion-select float-end [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()" interface="popover"
+                      multiple="true"
+                      [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
                 {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
               </ion-option>
@@ -67,7 +69,7 @@
         <!--</ion-item>-->
         <button ion-button full clear text-wrap style="padding-bottom: 0;font-weight: bold"
                 [color]="question.state"
-                (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton():nextQuestionButton()">
+                (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
           Dalej
           </button>
         </ion-card-content>

@@ -284,6 +284,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     })
   }
 
+
   countPoints() {
     this.inquiry.result = 0;
     this.sectionList.forEach(section => {
@@ -292,17 +293,19 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   onSegmentChanged(segmentButton) {
-    console.log('Segment changed');
-    this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected = false;
-    if (this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state !== 'correct')
-      this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state = 'wrong';
+    console.log('Segment changed', segmentButton.value);
     this.selectedSection = segmentButton.value;
     this.slides.slideTo(segmentButton.value)
 
   }
 
   onSlideChanged(slider) {
-    console.log('Slide changed');
+    console.log('Slide changed', slider.realIndex);
+    if (slider.realIndex !== this.selectedSection) {
+      this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected = false;
+      if (this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state !== 'correct')
+        this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state = 'wrong';
+    }
     this.selectedSection = slider.realIndex;
   }
 
