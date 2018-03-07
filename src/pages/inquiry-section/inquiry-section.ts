@@ -140,17 +140,17 @@ export class InquirySectionPage implements OnInit, OnChanges {
       while (this.section.questionsList[++id].disabled == true) {
       }
       this.selectedQuestionId = id;
-      yOffset += document.getElementById((this.selectedQuestionId).toString()).offsetTop;
+      console.log(id);
+      yOffset += document.getElementById((id).toString()).offsetTop;
 
-        this.content.scrollTo(0, yOffset - 20, 750)
+      this.content.scrollTo(0, yOffset - 108, 750)
           .then(() => {
-            this.section.questionsList[this.selectedQuestionId].selected = true;
-            this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
-            }
-          ).catch(err => {
+          }).catch(err => {
           console.error(err)
           }
         );
+      this.section.questionsList[this.selectedQuestionId].selected = true;
+      this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
       }
   }
 
@@ -163,18 +163,18 @@ export class InquirySectionPage implements OnInit, OnChanges {
       this.selectedQuestionId = null;
     }
     else {
-
       let yOffset = 0;
-      if (id > this.selectedQuestionId && this.selectedQuestionId != null)
+      if (id >= this.selectedQuestionId)
         yOffset = -108;
       this.selectedQuestionId = id;
       yOffset += document.getElementById((id).toString()).offsetTop;
       this.content.scrollTo(0, yOffset, 750).then(() => {
-        this.section.questionsList[id].selected = true;
-        this.setQuestionState(this.section.questionsList[id], 'active');
+        console.log(yOffset);
       }).catch(err => {
         console.error(err);
       });
+      this.section.questionsList[id].selected = true;
+      this.setQuestionState(this.section.questionsList[id], 'active');
     }
   }
 
