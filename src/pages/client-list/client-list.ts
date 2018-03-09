@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {App, IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
 import {Client} from "../../model/client";
-import {ClientDetailPage} from "../client-detail/client-detail";
 import {ClientTabsPage} from "../client-tabs/client-tabs";
+
 
 /**
  * Generated class for the ClientListPage page.
@@ -19,7 +19,7 @@ import {ClientTabsPage} from "../client-tabs/client-tabs";
 export class ClientListPage {
   clientList:Array<Client>=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private app:App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App, private nav: Nav) {
     this.setClient();
   }
   setClient(){
@@ -55,7 +55,8 @@ export class ClientListPage {
     }
   }
   showDetailsOfClient(client:Client){
-    this.navCtrl.setRoot(ClientTabsPage,{client:client}).catch(err=>console.error(err));
+    this.nav.setRoot(ClientTabsPage, {client: client})
   }
+
 
 }

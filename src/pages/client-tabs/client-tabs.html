@@ -1,13 +1,21 @@
-<ion-navbar>
-  <ion-buttons>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-  </ion-buttons>
-</ion-navbar>
+<!--<ion-tabs tabs>-->
+<!--<ion-tab [root]="ClientDetail" [rootParams]="client" tabTitle="Informacja" tabIcon="information"></ion-tab>-->
+<!--<ion-tab [root]="ClientMenu" tabTitle="Przejdz do klienta"></ion-tab>-->
+<!--<ion-tab [root]="PmiGo" tabTitle="PmiGo" tabIcon="contacts"></ion-tab>-->
+<!--<ion-tab [root]="Action" tabTitle="Action" tabIcon="albums"></ion-tab>-->
+<!--<ion-tab [root]="Contact" tabTitle="Contact" tabIcon="call"></ion-tab>-->
+<!--</ion-tabs>-->
 <ion-tabs>
-  <ion-tab [root]="ClientDetail" [rootParams]="client" tabTitle="Information" tabIcon="body" ></ion-tab>
-  <ion-tab [root]="PmiGo" tabTitle="PmiGo" tabIcon="contact"></ion-tab>
-  <ion-tab [root]="Action" tabTitle="Action" tabIcon="clipboard"></ion-tab>
-  <ion-tab [root]="Contact" tabTitle="Contact" tabIcon="call"></ion-tab>
+  <ion-scroll scrollX style="height: 100%">
+    <ion-tab *ngFor="let tab of TabList;index as id" [root]="tab.componentName" [tabTitle]="tab.title + id"></ion-tab>
+  </ion-scroll>
 </ion-tabs>
+
+
+
+
+
+
+
+
+

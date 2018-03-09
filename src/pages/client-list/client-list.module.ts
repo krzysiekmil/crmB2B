@@ -4,7 +4,7 @@ import { ClientListPage } from './client-list';
 
 @NgModule({
   declarations: [
-    ClientListPage,
+    ClientListPage
   ],
   imports: [
     IonicPageModule.forChild(ClientListPage),

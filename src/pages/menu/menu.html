@@ -5,7 +5,6 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list *ngFor="let menuItem of pageList">
       <ion-item menuClose ion-item  (click)="openPage(menuItem.componentName)" clear block>

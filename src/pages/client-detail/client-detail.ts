@@ -19,22 +19,14 @@ export class ClientDetailPage implements OnInit{
   client:Client;
   pmigo:PmiGo;
   ngOnInit(): void {
-    this.client=this.navParams.data;
     console.log(this.client);
   }
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-
-  mockData(){
+    this.client = this.navParams.data;
 
   }
-  showContacts(){}
-  showClientAction(){}
-
-
 
 
 }
