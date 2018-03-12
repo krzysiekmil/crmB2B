@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {App, IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
 import {Client} from "../../model/client";
-import {ClientTabsPage} from "../client-tabs/client-tabs";
+import {ClientMenuPage} from "../client-menu/client-menu";
 
 
 /**
@@ -55,7 +55,7 @@ export class ClientListPage {
     }
   }
   showDetailsOfClient(client:Client){
-    this.nav.setRoot(ClientTabsPage, {client: client})
+    this.nav.setRoot(ClientMenuPage, {client: client})
   }
 
 

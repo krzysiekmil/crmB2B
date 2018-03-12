@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
-import {ClientTabsPageModule} from "../pages/client-tabs/client-tabs.module";
 import {PmiGoPageModule} from "../pages/pmi-go/pmi-go.module";
 import {ActionDetailPageModule} from "../pages/action-detail/action-detail.module";
 import {ContactDetailPageModule} from "../pages/contact-detail/contact-detail.module";
@@ -19,17 +17,15 @@ import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
 import {ConfirmPage} from "../pages/confirm/confirm";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TestPageModule} from "../pages/test/test.module";
-import {Tab1PageModule} from "../pages/tab1/tab1.module";
-import {Tab2PageModule} from "../pages/tab2/tab2.module";
-import {Tab3PageModule} from "../pages/tab3/tab3.module";
 import {GaleryPageModule} from "../pages/galery/galery.module";
 import {KnowlegdeBasePageModule} from "../pages/knowlegde-base/knowlegde-base.module";
 import {TargetPageModule} from "../pages/target/target.module";
 import {ClientMenuPageModule} from "../pages/client-menu/client-menu.module";
-import {ClientInformationPageModule} from "../pages/client-information/client-information.module";
 import {VisitPageModule} from "../pages/visit/visit.module";
 import {OrderPageModule} from "../pages/order/order.module";
+import {SectionInformationPageModule} from "../pages/section-information/section-information.module";
+import {OrderAndDeliveryPageModule} from "../pages/order-and-delivery/order-and-delivery.module";
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -40,7 +36,6 @@ import {OrderPageModule} from "../pages/order/order.module";
   imports: [
     BrowserModule,
     LoginPageModule,
-    ClientTabsPageModule,
     PmiGoPageModule,
     ActionDetailPageModule,
     ContactDetailPageModule,
@@ -51,17 +46,15 @@ import {OrderPageModule} from "../pages/order/order.module";
     MainPageModule,
     InquiryPageModule,
     BrowserAnimationsModule,
-    TestPageModule,
-    Tab1PageModule,
-    Tab2PageModule,
-    Tab3PageModule,
     GaleryPageModule,
     KnowlegdeBasePageModule,
     TargetPageModule,
     ClientMenuPageModule,
-    ClientInformationPageModule,
+    SectionInformationPageModule,
+    OrderAndDeliveryPageModule,
     VisitPageModule,
     OrderPageModule,
+    ChartsModule,
     HttpModule,
     IonicModule.forRoot(MyApp, {
       tabPlacement: 'top'
