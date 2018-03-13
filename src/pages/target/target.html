@@ -1,0 +1,11 @@
+<ion-content no-padding>
+  <div class="empty-container">
+    <section no-padding class="empty-target" *ngIf="isEmpty">
+      <img class="empty-logo" src="assets/flag-black.png">
+      <h1 class="empty-header" text-center text-capitalize>{{emptyInformationHeader}}
+      </h1>
+      <p class="empty-message" text-center text-wrap>{{emptyInformationMessage}}</p>
+    </section>
+    <button class="empty-button" ion-button full round>Dodaj cel</button>
+  </div>
+</ion-content>

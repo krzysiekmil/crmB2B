@@ -1,0 +1,30 @@
+page-target {
+  .empty-container {
+    width: inherit;
+    height: inherit;
+    > .empty-target {
+      width: 100%;
+      > .empty-logo {
+        margin: auto;
+        margin-left: 37.5%;
+        margin-right: 32.5%;
+        margin-top: 5%;
+        width: 30%;
+      }
+      > .empty-header {
+        margin-top: 1.5em;
+        font-size: x-large;
+        font-weight: 400;
+      }
+      > .empty-message {
+
+      }
+    }
+    > .empty-button {
+      height: 3.5em;
+      position: absolute;
+      bottom: 1em;
+    }
+  }
+
+}

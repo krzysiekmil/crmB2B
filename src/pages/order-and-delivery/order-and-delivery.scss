@@ -1,0 +1,78 @@
+page-order-and-delivery {
+  .title-badge {
+    height: 2em;
+    text-align: center;
+    margin-left: 3em;
+  }
+
+  .card-header-legend {
+    font-size: 1em;
+    > .date.col {
+      color: gainsboro;
+    }
+    > .order col {
+      color: #65a1db;
+    }
+    > .delivery {
+      color: #8A2BE2;
+    }
+  }
+  ion-col.date.col {
+    color: #a0a0a0;
+  }
+  ion-col.order.col {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #65a1db;
+  }
+  ion-col.delivery.col {
+    margin-left: 2em;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #8A2BE2;
+  }
+  ion-col.data-delivery.col {
+    width: 30%;
+    font-size: 80%;
+    padding-left: 0;
+    > .h1 {
+      font-size: 1.4em;
+    }
+    > .p {
+      color: #a0a0a0;
+
+    }
+  }
+  ion-col.order-param.col {
+    color: #a0a0a0;
+    border-left: 1.25px solid #c6c6c6;
+    max-width: 150%;
+    width: 120%;
+  }
+  ion-col.order-value.col {
+    width: 35%;
+    padding-left: 5px;
+    color: #65a1db;
+
+  }
+  ion-item.chart {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .header {
+    padding-top: 25px;
+    padding-left: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    > .header-badge {
+      position: absolute;
+      right: 11px;
+    }
+  }
+
+}

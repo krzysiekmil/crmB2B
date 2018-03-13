@@ -1,0 +1,68 @@
+<ion-content>
+  <div class="header" text-start>Zamowienia i dostawy (SU)
+    <ion-badge class="header-badge" align-items-end item-end>2017</ion-badge>
+  </div>
+  <ion-scroll scrollX style="height:50%">
+    <ion-item no-padding class="chart" style="width: 1000px;">
+      <ngx-charts-bar-vertical-2d
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [groupPadding]="groupPadding"
+        [barPadding]="barPadding"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical-2d>
+    </ion-item>
+  </ion-scroll>
+  <ion-card>
+    <ion-card-header class="card-header-legend">
+      <ion-row>
+        <ion-col class="date">Data</ion-col>
+        <ion-col class="order">Zamowienia</ion-col>
+        <ion-col class="delivery">Dostawa</ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row class="card-header-order">
+        <ion-col class="data-delivery">
+          <h1 class="h1">{{DataList.data}}</h1>
+          <p class="p">{{DataList.title}}</p>
+        </ion-col>
+        <ion-col class="order">{{DataList.orderSum}}</ion-col>
+        <ion-col class="delivery"></ion-col>
+      </ion-row>
+      <ion-list class="order-container">
+        <ion-row *ngFor="let order of DataList.orderDetail">
+          <ion-col class="order-param">{{order.param}}</ion-col>
+          <ion-col class="order-value">{{order.value}}</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <h1>{{DataList.data}}</h1>
+          <p>{{DataList.title}}</p>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col>{{DataList.deliverySum}}</ion-col>
+      </ion-row>
+      <ion-list class="delivery-container">
+        <ion-row *ngFor="let delivery of DataList.deliveryDetail">
+          <ion-col class="delivery-param">{{delivery.param}}</ion-col>
+          <ion-col></ion-col>
+          <ion-col class="delivery-value">{{delivery.value}}</ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

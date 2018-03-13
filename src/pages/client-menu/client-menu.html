@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="background-color: inherit">{{client.name}}</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-padding>
+    <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
+      <ion-scroll scrollX="true" style="height: 80px;padding-right: 0">
+        <ion-col *ngFor="let object of List;index as id">
+          <button ion-button *ngIf="id===selectedId" class="Active" (click)="openPage(object.componentName,id)"
+                  style="height: 75px;width: 135px">
+            <div>
+              <ion-icon [name]="object.icon">
+              </ion-icon>
+              <p class="p-Active">{{object.name}}</p>
+            </div>
+          </button>
+          <button ion-button *ngIf="id!==selectedId" class="notActive" (click)="openPage(object.componentName,id)"
+                  style="height: 75px;width: 135px">
+            <div>
+              <ion-icon class="icon" [name]="object.icon">
+              </ion-icon>
+              <p class="p-notActive">{{object.name}}</p>
+            </div>
+          </button>
+        </ion-col>
+      </ion-scroll>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-nav root="SectionInformationPage" no-padding></ion-nav>
+</ion-content>
