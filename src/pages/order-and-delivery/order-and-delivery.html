@@ -18,6 +18,8 @@
         [yAxisLabel]="yAxisLabel"
         [groupPadding]="groupPadding"
         [barPadding]="barPadding"
+        [activeEntries]="activeEntries"
+        [yScaleMax]="yScaleMax"
         (select)="onSelect($event)">
       </ngx-charts-bar-vertical-2d>
     </ion-item>
@@ -26,11 +28,16 @@
     <ion-card-header class="card-header-legend">
       <ion-row>
         <ion-col class="date">Data</ion-col>
-        <ion-col class="order">Zamowienia</ion-col>
-        <ion-col class="delivery">Dostawa</ion-col>
+        <ion-col (click)="openSection('Zamowienie')" class="order">
+          <img class="order-icon">Zamowienia
+        </ion-col>
+        <ion-col (click)="openSection('Dostawa')" class="delivery">
+          <img class="delivery-icon">Dostawa
+        </ion-col>
       </ion-row>
     </ion-card-header>
-    <ion-card-content>
+  </ion-card>
+  <ion-card [@expand]="orderSeleceted">
       <ion-row class="card-header-order">
         <ion-col class="data-delivery">
           <h1 class="h1">{{DataList.data}}</h1>
@@ -46,8 +53,8 @@
           <ion-col></ion-col>
         </ion-row>
       </ion-list>
-    </ion-card-content>
-    <ion-card-content>
+  </ion-card>
+  <ion-card [@expand]="deliverySelected">
       <ion-row>
         <ion-col>
           <h1>{{DataList.data}}</h1>
@@ -63,6 +70,5 @@
           <ion-col class="delivery-value">{{delivery.value}}</ion-col>
         </ion-row>
       </ion-list>
-    </ion-card-content>
   </ion-card>
 </ion-content>
