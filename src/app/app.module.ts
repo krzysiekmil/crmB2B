@@ -26,6 +26,7 @@ import {OrderPageModule} from "../pages/order/order.module";
 import {SectionInformationPageModule} from "../pages/section-information/section-information.module";
 import {OrderAndDeliveryPageModule} from "../pages/order-and-delivery/order-and-delivery.module";
 import {ChartsModule} from "ng2-charts";
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {ChartsModule} from "ng2-charts";
     VisitPageModule,
     OrderPageModule,
     ChartsModule,
+    NgxChartsModule,
     HttpModule,
     IonicModule.forRoot(MyApp, {
       tabPlacement: 'top'
