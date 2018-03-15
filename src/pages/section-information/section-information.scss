@@ -1,10 +1,24 @@
 page-section-information {
+  .toolbar-header-col {
+  }
   .button-Active {
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0;
+    height: 40px;
     color: #1aa7de;
+    padding-bottom: 5px;
     border-bottom: 2px solid #1aa7de;
+    background-color: inherit;
   }
   .button-notActive {
-    color: #a0a0a0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: inherit;
+    margin: 0;
+    height: 60px;
   }
 
 }

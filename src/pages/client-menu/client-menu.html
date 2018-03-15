@@ -1,9 +1,26 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button start ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="background-color: inherit">{{client.name}}</ion-title>
+    <ion-title style="width: 150px">
+      {{client.name}}
+    </ion-title>
+    <ion-buttons end class="button-container">
+      <button ion-button>
+        <div>
+          <ion-thumbnail class="header-thumbnail">44.5</ion-thumbnail>
+          <p class="header-text">FSM</p>
+        </div>
+      </button>
+      <button ion-button>
+        <div>
+          <ion-thumbnail class="header-thumbnail">44.5</ion-thumbnail>
+          <p class="header-text">FSM</p>
+        </div>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
   <ion-toolbar no-padding>
     <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">

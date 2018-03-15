@@ -9,6 +9,8 @@ import {PmiGo} from "../../model/pmigo";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+export var select;
+
 export interface InformationSection {
   title: string;
   detailList: Array<Detail>;
@@ -55,6 +57,12 @@ export class ClientDetailPage implements OnInit{
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.client = this.navParams.data;
 
+  }
+
+  swipeEvent(ev) {
+    select = 0;
+    console.log(select);
+    console.log(ev);
   }
 
 

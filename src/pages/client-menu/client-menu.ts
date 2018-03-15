@@ -16,6 +16,7 @@ import {Client} from "../../model/client";
   templateUrl: 'client-menu.html',
 })
 export class ClientMenuPage {
+
   client: Client;
   selectedId: number = 0;
   @ViewChild(Nav) nav: Nav;

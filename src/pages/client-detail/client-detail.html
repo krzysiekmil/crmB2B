@@ -6,21 +6,23 @@
 -->
 
 
-<ion-content padding>
-  <ion-list>
-    <ion-card *ngFor="let section of informationList">
-      <ion-card-header>
-        <b>{{section.title}}</b>
-      </ion-card-header>
-      <ion-card-content no-padding>
-        <ion-list>
-          <ion-item *ngFor="let detailList of section.detailList">
-            <p style="display: inline" text-start>{{detailList.param}}:</p>
-            <p style="position:absolute;right: 3%;display: inline" text-end>{{detailList.value}}</p>
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+<ion-content>
+  <div>
+    <ion-list (swipe)="swipeEvent($event)">
+      <ion-card *ngFor="let section of informationList">
+        <ion-card-header>
+          <b>{{section.title}}</b>
+        </ion-card-header>
+        <ion-card-content no-padding>
+          <ion-list>
+            <ion-item *ngFor="let detailList of section.detailList">
+              <p style="display: inline" text-start>{{detailList.param}}:</p>
+              <p style="position:absolute;right: 3%;display: inline" text-end>{{detailList.value}}</p>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
 </ion-content>
 

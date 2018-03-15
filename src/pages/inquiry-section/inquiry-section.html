@@ -28,16 +28,9 @@
             </ion-input>
           </ion-item>
         <ion-item *ngSwitchCase="'checkbox'">
-            <ion-label float-end>
-              {{question.answer}}
-            </ion-label>
-          >
-          <ion-label float-right *ngIf="question.answer==false">
-              0 pkt.
-            </ion-label>
-          <ion-label float-right *ngIf="question.answer==true">
-              +{{question.defaultValue}} pkt.
-            </ion-label>
+          <ion-label float-end>{{question.answer}}</ion-label>
+          <ion-label float-right *ngIf="question.answer==false">0 pkt.</ion-label>
+          <ion-label float-right *ngIf="question.answer==true">+{{question.defaultValue}} pkt.</ion-label>
           <ion-checkbox [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()"></ion-checkbox>
           </ion-item>
         <ion-item *ngSwitchCase="'select'">

@@ -1,10 +1,11 @@
-<ion-content>
+<ion-content style="overflow-x: visible">
   <div class="header" text-start>Zamowienia i dostawy (SU)
     <ion-badge class="header-badge" align-items-end item-end>2017</ion-badge>
   </div>
-  <ion-scroll scrollX style="height:50%">
+  <ion-scroll scrollX scrollY style="height:62.5%">
     <ion-item no-padding class="chart" style="width: 1000px;">
       <ngx-charts-bar-vertical-2d
+        [animations]="animations"
         [view]="view"
         [scheme]="colorScheme"
         [results]="multi"
@@ -18,7 +19,6 @@
         [yAxisLabel]="yAxisLabel"
         [groupPadding]="groupPadding"
         [barPadding]="barPadding"
-        [activeEntries]="activeEntries"
         [yScaleMax]="yScaleMax"
         (select)="onSelect($event)">
       </ngx-charts-bar-vertical-2d>
@@ -54,16 +54,16 @@
         </ion-row>
       </ion-list>
   </ion-card>
-  <ion-card [@expand]="deliverySelected">
-      <ion-row>
+  <ion-card [@expand]="deliverySelected" class="delivery-container">
+    <ion-row class="delivery-header">
         <ion-col>
-          <h1>{{DataList.data}}</h1>
-          <p>{{DataList.title}}</p>
+          <h1 class="delivery-header-date">{{DataList.data}}</h1>
+          <p class="delivery-header-title">{{DataList.title}}</p>
         </ion-col>
         <ion-col></ion-col>
         <ion-col>{{DataList.deliverySum}}</ion-col>
       </ion-row>
-      <ion-list class="delivery-container">
+    <ion-list class="delivery-list">
         <ion-row *ngFor="let delivery of DataList.deliveryDetail">
           <ion-col class="delivery-param">{{delivery.param}}</ion-col>
           <ion-col></ion-col>

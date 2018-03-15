@@ -92,5 +92,21 @@ page-order-and-delivery {
     display: inline-block;
     margin-right: 2px;
   }
+  .delivery-container {
+    > .delivery-header {
+      .delivery-header-date {
+        color: #a0a0a0;
+        font-weight: bold;
+      }
+    }
+
+    > .delivery-value {
+      background-color: #6be280;;
+
+      > .delivery-list {
+        background-color: #8A2BE2;;
+      }
+    }
+  }
 
 }

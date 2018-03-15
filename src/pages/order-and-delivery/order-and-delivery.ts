@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, NavParams, Scroll} from 'ionic-angular';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ClientDetailPageModule} from "../client-detail/client-detail.module";
+import {ClientDetailPage} from "../client-detail/client-detail";
 
 /**
  * Generated class for the OrderAndDeliveryPage page.
@@ -36,6 +38,7 @@ export interface Data {
   templateUrl: 'order-and-delivery.html',
 })
 export class OrderAndDeliveryPage {
+  @ViewChild(Scroll) scroll: Scroll;
   multi = [
     {
       "name": "STY",
@@ -198,21 +201,8 @@ export class OrderAndDeliveryPage {
   ];
 
   // options
-  view: any[] = [1000, 140];
-  activeEntries = [{
-
-    "name": "STY",
-    "series": [
-      {
-        "name": "Zamowienie",
-        "value": 123
-      },
-      {
-        "name": "Dostawa",
-        "value": 120
-      }
-    ]
-  }];
+  view: any[] = [1000, 195];
+  animations: false;
   yScaleMax = 300;
   showXAxis = true;
   showYAxis = true;

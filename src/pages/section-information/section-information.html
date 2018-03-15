@@ -1,19 +1,21 @@
 <ion-header>
-  <ion-toolbar no-padding>
+  <ion-toolbar no-padding style="height: 55px">
     <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
-      <ion-scroll class="item-scroll" scrollX="true" style="height: 40px;padding-right: 0;">
-        <ion-col *ngFor="let object of List;index as id">
-          <button class="button-Active:" ion-button clear *ngIf="id===selectedId"
-                  (click)="openPage(object.componentName,id)">{{object.name}}
+      <ion-scroll class="item-scroll" scrollX="true" style="height: 55px;padding-right: 0;">
+        <ion-buttons>
+          <button [class]="id==selectedId? 'button-Active':'button-notActive'" *ngFor="let object of List;index as id"
+                  id="{{id}}"
+                  (click)="openPage(id)">{{object.name}}
           </button>
-          <button class="button-notActive" ion-button clear *ngIf="id!==selectedId"
-                  (click)="openPage(object.componentName,id)">{{object.name}}
-          </button>
-        </ion-col>
+        </ion-buttons>
       </ion-scroll>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-nav root="ClientDetailPage"></ion-nav>
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide *ngFor="let page of List">
+      <ion-nav [root]="page.componentName"></ion-nav>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

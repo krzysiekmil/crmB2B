@@ -1,3 +1,112 @@
 page-client-list {
+  ion-header {
+    background-color: white;
+  }
+  .scroll-content {
+    background: linear-gradient(#f3f6f8, #e3e5e7);
+  }
+  .header {
+    background-color: white;
+  }
+  .header-button {
+    font-size: x-large;
+  }
+  .header-button-icon {
+    font-size: x-large;
+  }
+  .toolbar-container {
+    color: #adadad;
+    font-size: 0.9em !important;
+    height: 1.5em;
+    min-height: 1.5em;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .list-param {
+    margin: 0 1rem 0 0 !important;
+    min-height: 4.5rem;
+    min-width: 4.5rem;
+    color: white;
+    border-radius: 3px;
+    background-color: #5cdf6e;
+    box-shadow: 0 5px 15px -2px #2bd900;
+    padding-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .list-badge {
+    width: 2.5em;
+    height: 1.85em;
+    position: absolute;
+    top: 0.7em;
+    right: 0.7em;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 3.33;
+    letter-spacing: normal;
+    text-align: right;
+    border-radius: 3px;
+    background-color: #f3f6f8;
+    color: black;
+  }
+  .fab-button {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    opacity: 0.9;
+    background-color: #1aa7de;
+    box-shadow: 0 3px 20px -5px #00a0d9;
+  }
+  .fab-icon {
+    font-size: x-large;
+    width: 26px;
+    height: 26px;
+  }
+  .input-wrapper {
+    margin-left: .25em;
+  }
+
+  .list-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .list-address {
+    color: #787878;
+    padding-top: 0.5em;
+    padding-bottom: 0.4em;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .list-city {
+    color: #787878;
+  }
+  .list-item {
+    padding-left: 0.75em !important;
+  }
+  .toolbar-container {
+
+  }
+  .toolbar-param-start {
+    margin-left: 2.3em;
+    margin-right: .35em;
+  }
 
 }

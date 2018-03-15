@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, Nav, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
+import {ClientDetailPage, select} from "../client-detail/client-detail";
 
 /**
  * Generated class for the SectionInformationPage page.
@@ -14,13 +15,19 @@ import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
   templateUrl: 'section-information.html',
 })
 export class SectionInformationPage implements OnInit {
-  selectedId: number = 0;
+  currentPage = 'OrderAndDeliveryPage';
+  public selectedId: number = 0;
+  test1;
+  test2: number = 1000;
   @ViewChild(Nav) nav: Nav;
+  @ViewChild(Slides) slides: Slides;
+  @ViewChild(Slide) slide: Slide;
   List: any = [{name: 'Informacje', componentName: 'ClientDetailPage'},
     {name: 'Cele', componentName: 'TargetPage'}, {name: 'Zamowienia i dostawy', componentName: 'OrderAndDeliveryPage'},
-    {name: 'Baza wiedzy', componentName: 'KnowlegdeBasePage'}, {name: 'Galeria', compoenetName: 'GaleryPage'}];
+    {name: 'Baza wiedzy', componentName: 'KnowlegdeBasePage'}];
   number: number = 0;
 
+// , {name: 'Galeria', compoenetName: 'GaleryPage'}
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log('constructor SectionInformationPage');
 
@@ -35,8 +42,18 @@ export class SectionInformationPage implements OnInit {
     console.log('ionViewDidLoad SectionInformationPage');
   }
 
-  openPage(pageName: string, number: number): void {
-    this.selectedId = number;
-    this.nav.setRoot(pageName, {id: number, number: this.number});
+  openPage(number: number): void {
+    console.log(select);
+    this.slides.slideTo(number)
+  }
+
+  slideChanged() {
+    this.selectedId = this.slides.realIndex;
+    this.currentPage = this.List[this.selectedId].componentName;
+
+  }
+
+  swipeEvent(ev: any) {
+    console.log(ev);
   }
 }
