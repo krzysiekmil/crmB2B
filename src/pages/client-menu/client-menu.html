@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar padding-top padding-bottom>
     <button start ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -20,24 +20,22 @@
         </div>
       </button>
     </ion-buttons>
-
   </ion-navbar>
   <ion-toolbar no-padding>
-    <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
-      <ion-scroll scrollX="true" style="height: 80px;padding-right: 0">
+    <ion-item no-padding class="toolbar-container"
+              style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
+      <ion-scroll scrollX="true" class="toolbar-scroll">
         <ion-col *ngFor="let object of List;index as id">
-          <button ion-button *ngIf="id===selectedId" class="Active" (click)="openPage(object.componentName,id)"
-                  style="height: 75px;width: 135px">
-            <div>
-              <ion-icon [name]="object.icon">
+          <button ion-button *ngIf="id===selectedId" class="Active" (click)="openPage(object.componentName,id)">
+            <div class="button-inside">
+              <ion-icon class="button-icon" [name]="object.icon">
               </ion-icon>
               <p class="p-Active">{{object.name}}</p>
             </div>
           </button>
-          <button ion-button *ngIf="id!==selectedId" class="notActive" (click)="openPage(object.componentName,id)"
-                  style="height: 75px;width: 135px">
+          <button ion-button *ngIf="id!==selectedId" class="notActive" (click)="openPage(object.componentName,id)">
             <div>
-              <ion-icon class="icon" [name]="object.icon">
+              <ion-icon class="button-icon" [name]="object.icon">
               </ion-icon>
               <p class="p-notActive">{{object.name}}</p>
             </div>

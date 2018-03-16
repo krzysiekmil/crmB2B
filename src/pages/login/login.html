@@ -1,32 +1,18 @@
 <ion-content class="login-content" padding>
+  <div padding-bottom>
+    <img class="empty-logo" src="assets/flag-black.png">
+  </div>
   <div class="login-box">
     <form (ngSubmit)="login()" [formGroup]="formValid">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-            <ion-item>
-              <ion-input type="text" placeholder="Username" name="name" formControlName="name" ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" formControlName="password" ></ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button full round (click)="remindPassword()"> Remind Password</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button class="submit-btn" full type="submit" round [disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">Login</button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
+      <ion-input class="input-username" type="text" placeholder="Username" name="name" formControlName="name"
+                 clearInput></ion-input>
+      <ion-input class="input-password" type="password" placeholder="Password" name="password"
+                 formControlName="password" clearInput></ion-input>
+      <button ion-button class="submit-btn" full type="submit" round
+              [disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">Login
+      </button>
+      <button ion-button full round class="remind-btn" (click)="remindPassword()"> Remind Password</button>
           <button ion-button clear (click)="rak()">Menu</button>
-        </ion-col>
-      </ion-row>
-
     </form>
   </div>
 </ion-content>

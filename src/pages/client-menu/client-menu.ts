@@ -43,7 +43,13 @@ export class ClientMenuPage {
 
   openPage(pageName: string, number: number): void {
     this.selectedId = number;
-    this.nav.setRoot(pageName, {id: number});
+    this.nav.setRoot(pageName, {id: number}, {
+      animate: true,
+      animation: 'slide',
+      direction: 'forward',
+      duration: 450,
+      easing: 'in-out'
+    });
   }
 
   ionViewWillLeave() {

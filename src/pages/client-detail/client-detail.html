@@ -6,18 +6,21 @@
 -->
 
 
-<ion-content>
+<ion-content padding-top>
   <div>
     <ion-list (swipe)="swipeEvent($event)">
-      <ion-card *ngFor="let section of informationList">
-        <ion-card-header>
-          <b>{{section.title}}</b>
+      <ion-card class="card-container" *ngFor="let section of informationList">
+        <ion-card-header class="card-header">
+          <p class="card-header-title" float-start>{{section.title}}</p>
+          <ion-avatar class="card-header-icon">
+            <ion-icon float-end="" name="{{section.titleIcon}}"></ion-icon>
+          </ion-avatar>
         </ion-card-header>
-        <ion-card-content no-padding>
-          <ion-list>
-            <ion-item *ngFor="let detailList of section.detailList">
-              <p style="display: inline" text-start>{{detailList.param}}:</p>
-              <p style="position:absolute;right: 3%;display: inline" text-end>{{detailList.value}}</p>
+        <ion-card-content class="card-content" no-padding>
+          <ion-list class="card-content-list">
+            <ion-item class="card-list-item" *ngFor="let detailList of section.detailList">
+              <p class="card-list-param" float-start>{{detailList.param}}</p>
+              <p class="card-list-value" float-end>{{detailList.value}}</p>
             </ion-item>
           </ion-list>
         </ion-card-content>

@@ -1,18 +1,16 @@
 <ion-content>
-  <ion-list-header>
-    <div class="header-title">
+  <div padding-bottom padding-top class="header-title">
       Dostepne materiały
     </div>
-  </ion-list-header>
   <ion-list no-padding>
     <ion-card *ngFor="let data of knowledgeList">
       <ion-item no-padding>
         <ion-thumbnail item-start>
-          <img class="logo" style="background-color: #7d60f6">
+          <img class="logo" style="background-color: #7d60f6" src="assets/flag-black.png">
         </ion-thumbnail>
         <h2 class="title">{{data.title}}</h2>
-        <h3>{{data.subtitle}}</h3>
-        <p>{{data.numberOfPages}} strony</p>
+        <h3 class="subtitle">{{data.subtitle}}</h3>
+        <p class="extra-param">{{data.numberOfPages}} strony</p>
         <ion-icon item-end name="ios-arrow-forward">
         </ion-icon>
       </ion-item>

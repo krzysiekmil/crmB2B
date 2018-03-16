@@ -1,24 +1,43 @@
 page-section-information {
+  .div.input-wrapper {
+    margin-top: 100px !important;
+  }
   .toolbar-header-col {
   }
   .button-Active {
+    font-size: 0.90em;
     margin-right: 5px;
     margin-left: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
     margin-top: 0;
     height: 40px;
     color: #1aa7de;
     padding-bottom: 5px;
     border-bottom: 2px solid #1aa7de;
     background-color: inherit;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.87;
+    letter-spacing: 0.05em;
+    text-align: center;
+
   }
   .button-notActive {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 0.90em;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.87;
+    text-align: center;
     background-color: inherit;
     margin: 0;
     height: 60px;
+    color: #8c8c8c;
   }
 
 }

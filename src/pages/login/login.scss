@@ -1,3 +1,28 @@
 page-login {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+  }
+  .empty-logo {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 2em;
+  }
+  .remind-btn {
+    width: 55%;
+    margin-left: 22.5%;
+    margin-right: 22.5%;
+    background-color: #6be280;
+    font-size: 1em;
+  }
+  .input-username {
+    border-bottom: 2px solid gainsboro;
+    background-color: transparent;
+    margin-bottom: 1em;
 
+  }
+  .input-password {
+    margin-bottom: 1em;
+    border-bottom: 2px solid gainsboro;
+  }
 }

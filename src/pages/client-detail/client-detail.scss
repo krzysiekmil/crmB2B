@@ -1,3 +1,39 @@
 page-client-detail {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+  }
+  .card-container {
+    > .card-header {
+      > .card-header-icon {
+        background-color: #488aff;
+      }
+      > .card-header-title {
+        font-weight: 400;
+        font-size: 1.165em;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.4px;
+        text-align: left;
+      }
+    }
+    > .card-content {
+      > .card-content-list {
+        > .card-list-item {
+          padding-right: 0;
+          font-size: 1.1em;
+          border-top: 0.05em solid #edf0f2;
+          border-bottom: 0 solid;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 2.86;
+          letter-spacing: normal;
+        }
+      }
+    }
+  }
+  .card-list-param {
+    color: #9c9c9c;
+  }
 
 }

@@ -44,7 +44,7 @@ page-client-list {
     text-align: center;
   }
   .list-badge {
-    width: 2.5em;
+    width: 3em;
     height: 1.85em;
     position: absolute;
     top: 0.7em;
@@ -107,6 +107,13 @@ page-client-list {
   .toolbar-param-start {
     margin-left: 2.3em;
     margin-right: .35em;
+  }
+  .badge-text {
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: right;
   }
 
 }

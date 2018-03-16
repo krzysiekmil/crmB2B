@@ -13,6 +13,7 @@ export var select;
 
 export interface InformationSection {
   title: string;
+  titleIcon?: string;
   detailList: Array<Detail>;
   layoutParamList?: Array<LayoutParam>;
 
@@ -41,10 +42,14 @@ export class ClientDetailPage implements OnInit{
   pmigo:PmiGo;
   informationList: Array<InformationSection> = [{
     title: 'Statystyki',
-    detailList: [{param: 'Dostawy 12 miec. (SU)', value: 394}, {param: 'Śr. dostawy 12 miec. (SU)', value: '1,4'}]
+    detailList: [{param: 'Dostawy 12 miec. (SU)', value: 394}, {
+      param: 'Śr. dostawy 12 mies. (zgrzewki SU):',
+      value: '1,4'
+    }]
   },
     {
       title: 'Dane Podstawowe',
+      titleIcon: 'return-right',
       detailList: [{param: 'Id', value: 852448}, {param: 'Nazwa', value: 'PHU Bozena Szymanska'},
         {param: 'Adres', value: 'Gdansk, Trubadurow 6'}]
     }];

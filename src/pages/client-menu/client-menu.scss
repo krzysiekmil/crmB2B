@@ -1,15 +1,58 @@
 page-client-menu {
   .button.Active {
-    background-color: #1aa7de;
+    width: 8.6em !important;
+    height: 5.6em !important;
+    background-color: #1aa7de !important;
+    box-shadow: 0 13px 15px -13px #0099d0 !important;
     color: white;
 
   }
   .button.notActive {
-    background-color: #eff1f4;
+    width: 8.6em !important;
+    height: 5.6em !important;
+    border-radius: 3px;
+    background-color: #f0f3f5;
+    border: solid 1px #e4e8ee;
     color: #272727;
   }
   .p-Active {
+    margin-bottom: 0;
     color: white;
+    font-size: .9em;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.33;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .p-notActive {
+    font-size: .9em;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.33;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .toolbar-scroll {
+    height: 5.5em !important;
+  }
+  .input-wrapper {
+    //height: 5.5em;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+  ion-header.header.header-md::after {
+    height: 0%;
+  }
+
+  .button-icon {
+    margin-top: .2em;
+    font-size: 2.5em;
   }
   .header-thumbnail {
     font-size: 13.75px;

@@ -31,7 +31,6 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
-    ConfirmPage,
     MyApp,
   ],
   imports: [
@@ -58,13 +57,10 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     ChartsModule,
     NgxChartsModule,
     HttpModule,
-    IonicModule.forRoot(MyApp, {
-      tabPlacement: 'top'
-    }),
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    ConfirmPage,
     MyApp,
 
   ],
