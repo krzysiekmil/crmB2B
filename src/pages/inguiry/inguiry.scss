@@ -1,4 +1,20 @@
 page-inguiry {
+  .footer-button {
+    height: 4em;
+    background-color: #4e4e4e;
+    > .footer-text {
+      padding-top: .3em;
+      color: #b9b9b9;
+      font-size: 1.21em;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+  }
+
   .slide-zoom {
     overflow-y: auto;
     width: 100%;

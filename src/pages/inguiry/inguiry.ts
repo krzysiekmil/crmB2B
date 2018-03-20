@@ -6,6 +6,7 @@ import {
 import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
 import {ActivityRule, Inquiry, Question, Section} from "../../model/inguiry-model";
 import {InquirySectionPage} from "../inquiry-section/inquiry-section";
+import {SummaryPage} from "../summary/summary";
 
 
 /**
@@ -15,6 +16,11 @@ import {InquirySectionPage} from "../inquiry-section/inquiry-section";
  * Ionic pages and navigation.
  */
 //https://codepen.io/LOTUSMS/pen/pRNLwo
+export interface Button {
+  id?: number;
+  name: string;
+  componentName?: string
+}
 
 @IonicPage()
 @Component({
@@ -22,6 +28,7 @@ import {InquirySectionPage} from "../inquiry-section/inquiry-section";
   templateUrl: 'inguiry.html',
 })
 export class InquiryPage implements DoCheck, OnInit, OnChanges {
+  @ViewChild(SummaryPage) summaryPage;
   @ViewChild(InquirySectionPage) inquirySection;
   @ViewChild(Slides) slides: Slides;
   activityRule: ActivityRule = {targetQuestion: 1, type: "VALUE_COMPARE_EQUAL", value: "NIE"}
@@ -74,7 +81,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionCheckBox: Question = {
     selected: false,
     id: 3,
-    label: "Czy krowa to ptak?",
+    label: "Czy krowa to ptak?proba jakiego dlugiego pytania jak sie nie skaluje ",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
@@ -220,16 +227,21 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     name: "inquiry 1",
     sectionsList: [this.section, this.section2],
     result: 0
-  }
+  };
+  selectedButton: number = 0;
   disabled: boolean;
   sectionResult: number;
   selectedSection: number;
   selectedQuestionId: number = 0;
+  buttonList: Array<Button> = [{name: 'Posumowanie', id: 0}];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private changeDetectionRef: ChangeDetectorRef) {
     this.selectedSection = 0;
     this.inquiry.sectionsList[0].questionsList[0].selected = true;
+    this.inquiry.sectionsList.forEach(section => {
+      this.buttonList.push({name: section.name, id: section.id});
+    })
   }
 
   setSelectedQuestionId(id: number) {
@@ -239,7 +251,6 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
 
   ngOnInit() {
-
     // this.section.questionsList=this.section.questionsList.filter(question=>{
     //   console.log(question.id,this.visibilityQuestion(question));
     //   return this.visibilityQuestion(question)
@@ -300,20 +311,18 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
 
   onSlideChanged(slider) {
-    console.log('Slide changed', slider.realIndex);
-    if (slider.realIndex !== this.selectedSection) {
-      this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].selected = false;
-      if (this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state !== 'correct')
-        this.inquiry.sectionsList[this.selectedSection].questionsList[this.selectedQuestionId].state = 'wrong';
-    }
+    console.log('Slide changed', slider.realIndex, this.selectedSection);
     this.selectedSection = slider.realIndex;
   }
 
   next() {
     console.log(this.selectedSection, this.slides.realIndex);
-    this.selectedSection = this.slides.realIndex;
     this.slides.slideNext(1000);
 
+  }
+
+  selectedFromSummary(id) {
+    this.slides.slideTo(id + 1, 100)
   }
 
 }

@@ -1,6 +1,7 @@
 $animation-duration: 0.3s;
 page-inquiry-section {
   .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
     height: 100%;
     width: 100%;
   }
@@ -17,148 +18,24 @@ page-inquiry-section {
   .ion-range.range.range-md.ng-tns-c0-0-has.pin.ng-untouched.ng-pristine.ng-valid {
     padding-top: 8px;
   }
-  //ion-icon.header-icon {
-  //  will-change: transform;
-  //  transition: transform $animation-duration ease;
-  //
-  //  &.rotate {
-  //    -webkit-transform: rotate(-180deg);
-  //    -moz-transform: rotate(-180deg);
-  //    -ms-transform: rotate(-180deg);
-  //    -o-transform: rotate(-180deg);
-  //    transform: rotate(-180deg);
-  //  }
-  //}
-  //div.options {
-  //  will-change: height;
-  //  transition: height $animation-duration ease;
-  //  overflow-y: hidden;
-  //  height: 0;
-  //}
-  //.rotate-90 {
-  //  display: inline-block;
-  //  transform: rotate(90deg);
-  //  transition-duration: 12s;
-  //}
-  //.toolbar-title.toolbar-title-md {
-  //  color: inherit;
-  //}
-  //.spin {
-  //  animation-name: spin;
-  //  animation-duration: 400ms;
-  //  animation-iteration-count: 1;
-  //  animation-timing-function: linear;
-  //}
-  //@keyframes spin {
-  //  from {
-  //    transform: rotate(0deg);
-  //  }
-  //  to {
-  //    transform: rotate(360deg);
-  //  }
-  //}
-  //
-  //.rotate180 {
-  //  display: inline-block;
-  //  -webkit-transform: rotate(180deg);
-  //  transform: rotate(180deg);
-  //  -webkit-transition: all linear 200ms;
-  //  transition: all linear 200ms;
-  //}
-  //
-  //.rotate-back {
-  //  display: inline-block;
-  //  -webkit-transform: rotate(0deg);
-  //  transform: rotate(0deg);
-  //  -webkit-transition: all linear 200ms;
-  //  transition: all linear 200ms;
-  //}
-  //
-  //.animation {
-  //  animation-duration: 3s;
-  //  animation-name: slidein;
-  //}
-  //
-  //@keyframes slidein {
-  //  from {
-  //    margin-left: 100%;
-  //    width: 300%;
-  //  }
-  //
-  //  to {
-  //    margin-left: 0%;
-  //    width: 100%;
-  //  }
-  //}
-  //
-  //.spiralContainer {
-  //  border-radius: 50%;
-  //  width: 20px;
-  //  height: 20px;
-  //  overflow: hidden;
-  //  margin: 2px;
-  //
-  //  -webkit-animation: spin 3s linear 0s reverse;
-  //  -moz-animation: spin 3s linear 0s reverse;
-  //  -ms-animation: spin 3s linear 0s reverse;
-  //  -o-animation: spin 3s linear 0s reverse;
-  //  animation: spin 3s linear 0s reverse;
-  //
-  //  -webkit-animation-play-state: paused;
-  //  -moz-animation-play-state: paused;
-  //  -ms-animation-play-state: paused;
-  //  -o-animation-play-state: paused;
-  //  animation-play-state: paused;
-  //}
-  //.spiral {
-  //
-  //  -webkit-animation: spin 6s linear 0s normal;
-  //  -moz-animation: spin 6s linear 0s normal;
-  //  -ms-animation: spin 6s linear 0s normal;
-  //  -o-animation: spin 6s linear 0s normal;
-  //  animation: spin 6s linear 0s normal;
-  //}
-  //@keyframes spin {
-  //  0% {
-  //    transform: rotate(180deg);
-  //  }
-  //  100% {
-  //    transform: rotate(0deg);
-  //  }
-  //}
-  //@-webkit-keyframes spin {
-  //  0% {
-  //    -webkit-transform: rotate(180deg);
-  //  }
-  //  100% {
-  //    -webkit-transform: rotate(0deg);
-  //  }
-  //}
-  //@-ms-keyframes spin {
-  //  0% {
-  //    -ms-transform: rotate(180deg);
-  //  }
-  //  100% {
-  //    -ms-transform: rotate(0deg);
-  //  }
-  //}
-  //@-moz-keyframes spin {
-  //  0% {
-  //    -moz-transform: rotate(180deg);
-  //  }
-  //  100% {
-  //    -moz-transform: rotate(0deg);
-  //  }
-  //}
-  //@-o-keyframes spin {
-  //  0% {
-  //    -o-transform: rotate(180deg);
-  //  }
-  //  100% {
-  //    -o-transform: rotate(0deg);
-  //  }
-  //}
-
+  .list-param {
+    margin: 0 1rem 0 0 !important;
+    min-height: 100% !important;
+    height: inherit;
+    min-width: 4.5em;
+    color: white;
+    border-radius: 3px;
+    background-color: #5cdf6e;
+    box-shadow: 0 5px 15px -2px #2bd900;
+    padding-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
 
 
 }

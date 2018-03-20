@@ -25,7 +25,7 @@ export class ClientMenuPage {
     name: 'Informacje',
     componentName: 'SectionInformationPage',
     icon: 'ios-information-circle-outline'
-  }, {name: 'Wizyta', componentName: 'SectionInformationPage', icon: 'ios-person-outline'}, {
+  }, {name: 'Wizyta', componentName: 'SectionVisitPage', icon: 'ios-person-outline'}, {
     name: 'Zamowienie',
     componentName: 'SectionInformationPage',
     icon: 'ios-basket-outline'

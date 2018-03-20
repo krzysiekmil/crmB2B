@@ -56,6 +56,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
   @Input() selectedSection: number;
   @Output() slides = new EventEmitter();
   selectedQuestionId: number;
+
   section: Section;
   rangeMin: number = 0;
   rangeMax: number = 100;
@@ -79,11 +80,14 @@ export class InquirySectionPage implements OnInit, OnChanges {
   }
 
   changeSection(): void {
-    this.selectedQuestionId = 0;
-    this.section = this.sectionList[this.selectedSection];
-    this.section.questionsList[this.selectedQuestionId].selected = true;
-    this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
-    this.hint = this.section.hint;
+    console.log('changeSection_inside', this.selectedSection);
+    if (this.selectedSection !== 0) {
+      this.selectedQuestionId = 0;
+      this.section = this.sectionList[this.selectedSection - 1];
+      this.section.questionsList[this.selectedQuestionId].selected = true;
+      this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
+      this.hint = this.section.hint;
+    }
   }
 
   init(): void {
@@ -97,6 +101,13 @@ export class InquirySectionPage implements OnInit, OnChanges {
         this.initStateQuestion(question);
       });
     });
+
+  }
+
+  getLength(tag: string, id: string) {
+    console.log(Array.from(document.getElementsByTagName(tag)).find(element => {
+      return element.id === id
+    }).scrollHeight);
 
   }
 
@@ -300,58 +311,6 @@ export class InquirySectionPage implements OnInit, OnChanges {
       else
         return this.rangeMin;
     }
-  }
-
-  showAlert(question: Question) {
-
-
-    let alert = this.alertCtr.create({
-      title: question.label,
-      message: 'tutaj tekst o tym, ze z krowy kiepski jest ptak',
-      // inputs: [
-      //   {
-      //     name: 'hint',
-      //     type: 'checkbox',
-      //     label: 'Nie wyswietlaj podowiedzi',
-      //     value: 'true',
-      //     checked: !this.hint,
-      //     id:'1'
-      //   }
-      // ],
-      buttons: [
-        {
-          text: 'Popraw',
-          handler: (data) => {
-            // if (data[0] !== 'true') {
-            //   this.hint = true;
-            // }
-            // else {
-            //   this.hint = false;
-            // }
-            // console.log(this.hint);
-          }
-        },
-        {
-          text: 'Nastepne pytanie',
-          handler: (data) => {
-            // console.log(data)
-            // if (data[0] !== 'true') {
-            //   this.hint = true;
-            // }
-            // else {
-            //   this.hint = false;
-            // }
-            // console.log(this.hint)
-            this.nextQuestionButton(question)
-          }
-        }
-      ],
-      cssClass: ''
-    });
-    alert.present();
-    // setTimeout(() => {
-    //   alert.dismiss()
-    // }, 22000)
   }
 
   maxQuestionValue(question: Question) {

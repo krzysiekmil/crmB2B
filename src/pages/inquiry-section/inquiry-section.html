@@ -1,22 +1,24 @@
 <ion-content>
-  <ion-list margin-bottom="0">
-    <ion-card margin-bottom="0" *ngFor="let question of section.questionsList ;index as id; "
-              style="border: none ;max-height: 210px;padding-left: 0;padding-right: 0; padding-top: 0" no-border
-              no-lines
-              id="{{id}}">
-        <ion-card-title>
-          <button ion-button clear block style="padding-left: 0"
-                  (click)="clickQuestion(id)"
-                  [disabled]="question.disabled" [color]="question.state">
-            <ion-item>
+  <ion-card>
+    <div>
+      <div float-start class="div-thumbanail">
+        <ion-thumbnail (click)="getLength('P','test')" item-start class="list-param"></ion-thumbnail>
+      </div>
+      <p id="test" text-wrap style="font-size: larger">
+        {{section.questionsList[2].label}}asddddddddddddddddddddddddddddddddd</p>
+    </div>
+  </ion-card>
+  <ion-list>
+    <ion-card *ngFor="let question of section.questionsList ;index as id; " id="{{id}}">
+      <ion-card-title style="height: auto">
+        <button ion-button style="width: 200px;word-wrap: break-word" clear (click)="clickQuestion(id)"
+                [disabled]="question.disabled" [color]="question.state">
               <ion-avatar item-start>
                 <img [@state]="question.state" style="margin-top: 7px;width: 30px;height: 30px">
               </ion-avatar>
-              <ion-label [color]="question.state" text-left
-                         style="font-size: large; padding-left: 10px">
-                {{question.id}}. {{question.label}}
-              </ion-label>
-            </ion-item>
+          <div style="word-wrap: break-word ;width: 100px;">
+            {{question.id}}. {{question.label}}
+          </div>
             <ion-icon [@rotate]="question.selected" name='arrow-up' item-right float-right></ion-icon>
           </button>
         </ion-card-title>

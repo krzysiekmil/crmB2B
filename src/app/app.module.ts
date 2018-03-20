@@ -27,6 +27,7 @@ import {SectionInformationPageModule} from "../pages/section-information/section
 import {OrderAndDeliveryPageModule} from "../pages/order-and-delivery/order-and-delivery.module";
 import {ChartsModule} from "ng2-charts";
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {SectionVisitPageModule} from "../pages/section-visit/section-visit.module";
 
 
 @NgModule({
@@ -51,12 +52,14 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     TargetPageModule,
     ClientMenuPageModule,
     SectionInformationPageModule,
+    SectionVisitPageModule,
     OrderAndDeliveryPageModule,
     VisitPageModule,
     OrderPageModule,
     ChartsModule,
     NgxChartsModule,
     HttpModule,
+
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
