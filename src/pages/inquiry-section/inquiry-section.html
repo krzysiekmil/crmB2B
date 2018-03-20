@@ -1,29 +1,25 @@
 <ion-content>
-  <ion-card>
-    <div>
-      <div float-start class="div-thumbanail">
-        <ion-thumbnail (click)="getLength('P','test')" item-start class="list-param"></ion-thumbnail>
-      </div>
-      <p id="test" text-wrap style="font-size: larger">
-        {{section.questionsList[2].label}}asddddddddddddddddddddddddddddddddd</p>
-    </div>
-  </ion-card>
-  <ion-list>
+  <ion-list padding-vertical>
     <ion-card *ngFor="let question of section.questionsList ;index as id; " id="{{id}}">
-      <ion-card-title style="height: auto">
-        <button ion-button style="width: 200px;word-wrap: break-word" clear (click)="clickQuestion(id)"
-                [disabled]="question.disabled" [color]="question.state">
-              <ion-avatar item-start>
-                <img [@state]="question.state" style="margin-top: 7px;width: 30px;height: 30px">
-              </ion-avatar>
-          <div style="word-wrap: break-word ;width: 100px;">
-            {{question.id}}. {{question.label}}
-          </div>
-            <ion-icon [@rotate]="question.selected" name='arrow-up' item-right float-right></ion-icon>
-          </button>
-        </ion-card-title>
-      <ion-card-content no-padding [ngSwitch]="question.type" [@expand]="question.selected"
-                        style="padding-bottom: 8px;">
+      <div class="question-header-container" (click)="!question.disabled? clickQuestion(id):doNothing()">
+        <!--[disabled]="question.disabled" [color]="question.state" full -->
+        <!--style="background-color: transparent">-->
+        <ion-row>
+          <ion-col col-4>
+            <ion-thumbnail class="question-logo">
+              <ion-icon align-items-center class="question-logo-arrow" [@rotate]="question.selected"
+                        name='arrow-up'></ion-icon>
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col col-8>
+            <ion-label class="question-text" text-wrap text-justify>{{question.id}}. {{question.label}}</ion-label>
+          </ion-col>
+          <!--<ion-col>-->
+          <!--<ion-icon  class="question-logo-arrow" [@rotate]="question.selected" name='arrow-up'></ion-icon>-->
+          <!--</ion-col>-->
+        </ion-row>
+      </div>
+      <div no-padding [ngSwitch]="question.type" [@expand]="question.selected">
         <ion-item *ngSwitchCase="'input'">
           <ion-input [placeholder]='question.placeholder' [(ngModel)]="question.answer"
                      (ngModelChange)="onChangeModel()">
@@ -62,12 +58,24 @@
         <!--<ion-badge range-right>{{rangeMax}}</ion-badge>-->
         <!--</ion-range>-->
         <!--</ion-item>-->
-        <button ion-button full clear text-wrap style="padding-bottom: 0;font-weight: bold"
+        <button ion-button text-wrap style="width:50px;
+        position: relative;
+    left: 40%;
+    height:50px;
+    line-height:50px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    text-align:center;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+    background-color: #2790f4;
+    box-shadow: 0 5px 15px -6px #007fd9;"
                 [color]="question.state"
                 (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
-          Dalej
+          <ion-icon name="checkmark"></ion-icon>
           </button>
-        </ion-card-content>
+      </div>
       </ion-card>
   </ion-list>
 </ion-content>

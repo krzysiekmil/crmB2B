@@ -31,8 +31,8 @@ import {Question, Section} from "../../model/inguiry-model";
       state('true', style({height: '*'})),
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
-      transition('false => true', animate('350ms linear')),
-      transition('true=>false', animate('125ms linear'))
+      transition('false => true', animate('250ms linear')),
+      transition('true=>false', animate('100ms linear'))
     ]),
     trigger('state', [
       state('active', style({backgroundColor: '#6495ED'})),
@@ -102,6 +102,10 @@ export class InquirySectionPage implements OnInit, OnChanges {
       });
     });
 
+  }
+
+  doNothing() {
+    console.log('NIC NIE ROBIE')
   }
 
   getLength(tag: string, id: string) {

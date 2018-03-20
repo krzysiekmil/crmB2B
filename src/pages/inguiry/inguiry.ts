@@ -81,7 +81,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionCheckBox: Question = {
     selected: false,
     id: 3,
-    label: "Czy krowa to ptak?proba jakiego dlugiego pytania jak sie nie skaluje ",
+    label: "Czy krowa to ptak?proba jakiego dlugiego pytania jak sie nie skaluje ale tekst byl dalej byl za krotki zeby przekraczalo wieklosc kafelka obok tekstu Ciekawe czy juz bedzie dobrze",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
@@ -236,11 +236,11 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   buttonList: Array<Button> = [{name: 'Posumowanie', id: 0}];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private changeDetectionRef: ChangeDetectorRef) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedSection = 0;
     this.inquiry.sectionsList[0].questionsList[0].selected = true;
     this.inquiry.sectionsList.forEach(section => {
-      this.buttonList.push({name: section.name, id: section.id});
+      this.buttonList.push({name: section.name, id: section.id + 1});
     })
   }
 
@@ -303,13 +303,6 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     })
   }
 
-  onSegmentChanged(segmentButton) {
-    console.log('Segment changed', segmentButton.value);
-    this.selectedSection = segmentButton.value;
-    this.slides.slideTo(segmentButton.value)
-
-  }
-
   onSlideChanged(slider) {
     console.log('Slide changed', slider.realIndex, this.selectedSection);
     this.selectedSection = slider.realIndex;
@@ -321,8 +314,12 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
   }
 
+  openSection(id) {
+    if (this.selectedSection !== id)
+      this.slides.slideTo(id);
+  }
   selectedFromSummary(id) {
-    this.slides.slideTo(id + 1, 100)
+    this.slides.slideTo(id + 1)
   }
 
 }

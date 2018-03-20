@@ -6,19 +6,13 @@
         <ion-buttons>
           <button [class]="id==selectedSection? 'button-Active':'button-notActive'"
                   *ngFor="let object of buttonList;index as id"
-                  id="{{id}}">{{object.name}}
+                  (click)="openSection(object.id)">{{object.name}}
           </button>
         </ion-buttons>
       </ion-scroll>
     </ion-item>
   </ion-toolbar>
 </ion-header>
-<!--<ion-toolbar>-->
-<!--<ion-segment [(ngModel)]="selectedSection" (ionChange)="onSegmentChanged($event)">-->
-<!--<ion-segment-button value="-1">Podsumowanie</ion-segment-button>-->
-<!--<ion-segment-button *ngFor="let section of sectionList" [(value)]="section.id">{{section.name}}</ion-segment-button>-->
-<!--</ion-segment>-->
-<!--</ion-toolbar>-->
 <ion-content>
   <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
