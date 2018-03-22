@@ -25,7 +25,6 @@ export interface Data {
 }
 
 
-@IonicPage()
 @Component({
   animations: [trigger('expand', [
     state('true', style({height: '*'})),
@@ -199,7 +198,6 @@ export class OrderAndDeliveryPage {
       ]
     }
   ];
-
   // options
   view: any[] = [1000, 195];
   animations: false;

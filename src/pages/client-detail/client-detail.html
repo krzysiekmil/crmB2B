@@ -1,14 +1,7 @@
-<!--
-  Generated template for the ClientDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
 
 <ion-content padding-top>
   <div>
-    <ion-list (swipe)="swipeEvent($event)">
+    <ion-list>
       <ion-card class="card-container" *ngFor="let section of informationList">
         <ion-card-header class="card-header">
           <p class="card-header-title" float-start>{{section.title}}</p>

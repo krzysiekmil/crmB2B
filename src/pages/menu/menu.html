@@ -1,17 +1,37 @@
-
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list *ngFor="let menuItem of pageList">
-      <ion-item menuClose ion-item  (click)="openPage(menuItem.componentName)" clear block>
-      <ion-icon [name]="menuItem.icon">
-          </ion-icon> {{menuItem.name}}
+<ion-menu [content]="content" (ionClose)="collapseMenuOptions()">
+  <ion-header class="header">
+    <ion-navbar class="navbar">
+      <ion-item class="navbar-item">
+        <ion-avatar no-margin item-start class="header-avatar">
+          <img src="https://www.w3schools.com/howto/img_avatar.png" class="header-avatar-image">
+        </ion-avatar>
+        <div class="navbar-rest">
+          <img no-margin src="assets/imgs/Redbull-logo-880x660.png" class="header-image-logo">
+          <h2 no-margin class="navbar-text">Tomasz</h2>
+          <h1 no-margin class="navbar-text">Sztachański</h1>
+        </div>
       </ion-item>
-    </ion-list>
+    </ion-navbar>
+    <div class="thumbnail-list" style=" position: absolute;">
+      <div class="list-param" style="border-radius: 3px;
+  background-color: #ff9600;
+  box-shadow: 0 5px 15px -6px #ff9600;">5
+      </div>
+      <div class="list-param" style="left: 23.5%;border-radius: 3px;
+  background-color: #e50e45;
+  box-shadow: 0 5px 15px -6px #d90000">10
+      </div>
+      <div class="list-param" style="left: 40%;border-radius: 3px;
+  background-color: #ffbd00;
+  box-shadow: 0 5px 15px -6px #ffbd00;">0%
+      </div>
+    </div>
+
+  </ion-header>
+  <ion-content style="background-color:#f4f4f4 ">
+    <!-- Side Menu -->
+    <side-menu-content style="padding-top: 6.5em;margin: 2px 8px 2px 0;" [settings]="sideMenuSettings"
+                       [options]="options" (selectOption)="selectOption($event)"></side-menu-content>
   </ion-content>
 </ion-menu>
-<ion-nav root="ClientListPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav root="SectionDailyPlanPage" #content swipeBackEnabled="false"></ion-nav>

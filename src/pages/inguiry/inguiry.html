@@ -1,10 +1,10 @@
-
 <ion-header>
   <ion-toolbar no-padding style="height: 45px">
     <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
       <ion-scroll class="item-scroll" scrollX="true" style="height: 42px;padding-right: 0;">
         <ion-buttons>
-          <button [class]="id==selectedSection? 'button-Active':'button-notActive'"
+          <button
+            [class]="id==selectedSection? 'button-Active':'button-notActive'"
                   *ngFor="let object of buttonList;index as id"
                   (click)="openSection(object.id)">{{object.name}}
           </button>
@@ -13,38 +13,18 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
       <page-summary [sectionList]="sectionList" (sectionChanger)="selectedFromSummary($event)"></page-summary>
     </ion-slide>
-    <ion-slide *ngFor="let section of sectionList">
-      <page-inquiry-section [(sectionList)]="sectionList" [(sectionResult)]="sectionResult"
-                            [(selectedSection)]="selectedSection" (test)="setSelectedQuestionId($event)"
-                            (slides)="next()"></page-inquiry-section>
+    <ion-slide *ngFor="let section of sectionList;index as id">
+      <page-inquiry-section [(section)]="sectionList[id]" [(sectionResult)]="sectionResult" [sectionId]="id"
+                            (test)="setSelectedQuestionId($event)" (slides)="next()">
+      </page-inquiry-section>
     </ion-slide>
   </ion-slides>
 </ion-content>
-<ion-footer class="footer-button">
-  <ion-label class="footer-text" text-center>
-    Koniec wizyty
-  </ion-label>
-</ion-footer>
-<!--<ion-footer>-->
-<!--<ion-row>-->
-<!--<ion-col>-->
-<!--<ion-label>-->
-<!--Wynik sekcji: {{inquiry.sectionsList[selectedSection].result}}/100-->
-<!--</ion-label>-->
-<!--</ion-col>-->
-<!--<ion-col>-->
-<!--<ion-label float-end>-->
-<!--Wynik calkowity: {{inquiry.result}}/100-->
-<!--</ion-label>-->
-<!--</ion-col>-->
-<!--</ion-row>-->
-
-
-<!--</ion-footer>-->
 
 

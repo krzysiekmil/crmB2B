@@ -1,7 +1,4 @@
-import {
-  Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,
-  ViewChild
-} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {
   trigger,
   state,
@@ -9,7 +6,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import {AlertController, Content, NavController, NavParams} from 'ionic-angular';
+import {Content, Keyboard, NavController, NavParams} from 'ionic-angular';
 import {Question, Section} from "../../model/inguiry-model";
 /**
  * Generated class for the InquirySectionPage page.
@@ -24,7 +21,7 @@ import {Question, Section} from "../../model/inguiry-model";
       state('true', style({transform: 'rotate(0deg)'})),
       state('false', style({transform: 'rotate(180deg)'})),
       transition('void=>*', animate('0s')),
-      transition('false=>true', animate('400ms linear')),
+      transition('false=>true', animate('500ms linear')),
       transition('true=>false', animate('100ms linear'))
     ]),
     trigger('expand', [
@@ -35,7 +32,7 @@ import {Question, Section} from "../../model/inguiry-model";
       transition('true=>false', animate('100ms linear'))
     ]),
     trigger('state', [
-      state('active', style({backgroundColor: '#6495ED'})),
+      state('active', style({backgroundColor: '#2790f4', boxShadow: '0 5px 15px -6px #007fd9'})),
       state('wrong', style({backgroundColor: '#ff1c15'})),
       state('correct', style({backgroundColor: '#32CD32'})),
       state('special', style({backgroundColor: '#8A2BE2'})),
@@ -51,19 +48,16 @@ export class InquirySectionPage implements OnInit, OnChanges {
   hint: boolean;
   @Output() test = new EventEmitter<any>();
   @ViewChild(Content) content: Content;
-  @Input() sectionList: Array<Section>;
+  @Input() section: Section;
   @Input() sectionResult: number;
-  @Input() selectedSection: number;
+  @Input() sectionId: number;
   @Output() slides = new EventEmitter();
   selectedQuestionId: number;
-
-  section: Section;
   rangeMin: number = 0;
   rangeMax: number = 100;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtr: AlertController) {
-    this.selectedSection = 0;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard) {
     this.selectedQuestionId = 0;
 
   }
@@ -71,6 +65,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
   ngOnInit() {
     this.init();
   }
+
 
   ngOnChanges(changes: SimpleChanges) {
     this.content.scrollToTop().catch(err => {
@@ -80,10 +75,9 @@ export class InquirySectionPage implements OnInit, OnChanges {
   }
 
   changeSection(): void {
-    console.log('changeSection_inside', this.selectedSection);
-    if (this.selectedSection !== 0) {
+    console.log('changeSection_inside');
+    if (this.sectionId !== 0) {
       this.selectedQuestionId = 0;
-      this.section = this.sectionList[this.selectedSection - 1];
       this.section.questionsList[this.selectedQuestionId].selected = true;
       this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
       this.hint = this.section.hint;
@@ -92,15 +86,13 @@ export class InquirySectionPage implements OnInit, OnChanges {
 
   init(): void {
     this.selectedQuestionId = 0;
-    this.section = this.sectionList[this.selectedSection];
     this.hint = this.section.hint;
-    this.sectionList.forEach(section => {
-      section.questionsList.forEach(question => {
+    this.section.questionsList.forEach(question => {
         this.disabledQuestion(question);
         this.placeholderQuestion(question);
         this.initStateQuestion(question);
       });
-    });
+
 
   }
 

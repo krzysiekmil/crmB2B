@@ -1,9 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
+import {Component,} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RemindPage} from "../remind/remind";
-import {AddClientPage} from "../add-client/add-client";
-import {ClientListPage} from "../client-list/client-list";
 
 /**
  * Generated class for the LoginPage page.
@@ -31,11 +28,6 @@ export class LoginPage {
   login(){}
   rak(){
     this.navCtrl.setRoot('MenuPage');
-  }
-
-  remindPassword(){
-    console.log(this.formValid.value.name);
-    this.navCtrl.push('RemindPage');
   }
 
 

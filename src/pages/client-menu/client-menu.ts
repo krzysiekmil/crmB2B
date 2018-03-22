@@ -1,5 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {App, IonicPage, Keyboard, Nav, NavController, NavParams} from 'ionic-angular';
 import {SectionInformationPage} from "../section-information/section-information";
 import {Client} from "../../model/client";
 
@@ -15,8 +15,8 @@ import {Client} from "../../model/client";
   selector: 'page-client-menu',
   templateUrl: 'client-menu.html',
 })
-export class ClientMenuPage {
-
+export class ClientMenuPage implements OnInit {
+  hide = false;
   client: Client;
   selectedId: number = 0;
   @ViewChild(Nav) nav: Nav;
@@ -27,33 +27,34 @@ export class ClientMenuPage {
     icon: 'ios-information-circle-outline'
   }, {name: 'Wizyta', componentName: 'SectionVisitPage', icon: 'ios-person-outline'}, {
     name: 'Zamowienie',
-    componentName: 'SectionInformationPage',
+    componentName: 'SectionOrderPage',
     icon: 'ios-basket-outline'
-  }, {name: 'Informacje', componentName: 'SectionInformationPage'}];
+  }
+    , {name: 'Informacje', componentName: 'SectionInformationPage'}];
 
-  constructor(public navCtrl: NavController, navParam: NavParams) {
+  constructor(public navCtrl: NavController, navParam: NavParams, public keyboard: Keyboard, app: App) {
     this.client = navParam.get('client');
     console.log("constructor ClientMenu");
     console.log(this.client);
   }
 
-  clickButton(id) {
-    this.number = id;
+  ngOnInit() {
   }
+
 
   openPage(pageName: string, number: number): void {
-    this.selectedId = number;
-    this.nav.setRoot(pageName, {id: number}, {
-      animate: true,
-      animation: 'slide',
-      direction: 'forward',
-      duration: 450,
-      easing: 'in-out'
-    });
+    if (number !== 1) {
+      this.nav.setRoot(pageName);
+      this.selectedId = number;
+    }
+    else
+      this.navCtrl.push(pageName);
   }
 
-  ionViewWillLeave() {
-    console.log(this.client);
-    console.log('Ionic view will Leave')
+  pushPage(pageName: string, number: number): void {
+    this.selectedId = number;
+    this.navCtrl.push(pageName);
+
   }
+
 }

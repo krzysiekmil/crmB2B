@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
+import {IonicPage, Nav, NavController, NavParams, Slide, Slides} from 'ionic-angular';
 import {ClientDetailPage, select} from "../client-detail/client-detail";
+import {OrderAndDeliveryPage} from "../order-and-delivery/order-and-delivery";
 
 /**
  * Generated class for the SectionInformationPage page.
@@ -15,6 +16,7 @@ import {ClientDetailPage, select} from "../client-detail/client-detail";
   templateUrl: 'section-information.html',
 })
 export class SectionInformationPage implements OnInit {
+  @ViewChild(OrderAndDeliveryPage) orderAndDeliver: OrderAndDeliveryPage;
   currentPage = 'OrderAndDeliveryPage';
   public selectedId: number = 0;
   test1;
@@ -42,18 +44,15 @@ export class SectionInformationPage implements OnInit {
     console.log('ionViewDidLoad SectionInformationPage');
   }
 
-  openPage(number: number): void {
+  openPage(id: number): void {
     console.log(select);
-    this.slides.slideTo(number)
+    this.selectedId = id;
+    // this.slides.slideTo(id)
   }
 
   slideChanged() {
     this.selectedId = this.slides.realIndex;
     this.currentPage = this.List[this.selectedId].componentName;
 
-  }
-
-  swipeEvent(ev: any) {
-    console.log(ev);
   }
 }

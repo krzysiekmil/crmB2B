@@ -22,7 +22,6 @@ export interface Button {
   componentName?: string
 }
 
-@IonicPage()
 @Component({
   selector: 'page-inguiry',
   templateUrl: 'inguiry.html',
@@ -199,6 +198,16 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     disabled: null,
     questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
   };
+  questionRadio: Question = {
+    selected: false,
+    id: 11,
+    label: 'Czy krowa to ptak',
+    type: 'radio',
+    defaultValue: 10,
+    active: 'active',
+    disabled: null,
+    questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
+  };
   section2: Section = {
     hint: false,
     result: 0,
@@ -219,7 +228,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
       , this.questionCheckBox, this.questionCheckBox2
       , this.questionSelectBox, this.questionSelectBox2
       , this.questionSelectBoxMulti, this.questionSelectBoxMulti2
-      , this.questionRange, this.questionRange2]
+      , this.questionRange, this.questionRange2, this.questionRadio]
   };
   sectionList: Array<Section> = [this.section, this.section2];
   inquiry: Inquiry = {
@@ -234,6 +243,8 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   selectedSection: number;
   selectedQuestionId: number = 0;
   buttonList: Array<Button> = [{name: 'Posumowanie', id: 0}];
+  y = '45px';
+  c = '100%';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -270,6 +281,24 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
 
 
   ngOnChanges() {
+
+  }
+
+  setY() {
+    if (this.c === '100%') {
+      this.y = '5px'
+      this.c = '120%';
+    } else {
+      this.y = '45px';
+      this.c = '100%';
+    }
+    console.log(this.c, this.y)
+  }
+
+  swipeEvent(e) {
+    console.log(e)
+    if (e.additionalEvent === "panup")
+      this.y = '80px';
 
   }
 

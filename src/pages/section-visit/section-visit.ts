@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {InquiryPage} from "../inguiry/inguiry";
 
 /**
  * Generated class for the SectionVisitPage page.
@@ -14,6 +15,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
   templateUrl: 'section-visit.html',
 })
 export class SectionVisitPage {
+  @ViewChild(InquiryPage) inguiry: InquiryPage;
   List: any = [{name: 'Podsumowanie'}];
   public selectedId: number = 0;
   number: number = 0;

@@ -1,0 +1,52 @@
+page-plan {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+  }
+  .title {
+    padding-top: .65em;
+    padding-left: .8em;
+    font-size: 1.2em;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+  }
+  .list-item {
+    padding: 0 0 0 0 !important;
+    display: inline-flex;
+  }
+  .item-param {
+    font-size: 0.85em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.86;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .item-value {
+    margin-right: 3px !important;
+    font-size: 0.875em;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.86;
+    letter-spacing: normal;
+    text-align: right;
+  }
+  .item-inner {
+    padding-right: 0 !important;
+  }
+  .title-icon.icon.icon-md.ion-md-warning::before {
+    padding-top: 4px;
+    padding-left: 8.5px;
+    height: 33px;
+    margin-bottom: 7px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #f4b518;
+    box-shadow: 0 13px 15px -13px #0099d0;
+  }
+
+}

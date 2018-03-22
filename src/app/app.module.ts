@@ -5,47 +5,33 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
-import {PmiGoPageModule} from "../pages/pmi-go/pmi-go.module";
-import {ActionDetailPageModule} from "../pages/action-detail/action-detail.module";
-import {ContactDetailPageModule} from "../pages/contact-detail/contact-detail.module";
-import {AddContactPageModule} from "../pages/add-contact/add-contact.module";
-import {ActionClientPageModule} from "../pages/action-client/action-client.module";
-import {ModalPageModule} from "../pages/modal/modal.module";
 import {MenuPageModule} from "../pages/menu/menu.module";
-import {MainPageModule} from "../pages/main/main.module";
-import {InquiryPageModule} from "../pages/inguiry/inguiry.module";
 import {HttpModule} from "@angular/http";
-import {ConfirmPage} from "../pages/confirm/confirm";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GaleryPageModule} from "../pages/galery/galery.module";
 import {KnowlegdeBasePageModule} from "../pages/knowlegde-base/knowlegde-base.module";
 import {TargetPageModule} from "../pages/target/target.module";
 import {ClientMenuPageModule} from "../pages/client-menu/client-menu.module";
 import {VisitPageModule} from "../pages/visit/visit.module";
-import {OrderPageModule} from "../pages/order/order.module";
 import {SectionInformationPageModule} from "../pages/section-information/section-information.module";
 import {OrderAndDeliveryPageModule} from "../pages/order-and-delivery/order-and-delivery.module";
 import {ChartsModule} from "ng2-charts";
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {SectionVisitPageModule} from "../pages/section-visit/section-visit.module";
+import {SectionOrderPageModule} from "../pages/section-order/section-order.module";
+import {SectionDailyPlanPageModule} from "../pages/section-daily-plan/section-daily-plan.module";
+
 
 
 @NgModule({
   declarations: [
     MyApp,
+
   ],
   imports: [
     BrowserModule,
     LoginPageModule,
-    PmiGoPageModule,
-    ActionDetailPageModule,
-    ContactDetailPageModule,
-    AddContactPageModule,
-    ActionClientPageModule,
-    ModalPageModule,
     MenuPageModule,
-    MainPageModule,
-    InquiryPageModule,
     BrowserAnimationsModule,
     GaleryPageModule,
     KnowlegdeBasePageModule,
@@ -55,11 +41,11 @@ import {SectionVisitPageModule} from "../pages/section-visit/section-visit.modul
     SectionVisitPageModule,
     OrderAndDeliveryPageModule,
     VisitPageModule,
-    OrderPageModule,
+    SectionDailyPlanPageModule,
+    SectionOrderPageModule,
     ChartsModule,
     NgxChartsModule,
     HttpModule,
-
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

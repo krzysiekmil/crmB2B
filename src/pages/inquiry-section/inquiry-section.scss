@@ -30,7 +30,7 @@ page-inquiry-section {
       width: 80%;
     }
   }
-  .question-text {
+  .question-text-active {
     font-size: large;
     font-style: normal;
     font-stretch: normal;
@@ -38,14 +38,29 @@ page-inquiry-section {
     letter-spacing: normal;
     text-align: left;
   }
-  .question-logo {
+  .question-text-notActive {
+    color: #a0a0a0;
+    font-size: large;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .question-logo-active {
     border-radius: 3px;
-    background-color: #2790f4;
-    box-shadow: 0 5px 15px -6px #007fd9;
     margin-left: 0.85em;
     width: 6em;
     min-height: 2.5em;
     height: 100%;
+  }
+  .question-logo-notActive {
+    margin-left: 0.85em;
+    width: 6em;
+    min-height: 2.5em;
+    height: 100%;
+    border-radius: 3px;
+    background-color: #e5e8ea;
   }
   .button-inner {
   }
@@ -54,6 +69,43 @@ page-inquiry-section {
     align-content: center !important;
     align-items: center !important;
   }
-
+  .footer {
+    display: inline-flex;
+    color: white;
+    height: 3.3em;
+    > .footer-param {
+      width: 35%;
+      background-color: #5cdf6e;
+    }
+    > .footer-points {
+      width: 65%;
+      background-color: #148eff;
+    }
+  }
+  .radio-list {
+    border-bottom: 1px solid #ccc;
+  }
+  .radio-container {
+    display: flex;
+    border-bottom: 0 !important;
+    padding-bottom: .2em;
+  }
+  .footer-text {
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    font-size: 1em;
+    padding-right: 1em;
+  }
+  .radio-label {
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: end;
+    font-size: 1.2em;
+  }
 
 }

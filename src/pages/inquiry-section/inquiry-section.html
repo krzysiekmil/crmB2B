@@ -2,21 +2,19 @@
   <ion-list padding-vertical>
     <ion-card *ngFor="let question of section.questionsList ;index as id; " id="{{id}}">
       <div class="question-header-container" (click)="!question.disabled? clickQuestion(id):doNothing()">
-        <!--[disabled]="question.disabled" [color]="question.state" full -->
-        <!--style="background-color: transparent">-->
-        <ion-row>
+        <ion-row padding-vertical>
           <ion-col col-4>
-            <ion-thumbnail class="question-logo">
+            <ion-thumbnail [class]="!question.disabled? 'question-logo-active':'question-logo-notActive'"
+                           [@state]="question.state">
               <ion-icon align-items-center class="question-logo-arrow" [@rotate]="question.selected"
                         name='arrow-up'></ion-icon>
             </ion-thumbnail>
           </ion-col>
           <ion-col col-8>
-            <ion-label class="question-text" text-wrap text-justify>{{question.id}}. {{question.label}}</ion-label>
+            <ion-label [class]="!question.disabled? 'question-text-active':'question-text-notActive'" text-wrap
+                       text-justify>{{question.id}}. {{question.label}}
+            </ion-label>
           </ion-col>
-          <!--<ion-col>-->
-          <!--<ion-icon  class="question-logo-arrow" [@rotate]="question.selected" name='arrow-up'></ion-icon>-->
-          <!--</ion-col>-->
         </ion-row>
       </div>
       <div no-padding [ngSwitch]="question.type" [@expand]="question.selected">
@@ -48,6 +46,16 @@
               </ion-option>
             </ion-select>
           </ion-item>
+        <div *ngSwitchCase="'radio'">
+          <ion-list radio-group class="radio-list" [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()"
+                    padding-top>
+            <ion-item *ngFor="let answer of question.questionAnswers" class="radio-container" margin-top>
+              <ion-radio item-start align-items-start padding-horizontal class="radio-value"
+                         value="{{answer.label}}"></ion-radio>
+              <ion-label class="radio-label">{{answer.label}} {{answer.value}}pkt</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
         <!--<ion-item *ngSwitchCase="'range'">-->
         <!--<ion-label style="font-size: small;margin-top: 8px">-->
         <!--Twoj wynik {{question.answer}}-->
@@ -60,7 +68,7 @@
         <!--</ion-item>-->
         <button ion-button text-wrap style="width:50px;
         position: relative;
-    left: 40%;
+    left: 34%;
     height:50px;
     line-height:50px;
     border: 2px solid #f5f5f5;
@@ -68,9 +76,21 @@
     text-align:center;
     text-decoration:none;
     font-size:20px;
-    font-weight:bold;
-    background-color: #2790f4;
-    box-shadow: 0 5px 15px -6px #007fd9;"
+    font-weight:bold;"
+                [color]="question.state">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+        <button ion-button text-wrap style="width:50px;
+        position: relative;
+    left: 34%;
+    height:50px;
+    line-height:50px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    text-align:center;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;"
                 [color]="question.state"
                 (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
           <ion-icon name="checkmark"></ion-icon>
@@ -79,4 +99,16 @@
       </ion-card>
   </ion-list>
 </ion-content>
+<ion-footer class="footer" style="display: inline-flex" [hidden]="keyboard.isOpen()">
+  <ion-item item-start class="footer-param">
+    <ion-label class="footer-text">
+      PSR:80
+    </ion-label>
+  </ion-item>
+  <ion-item item-end class="footer-points">
+    <ion-label class="footer-text">
+      PKT:0/20
+    </ion-label>
+  </ion-item>
+</ion-footer>
 

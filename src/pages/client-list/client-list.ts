@@ -55,14 +55,6 @@ export class ClientListPage {
     }
   }
   showDetailsOfClient(client:Client){
-    this.nav.setRoot(ClientMenuPage, {client: client}, {
-      animate: true,
-      animation: 'fade-in',
-      direction: 'switch',
-      duration: 600,
-      easing: 'in-out'
-    })
+    this.nav.push(ClientMenuPage, {client: client})
   }
-
-
 }
