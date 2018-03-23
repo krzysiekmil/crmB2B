@@ -17,6 +17,8 @@ page-plan {
     display: inline-flex;
   }
   .item-param {
+    position: absolute;
+    top: 1em;
     font-size: 0.85em;
     font-weight: 300;
     font-style: normal;
@@ -26,7 +28,9 @@ page-plan {
     text-align: left;
   }
   .item-value {
-    margin-right: 3px !important;
+    margin-right: 1em !important;
+    width: 16em;
+    font-size: .9em !important;
     font-size: 0.875em;
     font-weight: 400;
     font-style: normal;
@@ -36,9 +40,11 @@ page-plan {
     text-align: right;
   }
   .item-inner {
+    min-height: 40px !important;
     padding-right: 0 !important;
   }
   .title-icon.icon.icon-md.ion-md-warning::before {
+    color: white;
     padding-top: 4px;
     padding-left: 8.5px;
     height: 33px;
@@ -49,4 +55,52 @@ page-plan {
     box-shadow: 0 13px 15px -13px #0099d0;
   }
 
+  .input-wrapper {
+    min-height: 2em !important;
+  }
+  .logo {
+    width: 7em;
+    height: 7em;
+    border-radius: 3px;
+    background-color: #fa6262;
+    box-shadow: 0 5px 15px -6px #d90000;
+    > .logo-value {
+      color: white;
+      font-size: 1.6em;
+      padding-top: 35%;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+  .card-text {
+    font-size: 1em;
+    padding-top: .5em;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .date-text {
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    font-size: 0.7em;
+    width: 100%;
+    display: inline-flex;
+    color: #8b8b8b;
+    > .info {
+      position: absolute;
+      left: 2.8em;
+    }
+    > .value {
+      position: absolute;
+      right: 1.5em;
+    }
+  ;
+  }
 }

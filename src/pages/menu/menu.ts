@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AlertController, IonicPage, MenuController, Nav, NavController} from 'ionic-angular';
 import {MenuOptionModel} from "../../shared/side-menu-content/models/menu-option-model";
 import {SideMenuContentComponent} from "../../shared/side-menu-content/side-menu-content.component";
@@ -21,7 +21,7 @@ import {SectionDailyPlanPage} from "../section-daily-plan/section-daily-plan";
   templateUrl: 'menu.html',
 })
 
-export class MenuPage {
+export class MenuPage implements OnInit {
   @ViewChild(Nav) nav: Nav;
   // Get the instance to call the public methods
   @ViewChild(SideMenuContentComponent) sideMenu: SideMenuContentComponent;
@@ -42,6 +42,10 @@ export class MenuPage {
       wp: '56px'
     }
   };
+
+  ngOnInit() {
+    console.log('NgOnInit')
+  }
 
   private unreadCountObservable: any = new ReplaySubject<number>(0);
 
@@ -105,11 +109,13 @@ export class MenuPage {
       {
         iconName: 'ios-arrow-forward',
         displayName: 'Cele',
+        component: 'TargetPage'
       }
       ,
       {
         iconName: 'ios-arrow-forward',
         displayName: 'Baza wiedzy',
+        component: 'KnowlegdeBasePage'
       },
       {
         iconName: 'ios-arrow-forward',

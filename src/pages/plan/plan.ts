@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Task} from "../section-daily-plan/section-daily-plan";
+import {Task, Target} from "../section-daily-plan/section-daily-plan";
 
 /**
  * Generated class for the PlanPage page.
@@ -14,11 +14,18 @@ import {Task} from "../section-daily-plan/section-daily-plan";
   selector: 'page-plan',
   templateUrl: 'plan.html',
 })
-export class PlanPage {
+export class PlanPage implements OnInit {
   @Input() data: Array<Task>;
+  @Input() type: string;
+  @Input() monthlyPlan: Array<Target>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
+  ngOnInit() {
+    console.log(this.type, this.data, this.monthlyPlan)
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlanPage');

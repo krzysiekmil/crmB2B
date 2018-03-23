@@ -1,4 +1,7 @@
 page-client-menu {
+  .label.label-md {
+    margin: 0 0 0 0;
+  }
   .button.Active {
     width: 8.6em !important;
     height: 5.6em !important;
@@ -37,10 +40,10 @@ page-client-menu {
     text-align: center;
   }
   .toolbar-scroll {
-    height: 5.5em !important;
+    height: 6.25em !important;
   }
   .input-wrapper {
-    //height: 5.5em;
+    //height: 7em;
   }
   .item-md.item-block .item-inner {
     padding-right: 0 !important;

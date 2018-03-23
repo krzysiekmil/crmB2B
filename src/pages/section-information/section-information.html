@@ -15,7 +15,7 @@
 <ion-content>
   <!--<ion-slides (ionSlideDidChange)="slideChanged()">-->
   <!--<ion-slide *ngFor="let page of List">-->
-  <ion-nav [root]="List[selectedId].componentName"></ion-nav>
+  <ion-nav [root]="List[selectedId].componentName" [rootParams]="{header:false}"></ion-nav>
   <!--</ion-slide>-->
   <!--</ion-slides>-->
 </ion-content>

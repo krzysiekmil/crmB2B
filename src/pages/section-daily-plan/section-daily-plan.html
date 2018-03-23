@@ -5,23 +5,37 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-padding>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Plan na dzisiaj</ion-title>
   </ion-navbar>
-
+  <ion-toolbar no-padding style="background-color: transparent;height: 3.5em">
+    <ion-item style="background-color: transparent;padding-right: 0!important;border-bottom: 0;padding-left: 0">
+      <ion-scroll class="item-scroll" scrollX="true" style="height: 55px;padding-right: 0;">
+        <ion-buttons>
+          <button [class]="id==selectedId? 'button-Active':'button-notActive'" *ngFor="let section of List;index as id"
+                  id="{{id}}"
+                  (click)="slides.slideTo(id)">{{section.name}}
+          </button>
+        </ion-buttons>
+      </ion-scroll>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-slides>
+  <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
-      <page-plan [(data)]="dailyPlan"></page-plan>
+      <page-plan [(data)]="taskList" [type]="'Day'"></page-plan>
     </ion-slide>
     <ion-slide>
-      <page-plan></page-plan>
+      <page-section-client></page-section-client>
+    </ion-slide>
+    <ion-slide>
+      <page-plan [(monthlyPlan)]="monthlyPlan" [type]="'Month'"></page-plan>
     </ion-slide>
   </ion-slides>
 </ion-content>

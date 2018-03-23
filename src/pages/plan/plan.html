@@ -5,9 +5,11 @@
   Ionic pages and navigation.
 -->
 
-<ion-content padding-vertical>
+<ion-content padding-bottom>
   <ion-list>
-    <ion-card *ngFor="let task of data">
+    <div [ngSwitch]="type">
+      <div *ngSwitchCase="'Day'" padding-top>
+        <ion-card *ngFor="let task of data">
       <ion-card-header no-padding no-margin>
         <div class="title" text-left>
           {{task.title}}
@@ -16,12 +18,32 @@
       </ion-card-header>
       <ion-card-content no-padding padding-left>
         <ion-list no-padding>
-          <ion-item no-padding class="list-item" *ngFor="let param of task.paramList">
+          <ion-item style="height: flex" no-padding class="list-item" *ngFor="let param of task.paramList">
             <div class="item-param" float-start>{{param.name}}:</div>
             <div class="item-value" text-wrap item-end text-end>{{param.value}}</div>
           </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
+      </div>
+      <div *ngSwitchCase="'Month'">
+        <div padding-bottom class="date-text">
+          <div class="info" item-start text-start float-start>Data danych</div>
+          <div class="value" item-end text-end float-end>21.11.2018</div>
+        </div>
+        <ion-card *ngFor="let target of monthlyPlan">
+          <ion-item style="padding-left: 1em !important;">
+            <div class="logo" item-start>
+              <div class="logo-value">{{target.paramList[0].value}}%</div>
+            </div>
+            <div>
+              <h3 style="font-size: 1.15em;font-weight: bold" class="card-text">{{target.title}}</h3>
+              <p class="card-text">Status: {{target.status}}</p>
+              <p class="card-text">Target: {{target.target}}</p>
+            </div>
+          </ion-item>
+        </ion-card>
+      </div>
+    </div>
   </ion-list>
 </ion-content>

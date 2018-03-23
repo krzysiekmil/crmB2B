@@ -1,0 +1,23 @@
+<!--
+  Generated template for the SectionClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+  <ion-list>
+    <ion-card (click)="showDetailsOfClient(client)" *ngFor="let client of clientList">
+      <ion-item class="list-item">
+        <ion-thumbnail item-start class="list-param">44.5</ion-thumbnail>
+        <ion-thumbnail item-start class="list-param">44.5</ion-thumbnail>
+
+        <h2 class="list-title">Piotr i Paweł</h2>
+        <h3 class="list-address">Balcerskiego 3</h3>
+        <p class="list-city">Gdansk</p>
+        <ion-badge class="list-badge">
+          <p class="badge-text">OFF</p>
+        </ion-badge>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

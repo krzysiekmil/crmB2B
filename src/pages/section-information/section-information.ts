@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicPage, Nav, NavController, NavParams, Slide, Slides} from 'ionic-angular';
-import {ClientDetailPage, select} from "../client-detail/client-detail";
 import {OrderAndDeliveryPage} from "../order-and-delivery/order-and-delivery";
 
 /**
@@ -16,16 +15,14 @@ import {OrderAndDeliveryPage} from "../order-and-delivery/order-and-delivery";
   templateUrl: 'section-information.html',
 })
 export class SectionInformationPage implements OnInit {
-  @ViewChild(OrderAndDeliveryPage) orderAndDeliver: OrderAndDeliveryPage;
-  currentPage = 'OrderAndDeliveryPage';
+  currentPage: string;
   public selectedId: number = 0;
-  test1;
-  test2: number = 1000;
+
   @ViewChild(Nav) nav: Nav;
   @ViewChild(Slides) slides: Slides;
   @ViewChild(Slide) slide: Slide;
   List: any = [{name: 'Informacje', componentName: 'ClientDetailPage'},
-    {name: 'Cele', componentName: 'TargetPage'}, {name: 'Zamowienia i dostawy', componentName: 'OrderAndDeliveryPage'},
+    {name: 'Cele', componentName: 'TargetPage'}, {name: 'Zamowienia i dostawy', componentName: OrderAndDeliveryPage},
     {name: 'Baza wiedzy', componentName: 'KnowlegdeBasePage'}];
   number: number = 0;
 
@@ -45,7 +42,6 @@ export class SectionInformationPage implements OnInit {
   }
 
   openPage(id: number): void {
-    console.log(select);
     this.selectedId = id;
     // this.slides.slideTo(id)
   }
@@ -55,4 +51,5 @@ export class SectionInformationPage implements OnInit {
     this.currentPage = this.List[this.selectedId].componentName;
 
   }
+
 }

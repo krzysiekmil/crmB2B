@@ -11,7 +11,6 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
   ],
   imports: [
     NgxChartsModule,
-    ChartsModule,
     IonicPageModule.forChild(OrderAndDeliveryPage),
   ],
 })

@@ -12,18 +12,20 @@
     <ion-title>
       Baza sklepów
     </ion-title>
-    <ion-buttons end class="header-button">
+    <ion-buttons end class="header-button" (click)="showSearchBarClick()">
       <button ion-button>
         <ion-icon class="header-button-icon" name="search" large></ion-icon>
       </button>
       <button ion-button large>
-        <ion-icon class="header-button-icon" name="options" large></ion-icon>
+        <ion-icon class="header-button-icon" name="md-funnel" large></ion-icon>
       </button>
       <button ion-button large>
-        <ion-icon class="header-button-icon" name="logo-buffer"></ion-icon>
+        <ion-icon class="header-button-icon" name="list"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-searchbar [@expand]="showSearchBar" style="background-color: #f7f7f7" showCancelButton="true"
+                 animated="true"></ion-searchbar>
   <ion-toolbar no-padding class="toolbar-container">
     <ion-label float-start class="toolbar-param-start">PSR</ion-label>
     <ion-label float-start class="toolbar-param-start">Z/M</ion-label>
