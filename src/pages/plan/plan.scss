@@ -18,8 +18,8 @@ page-plan {
   }
   .item-param {
     position: absolute;
-    top: 1em;
-    font-size: 0.85em;
+    top: .65em;
+    font-size: 0.8em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -28,10 +28,10 @@ page-plan {
     text-align: left;
   }
   .item-value {
-    margin-right: 1em !important;
+
+    margin: .35em 1em .25em 0 !important;
     width: 16em;
-    font-size: .9em !important;
-    font-size: 0.875em;
+    font-size: .85em !important;
     font-weight: 400;
     font-style: normal;
     font-stretch: normal;
@@ -40,7 +40,7 @@ page-plan {
     text-align: right;
   }
   .item-inner {
-    min-height: 40px !important;
+    min-height: 10px !important;
     padding-right: 0 !important;
   }
   .title-icon.icon.icon-md.ion-md-warning::before {
@@ -56,7 +56,7 @@ page-plan {
   }
 
   .input-wrapper {
-    min-height: 2em !important;
+    min-height: 1em !important;
   }
   .logo {
     width: 7em;

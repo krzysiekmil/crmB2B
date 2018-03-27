@@ -1,3 +1,88 @@
 page-section-order {
+  .footer {
+    height: 4em;
+    display: inline-flex;
+  }
+  .all-cost {
+    background-color: #4a4a4a;
+    width: 60%;
+    display: inline-flex;
+    padding-top: .95em;
+    font-size: 1.25em;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .button-end {
+    background-color: #1aa7de;
+    width: 40%;
+  }
+  .text {
+    padding-top: .95em;
+    font-size: 1.25em;
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .number {
+    padding-left: 1.75em;
+    color: white;
+  }
+  .cost {
+    color: #a0a0a0;
+  }
+  .slide-zoom {
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+  }
+  .back-button {
+    display: inline-flex;
+  }
+  .button-Active {
+    margin-left: .4em;
+    padding-bottom: 8px;
+    width: 50%;
+    font-size: 0.90em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 0;
+    height: 40px;
+    color: #1aa7de;
+    border-bottom: 3px solid #1aa7de;
+    background-color: inherit;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.87;
+    letter-spacing: 0.05em;
+    text-align: center;
 
+  }
+  .button-notActive {
+    width: 50%;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 0.90em;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.87;
+    text-align: center;
+    background-color: inherit;
+    margin: 0;
+    height: 60px;
+    color: #8c8c8c;
+  }
+  .item-inner {
+    padding-right: 0 !important;
+  }
 }

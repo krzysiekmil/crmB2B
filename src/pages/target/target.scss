@@ -50,5 +50,21 @@ page-target {
       bottom: 1em;
     }
   }
+  .item-icon {
+    font-size: 2.5em;
+    background-color: #488aff;
+    width: 1.7em;
+    height: 1.7em;
+    color: white;
+    border-radius: 15%;
+    padding-top: 0.35em;
+    margin-right: .5em !important;
+    margin-bottom: .1em;
+    margin-top: 0 !important;
+  }
+  .arrow-icon {
+    position: absolute;
+    right: -1.25em;
+  }
 
 }

@@ -90,4 +90,7 @@ side-menu-content {
   popover-md-width: 320px;
   popover-ios-width: 320px;
   popover-wp-width: 320px;
+  .back-button {
+    display: inline !important;
+  }
 }

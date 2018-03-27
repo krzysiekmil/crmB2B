@@ -1,0 +1,46 @@
+page-target-component {
+  .scroll-content {
+    background: linear-gradient(#e9edf5, #fbfdff) !important;
+  }
+  .back-button {
+    display: inline-flex;
+  }
+  .item-name {
+    height: 1.75em;
+    font-weight: bold;
+    font-size: 1.05em;
+  }
+  .item-param {
+    padding-bottom: 0.2em;
+    height: 1.9em;
+    font-size: 0.9em;
+  }
+  .item-distance {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    margin-right: 0 !important;
+    text-align: center;
+    width: 6em;
+    height: 2em;
+    border-radius: 3px;
+    background-color: #f3f6f8;
+  }
+  .icon-param {
+    padding-left: 0.75em;
+    width: 2em;
+    margin-right: 0 !important;
+    position: absolute;
+    top: 1em;
+    right: 0.15em;
+    font-size: 3em;
+    color: white;
+    border-radius: 3px;
+    background-color: #69cbf2;
+    box-shadow: 0 5px 15px -6px #62c7e8;
+  }
+  .item-shop {
+    padding-right: 0 !important;
+  }
+
+}

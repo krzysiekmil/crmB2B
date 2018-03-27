@@ -20,6 +20,7 @@ page-client-detail {
     > .card-content {
       > .card-content-list {
         > .card-list-item {
+          padding-left: 1em !important;
           padding-right: 0;
           font-size: 1.1em;
           border-top: 0.05em solid #edf0f2;
@@ -34,6 +35,9 @@ page-client-detail {
   }
   .card-list-param {
     color: #9c9c9c;
+  }
+  .card-list-value {
+    margin-right: .5em;
   }
 
 }

@@ -3,8 +3,8 @@
 
         <!-- It is a simple option -->
       <ng-template [ngIf]="!option.subItemsCount" no-margin>
-        <ion-item no-margin style="height: 52px;font-size: 2em"
-                  [style.backgroundColor]="option.iconName==null? '#f4f4f4':'#ffffff'" class="option"
+        <ion-item no-margin style="height: 52px;font-size: 2em;border-color: transparent;color: white"
+                  [style.backgroundColor]="option.iconName==null? '#008bc6':'#009fe3'" class="option"
                   [ngClass]="menuSettings?.showSelectedOption && option.selected ? menuSettings.selectedOptionClass : null"
                   (tap)="select(option)" tappable>
           <ion-icon *ngIf="option.iconName" [name]="option.iconName" item-end></ion-icon>

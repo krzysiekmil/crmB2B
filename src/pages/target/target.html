@@ -1,5 +1,14 @@
-<ion-content no-padding>
-  <div class="empty-container">
+<ion-header *ngIf="headerShow!=false">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cele</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-vertical>
+  <div *ngIf="targetList===null" class="empty-container">
     <section no-padding class="empty-target" *ngIf="isEmpty">
       <img class="empty-logo" src="assets/flag-black.png">
       <h1 class="empty-header" text-center>{{emptyInformationHeader}}
@@ -8,4 +17,17 @@
     </section>
     <button class="empty-button" ion-button text-capitalize>Dodaj cel</button>
   </div>
+  <ion-list *ngIf="targetList!==null" no-padding>
+    <ion-card *ngFor="let data of targetList;index as id" (click)="openShopList(id)">
+      <ion-item no-padding>
+        <ion-icon class="item-icon" large [name]="data.icon" item-start></ion-icon>
+        <h2 class="title">{{data.title}}</h2>
+        <h3 class="subtitle">{{data.subtitle}}</h3>
+        <p class="extra-param">{{data.numberOfPages}} sklepy</p>
+        <ion-icon float-end class="arrow-icon" item-end style="background-color: transparent;color: black"
+                  name="ios-arrow-forward">
+        </ion-icon>
+      </ion-item>
+    </ion-card>
+  </ion-list>
 </ion-content>

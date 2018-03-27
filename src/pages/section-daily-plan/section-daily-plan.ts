@@ -12,9 +12,9 @@ import {SectionClientPage} from "../section-client/section-client";
 export interface Target {
   title: string;
   subtitle?: string;
-  status?: number;
+  status?: any;
   target?: number;
-  paramList: Array<Param>;
+  paramList?: Array<Param>;
   layoutParam?: [{}];
 }
 
@@ -101,11 +101,13 @@ export class SectionDailyPlanPage {
   @ViewChild(PlanPage) planPage: PlanPage;
   @ViewChild(SectionClientPage) sectionClientPage: SectionClientPage;
   @ViewChild(Slides) slides: Slides;
-  List: any = [{name: 'Cele na dzisiaj', componentName: 'ClientDetailPage'},
-    {name: 'Sklepy na dzisiaj', componentName: 'TargetPage'}, {
-      name: 'Cele miesięczne',
-      componentName: 'OrderAndDeliveryPage'
-    }];
+  List: any = [{
+    name: 'Cele miesięczne',
+    componentName: 'OrderAndDeliveryPage'
+  },
+    {name: 'Cele na dzisiaj', componentName: 'ClientDetailPage'},
+    {name: 'Sklepy na dzisiaj', componentName: 'TargetPage'},
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

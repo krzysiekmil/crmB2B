@@ -16,12 +16,17 @@ import {Section} from "../../model/inguiry-model";
 export class SummaryPage {
   @Input() sectionList: Array<Section>;
   @Output() sectionChanger = new EventEmitter<any>();
+  @Output() popSection = new EventEmitter();
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   openSection(id: number) {
     this.sectionChanger.emit(id);
+  }
+
+  close() {
+    this.popSection.emit();
   }
 
 }

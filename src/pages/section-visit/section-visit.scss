@@ -39,4 +39,11 @@ page-section-visit {
     height: 60px;
     color: #8c8c8c;
   }
+  .back-button {
+    display: inline-flex;
+  }
+  ion-header.header.header-md::after {
+    background-image: none;
+  }
+
 }

@@ -15,6 +15,11 @@ import {SummaryPage} from "../summary/summary";
   imports: [
     IonicPageModule.forChild(SectionVisitPage),
   ],
+  exports: [
+    SummaryPage,
+    InquirySectionPage,
+    InquiryPage,
+  ]
 })
 export class SectionVisitPageModule {
 }

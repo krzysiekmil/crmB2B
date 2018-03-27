@@ -1,3 +1,45 @@
 page-order {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+    height: 100%;
+    width: 100%;
+  }
+  .order-left {
+    text-align: center;
+    padding-top: 1.5em;
+  }
+  .product-text {
+    color: #a0a0a0;
+    padding-top: 1em;
+    font-size: 0.85em;
+  }
+  .input {
+    border-radius: 7px;
+    border: 1px solid gray;
+  }
 
+  .selectet-box {
+    max-width: 100% !important;
+  }
+
+  .section-name {
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    margin-top: 1em;
+    margin-left: 1em;
+  }
+  .product-item {
+    padding-left: 1em !important;
+  }
+
+  .product-name-active {
+    font-size: 1.35em;
+  }
+  .product-name-notActive {
+    font-size: 1.1em;
+    font-weight: 500;
+  }
 }

@@ -1,0 +1,35 @@
+page-realization {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+  }
+  .logo {
+    margin-right: 1em !important;
+    width: 5em;
+    height: 5em;
+    border-radius: 3px;
+    background-color: #fa6262;
+    box-shadow: 0 5px 15px -6px #d90000;
+    > .logo-value {
+      color: white;
+      font-size: 1.6em;
+      padding-top: 35%;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+  .card-text {
+    width: 100%;
+    font-size: 1em;
+    padding-top: .5em;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+  }
+
+}

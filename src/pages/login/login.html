@@ -1,17 +1,28 @@
-<ion-content class="login-content" padding>
+<ion-content class="login-content" padding-top>
   <div padding-bottom>
-    <img class="empty-logo" src="assets/flag-black.png">
+    <img class="empty-logo" src="assets/imgs/neuca-logo.png">
   </div>
+  <div class="title">Logowanie</div>
+  <div class="sub-title">Lorem ipsum dolor sit amet</div>
+  <!--<button ion-button clear (click)="rak()">Menu</button>-->
+
   <div class="login-box">
     <form (ngSubmit)="login()" [formGroup]="formValid">
-      <ion-input class="input-username" type="text" placeholder="Username" name="name" formControlName="name"
-                 clearInput></ion-input>
-      <ion-input class="input-password" type="password" placeholder="Password" name="password"
-                 formControlName="password" clearInput></ion-input>
-      <button ion-button class="submit-btn" full type="submit" round
-              [disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">Login
-      </button>
-      <button ion-button clear (click)="rak()">Menu</button>
+      <ion-label class="input-info" style="margin-top: 2.5em;" stacked>Login</ion-label>
+      <ion-item class="item-input">
+        <ion-input class="input-username" type="text" name="name" formControlName="name" clearInput></ion-input>
+      </ion-item>
+      <ion-label class="input-info" stacked>Hasło</ion-label>
+      <ion-item class="item-input">
+        <ion-input class="input-password" type="password" name="password" formControlName="password"
+                   clearInput></ion-input>
+      </ion-item>
     </form>
   </div>
 </ion-content>
+<ion-footer class="submit-btn" no-margin (click)="rak()">
+  <div class="submit-btn-text" padding-vertical>Zaloguj się</div>
+  <!--<button ion-button  full type="submit" no-margin-->
+  <!--[disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">-->
+  <!--</button>-->
+</ion-footer>

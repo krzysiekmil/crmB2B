@@ -5,7 +5,6 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
-import {MenuPageModule} from "../pages/menu/menu.module";
 import {HttpModule} from "@angular/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GaleryPageModule} from "../pages/galery/galery.module";
@@ -20,18 +19,20 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {SectionVisitPageModule} from "../pages/section-visit/section-visit.module";
 import {SectionOrderPageModule} from "../pages/section-order/section-order.module";
 import {SectionDailyPlanPageModule} from "../pages/section-daily-plan/section-daily-plan.module";
-
+import {MenuPageModule} from "../pages/menu/menu.module";
+import {RealizationDetailPageModule} from "../pages/realization-detail/realization-detail.module";
+import {ClientMessagesPageModule} from "../pages/client-messages/client-messages.module";
+import {TargetComponentPageModule} from "../pages/target-component/target-component.module";
+import {SectionTargetPageModule} from "../pages/section-target/section-target.module";
 
 
 @NgModule({
   declarations: [
     MyApp,
-
   ],
   imports: [
     BrowserModule,
     LoginPageModule,
-    MenuPageModule,
     BrowserAnimationsModule,
     GaleryPageModule,
     KnowlegdeBasePageModule,
@@ -45,18 +46,23 @@ import {SectionDailyPlanPageModule} from "../pages/section-daily-plan/section-da
     SectionOrderPageModule,
     ChartsModule,
     NgxChartsModule,
+    MenuPageModule,
+    RealizationDetailPageModule,
+    ClientMessagesPageModule,
+    TargetComponentPageModule,
+    SectionTargetPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  ],
+  exports: []
 })
 export class AppModule {}

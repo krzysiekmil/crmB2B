@@ -22,15 +22,20 @@ export class ClientMenuPage implements OnInit {
   @ViewChild(Nav) nav: Nav;
   number = 0;
   List: any = [{
+    name: 'Komunikaty',
+    componentName: 'ClientMessagesPage',
+    icon: 'md-bulb'
+  }, {
     name: 'Informacje',
     componentName: 'SectionInformationPage',
     icon: 'ios-information-circle-outline'
-  }, {name: 'Wizyta', componentName: 'SectionVisitPage', icon: 'ios-person-outline'}, {
-    name: 'Zamowienie',
-    componentName: 'SectionOrderPage',
+  }, {name: 'Zadania', componentName: 'SectionTargetPage', icon: 'ios-person-outline'},
+    {
+      name: 'Baza wiedzy',
+      componentName: 'KnowlegdeBasePage',
     icon: 'ios-basket-outline'
   }
-    , {name: 'Informacje', componentName: 'SectionInformationPage'}];
+  ];
 
   constructor(public navCtrl: NavController, navParam: NavParams, public keyboard: Keyboard, app: App) {
     this.client = navParam.get('client');
@@ -43,12 +48,8 @@ export class ClientMenuPage implements OnInit {
 
 
   openPage(pageName: string, number: number): void {
-    if (number !== 1) {
-      this.nav.setRoot(pageName);
+    this.nav.setRoot(pageName, {header: false});
       this.selectedId = number;
-    }
-    else
-      this.navCtrl.push(pageName);
   }
 
   pushPage(pageName: string, number: number): void {

@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
-  Component, ContentChild, Directive, DoCheck, ElementRef, Input, OnChanges, OnInit, Pipe, ViewChild,
+  Component, ContentChild, Directive, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, Pipe,
+  ViewChild,
   ViewChildDecorator
 } from '@angular/core';
 import {Content, IonicPage, NavController, NavParams, Scroll, Slide, Slides} from 'ionic-angular';
@@ -27,6 +28,7 @@ export interface Button {
   templateUrl: 'inguiry.html',
 })
 export class InquiryPage implements DoCheck, OnInit, OnChanges {
+  @Output() pop = new EventEmitter();
   @ViewChild(SummaryPage) summaryPage;
   @ViewChild(InquirySectionPage) inquirySection;
   @ViewChild(Slides) slides: Slides;
@@ -349,6 +351,10 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   }
   selectedFromSummary(id) {
     this.slides.slideTo(id + 1)
+  }
+
+  closeInquiry() {
+    // this.
   }
 
 }

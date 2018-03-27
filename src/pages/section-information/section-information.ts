@@ -16,14 +16,14 @@ import {OrderAndDeliveryPage} from "../order-and-delivery/order-and-delivery";
 })
 export class SectionInformationPage implements OnInit {
   currentPage: string;
-  public selectedId: number = 0;
+  public selectedId: string = 'Informacje';
 
   @ViewChild(Nav) nav: Nav;
   @ViewChild(Slides) slides: Slides;
   @ViewChild(Slide) slide: Slide;
+  header = {header: false};
   List: any = [{name: 'Informacje', componentName: 'ClientDetailPage'},
-    {name: 'Cele', componentName: 'TargetPage'}, {name: 'Zamowienia i dostawy', componentName: OrderAndDeliveryPage},
-    {name: 'Baza wiedzy', componentName: 'KnowlegdeBasePage'}];
+    {name: 'Zamowienia i dostawy', componentName: OrderAndDeliveryPage},];
   number: number = 0;
 
 // , {name: 'Galeria', compoenetName: 'GaleryPage'}
@@ -35,6 +35,7 @@ export class SectionInformationPage implements OnInit {
   ngOnInit() {
     console.log('ngOnInit SectionInformationPage');
     this.number = this.navParams.get('id');
+    this.nav.setRoot('ClientDetailPage');
   }
 
   ionViewDidLoad() {
@@ -42,12 +43,14 @@ export class SectionInformationPage implements OnInit {
   }
 
   openPage(id: number): void {
-    this.selectedId = id;
+    this.selectedId = this.List[id].name;
+    this.nav.setRoot(this.List[id].componentName, {header: false});
     // this.slides.slideTo(id)
+    console.log(this.selectedId,)
   }
 
   slideChanged() {
-    this.selectedId = this.slides.realIndex;
+    // this.selectedId = this.slides.realIndex;
     this.currentPage = this.List[this.selectedId].componentName;
 
   }

@@ -29,13 +29,13 @@
 <ion-content>
   <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
     <ion-slide>
+      <page-plan [(monthlyPlan)]="monthlyPlan" [type]="'Month'"></page-plan>
+    </ion-slide>
+    <ion-slide>
       <page-plan [(data)]="taskList" [type]="'Day'"></page-plan>
     </ion-slide>
     <ion-slide>
       <page-section-client></page-section-client>
-    </ion-slide>
-    <ion-slide>
-      <page-plan [(monthlyPlan)]="monthlyPlan" [type]="'Month'"></page-plan>
     </ion-slide>
   </ion-slides>
 </ion-content>

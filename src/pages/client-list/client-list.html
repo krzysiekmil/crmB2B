@@ -12,7 +12,7 @@
     <ion-title>
       Baza sklepów
     </ion-title>
-    <ion-buttons end class="header-button" (click)="showSearchBarClick()">
+    <ion-buttons end class="header-button">
       <button ion-button>
         <ion-icon class="header-button-icon" name="search" large></ion-icon>
       </button>
@@ -24,7 +24,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-searchbar [@expand]="showSearchBar" style="background-color: #f7f7f7" showCancelButton="true"
+  <ion-searchbar style="background-color: #f7f7f7" showCancelButton="true"
                  animated="true"></ion-searchbar>
   <ion-toolbar no-padding class="toolbar-container">
     <ion-label float-start class="toolbar-param-start">PSR</ion-label>

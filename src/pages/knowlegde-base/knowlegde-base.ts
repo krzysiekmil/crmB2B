@@ -31,6 +31,7 @@ export class KnowlegdeBasePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.headerShow = this.navParams.get('header');
+    console.log(this.navParams.data)
 
   }
 

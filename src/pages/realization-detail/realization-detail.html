@@ -1,0 +1,37 @@
+<!--
+  Generated template for the RealizationDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{task.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-vertical>
+  <ion-list>
+    <div *ngFor="let state of realization;index as id">
+      <!--<img *ngIf="id!==0" src="assets/imgs/arrow_down.png" style="height: 2em;width: 2em;margin-left: 43%;">-->
+      <ion-card>
+        <ion-item style="padding-left: 1em !important; padding-right: 0;">
+          <div class="logo" item-start>
+            <div class="logo-value">
+              <ion-icon name="checkmark"></ion-icon>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: 1.15em;font-weight: bold" class="card-text">{{state.title}}</h3>
+            <p class="card-text" text-wrap>Data rozpoczęcia: {{state.startDate}}</p>
+            <p style="display: inline;" class="card-text">Data zakończenia: {{state.endDate}}</p>
+            <p class="card-text">Uwagi: {{state.comment }}</p>
+          </div>
+        </ion-item>
+      </ion-card>
+    </div>
+  </ion-list>
+</ion-content>

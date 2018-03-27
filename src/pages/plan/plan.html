@@ -8,7 +8,7 @@
 <ion-content padding-bottom>
   <ion-list>
     <div [ngSwitch]="type">
-      <div *ngSwitchCase="'Day'" padding-top>
+      <div *ngSwitchCase="'Day'">
         <ion-card *ngFor="let task of data">
       <ion-card-header no-padding no-margin>
         <div class="title" text-left>
@@ -18,13 +18,18 @@
       </ion-card-header>
       <ion-card-content no-padding padding-left>
         <ion-list no-padding>
-          <ion-item style="height: flex" no-padding class="list-item" *ngFor="let param of task.paramList">
+          <ion-item style="height: auto" no-padding class="list-item" *ngFor="let param of task.paramList">
             <div class="item-param" float-start>{{param.name}}:</div>
             <div class="item-value" text-wrap item-end text-end>{{param.value}}</div>
           </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
+        <ion-fab bottom right>
+          <button ion-fab>
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-fab>
       </div>
       <div *ngSwitchCase="'Month'">
         <div padding-bottom class="date-text">
@@ -46,4 +51,5 @@
       </div>
     </div>
   </ion-list>
+
 </ion-content>

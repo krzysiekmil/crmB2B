@@ -3,9 +3,9 @@
     <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
       <ion-scroll class="item-scroll" scrollX="true" style="height: 55px;padding-right: 0;">
         <ion-buttons>
-          <button [class]="id==selectedId? 'button-Active':'button-notActive'" *ngFor="let object of List;index as id"
-                  id="{{id}}"
-                  (click)="openPage(id)">{{object.name}}
+          <button *ngFor="let object of List;index as index"
+                  id="{{object.name}}" [class]="object.name===selectedId? 'button-Active':'button-notActive'"
+                  (click)="openPage(index)">{{object.name}}
           </button>
         </ion-buttons>
       </ion-scroll>
@@ -15,7 +15,7 @@
 <ion-content>
   <!--<ion-slides (ionSlideDidChange)="slideChanged()">-->
   <!--<ion-slide *ngFor="let page of List">-->
-  <ion-nav [root]="List[selectedId].componentName" [rootParams]="{header:false}"></ion-nav>
+  <ion-nav></ion-nav>
   <!--</ion-slide>-->
   <!--</ion-slides>-->
 </ion-content>

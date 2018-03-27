@@ -5,13 +5,41 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>sectionOrder</ion-title>
+    <ion-title>Zamowienie</ion-title>
   </ion-navbar>
-
+  <ion-toolbar no-padding style="height: 45px ">
+    <ion-item no-padding style="border-bottom:none;background-color: inherit;padding-left: 0;padding-right: 0">
+      <ion-scroll class="item-scroll" scrollX="true" style="height: 3.9em;padding-right: 0;">
+        <ion-buttons>
+          <button
+            [class]="id==selectedSection? 'button-Active':'button-notActive'"
+            *ngFor="let object of buttonList;index as id"
+            (click)="openSection(object.id)">{{object.name}}
+          </button>
+        </ion-buttons>
+      </ion-scroll>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
+  <ion-slides (ionSlideDidChange)="onSlideChanged($event)">
+    <ion-slide>
+      <page-delivery></page-delivery>
+    </ion-slide>
+    <ion-slide>
+      <page-order></page-order>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
+<ion-footer class="footer">
+  <div class="all-cost">
+    <div class="number">204 sztuki</div>
+    <div class="cost">(671.28zł)</div>
+  </div>
+  <div class="button-end">
+    <div class="text">
+      Zamów
+    </div>
+  </div>
+</ion-footer>

@@ -1,12 +1,36 @@
 page-login {
-  .scroll-content {
-    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
-  }
+  //.scroll-content {
+  //  background: linear-gradient(#dfe5ef, #ffffff) !important;
+  //}
   .empty-logo {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-bottom: 2em;
+    width: 6em;
+    height: 1.8em;
+    margin-top: 1em;
+    margin-left: 2.7em;
+  }
+  .title {
+    margin-left: 1em;
+    margin-top: 1em;
+    font-size: 2.5em;
+    //ffont-family: Nunito;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  .sub-title {
+    margin-top: 1em;
+    margin-left: 2em;
+    color: #a0a0a0;
+    font-size: 1.35em;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.3;
+    letter-spacing: normal;
+    text-align: left;
   }
   .remind-btn {
     width: 55%;
@@ -16,13 +40,58 @@ page-login {
     font-size: 1em;
   }
   .input-username {
-    border-bottom: 2px solid gainsboro;
-    background-color: transparent;
-    margin-bottom: 1em;
+    border-radius: 3px;
+    background-color: white;
 
   }
   .input-password {
-    margin-bottom: 1em;
-    border-bottom: 2px solid gainsboro;
+    border-radius: 3px;
+    background-color: white;
   }
+
+  .login-box {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 1.2em;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    height: 57.5%;
+    width: 100%;
+    background-color: #009fe3;
+  }
+  .submit-btn {
+    height: 12%;
+    color: white;
+    background-color: #494948;
+    > .submit-btn-text {
+      padding-top: 1.2em !important;
+      font-size: 1.25em;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+  .item-input {
+    background-color: transparent;
+    height: 3.25em;
+    border-radius: 8px;
+  }
+  .item-inner {
+    border-bottom: 0 !important;
+  }
+  .ion-item.item-ios.item.item-block, ion-item.item-md.item.item-block, ion-item.item-wp.item.item-block {
+    border-bottom: 0;
+  }
+  .input-info {
+    font-size: .85em !important;
+    padding-bottom: .8em;
+    padding-left: 2em;
+  }
+  .text-input {
+    font-size: .85em;
+  }
+
 }

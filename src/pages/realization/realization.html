@@ -1,0 +1,18 @@
+<ion-content padding-vertical>
+  <ion-list>
+    <ion-card *ngFor="let target of TaskList;index as id" (click)="showDetail(id)">
+      <ion-item style="padding-left: 1em !important; padding-right: 0;">
+        <div class="logo" item-start>
+          <div class="logo-value">
+            <ion-icon name="checkmark"></ion-icon>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: 1.15em;font-weight: bold" class="card-text">{{target.title}}</h3>
+          <p class="card-text" text-wrap>{{target.subtitle}}</p>
+          Status:<p style="display: inline; font-weight:bold;color: black" class="card-text"> {{target.status}}</p>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

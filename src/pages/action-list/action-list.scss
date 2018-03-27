@@ -1,0 +1,37 @@
+page-action-list {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #fcfcfc) !important;
+    height: 100%;
+    width: 100%;
+  }
+  .action-card {
+    height: 6em;
+  }
+
+  .icon {
+    margin-right: 0 !important;
+    font-size: 2.5em;
+    background-color: #488aff;
+    width: 1.7em;
+    height: 1.7em;
+    color: white;
+    border-radius: 15%;
+    padding-top: 0.35em;
+    margin-bottom: .1em;
+    margin-top: 0 !important;
+  }
+  .item-card {
+    margin-top: 1em;
+    padding-left: 1em !important;
+  }
+  .back-button {
+    color: #488aff;
+    display: inline-flex !important;
+  }
+
+  .action-title {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+  }
+
+}

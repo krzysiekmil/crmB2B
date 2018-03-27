@@ -5,12 +5,12 @@ import {SideMenuContentComponent} from "../../shared/side-menu-content/side-menu
 
 @NgModule({
   declarations: [
+    SideMenuContentComponent,
     MenuPage,
-    SideMenuContentComponent
-
   ],
   imports: [
     IonicPageModule.forChild(MenuPage),
   ],
+  exports: []
 })
 export class MenuPageModule {}
