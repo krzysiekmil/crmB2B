@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import {Content, Keyboard, NavController, NavParams} from 'ionic-angular';
 import {Question, Section} from "../../model/inguiry-model";
+import {Camera} from '@ionic-native/camera';
 /**
  * Generated class for the InquirySectionPage page.
  *
@@ -55,9 +56,10 @@ export class InquirySectionPage implements OnInit, OnChanges {
   selectedQuestionId: number;
   rangeMin: number = 0;
   rangeMax: number = 100;
+  picture: string;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public camera: Camera) {
     this.selectedQuestionId = 0;
 
   }
@@ -94,6 +96,20 @@ export class InquirySectionPage implements OnInit, OnChanges {
       });
 
 
+  }
+
+  takePicture(): void {
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.DATA_URL,
+      targetWidth: 800,
+      targetHeight: 600,
+      quality: 100,
+      allowEdit: true,
+      correctOrientation: false,
+      saveToPhotoAlbum: true,
+    }).then(imageData => {
+      this.picture = "data:image/jpeg;base64," + imageData;
+    }).catch(err => console.error(err));
   }
 
   doNothing() {

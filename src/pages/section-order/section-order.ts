@@ -16,7 +16,7 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 export class SectionOrderPage {
   @ViewChild(Slides) slides: Slides;
   selectedSection = 0;
-  buttonList = [{name: 'Dostawa', id: 0}, {name: 'Produkty', id: 1}];
+  buttonList = [{name: 'Dostawa', id: 0}, {name: 'Promocje', id: 1}, {name: 'Produkty', id: 2}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -25,18 +25,18 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
-        <ion-fab bottom right>
-          <button ion-fab>
-            <ion-icon name="add"></ion-icon>
-          </button>
-        </ion-fab>
+        <!--<ion-fab bottom right>-->
+        <!--<button ion-fab>-->
+        <!--<ion-icon name="add"></ion-icon>-->
+        <!--</button>-->
+        <!--</ion-fab>-->
       </div>
       <div *ngSwitchCase="'Month'">
         <div padding-bottom class="date-text">
           <div class="info" item-start text-start float-start>Data danych</div>
           <div class="value" item-end text-end float-end>21.11.2018</div>
         </div>
-        <ion-card *ngFor="let target of monthlyPlan">
+        <ion-card *ngFor="let target of monthlyPlan" (click)="showTarget(target.title)">
           <ion-item style="padding-left: 1em !important;">
             <div class="logo" item-start>
               <div class="logo-value">{{target.paramList[0].value}}%</div>
@@ -51,5 +51,4 @@
       </div>
     </div>
   </ion-list>
-
 </ion-content>

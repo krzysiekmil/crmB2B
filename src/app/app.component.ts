@@ -17,6 +17,8 @@ export class MyApp{
     this.initializeApp();
   }
 
+  //TODO:https://demo.mobiscroll.com/angular/calendar/date#theme=material
+
 
   initializeApp() {
     this.platform.ready().then(() => {

@@ -25,15 +25,21 @@ export class ClientMenuPage implements OnInit {
     name: 'Komunikaty',
     componentName: 'ClientMessagesPage',
     icon: 'md-bulb'
-  }, {
+  },
+    {
+      name: 'Zadania',
+      componentName: 'SectionTargetPage',
+      icon: 'md-person'
+    },
+    {
     name: 'Informacje',
     componentName: 'SectionInformationPage',
-    icon: 'ios-information-circle-outline'
-  }, {name: 'Zadania', componentName: 'SectionTargetPage', icon: 'ios-person-outline'},
+      icon: 'md-information-circle'
+    },
     {
       name: 'Baza wiedzy',
       componentName: 'KnowlegdeBasePage',
-    icon: 'ios-basket-outline'
+      icon: 'md-book'
   }
   ];
 

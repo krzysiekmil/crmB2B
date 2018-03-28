@@ -5,9 +5,11 @@ import {OrderPage} from "../order/order";
 import {DeliveryPage} from "../delivery/delivery";
 import {SectionVisitPageModule} from "../section-visit/section-visit.module";
 import {InquiryPage} from "../inguiry/inguiry";
+import {PromotionPage} from "../promotion/promotion";
 
 @NgModule({
   declarations: [
+    PromotionPage,
     DeliveryPage,
     OrderPage,
     SectionOrderPage,

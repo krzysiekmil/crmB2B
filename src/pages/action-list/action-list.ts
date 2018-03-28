@@ -22,7 +22,7 @@ export interface Action {
 export class ActionListPage {
   actionList: Array<Action> = [
     {
-      name: 'Przyjmij zamowienie',
+      name: 'Przyjmij zamówienie',
       component: SectionOrderPage,
       icon: 'cart'
     },
@@ -32,8 +32,8 @@ export class ActionListPage {
       icon: 'md-clipboard'
     },
     {
-      name: 'Dołacz do programu +',
-      component: null,
+      name: 'Dołącz do Zysk +',
+      component: SectionVisitPage,
       icon: 'md-book'
     }
   ];

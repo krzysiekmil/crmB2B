@@ -52,7 +52,6 @@ export class OrderAndDeliveryPage {
         }
       ]
     },
-
     {
       "name": "LUT",
       "series": [
@@ -66,7 +65,6 @@ export class OrderAndDeliveryPage {
         }
       ]
     },
-
     {
       "name": "MAR",
       "series": [
@@ -223,14 +221,14 @@ export class OrderAndDeliveryPage {
 
 
   DataList: OrderAndDeliveryData = {
-    title: 'Specjał Gdansk',
+    title: 'Klient Gdansk',
     data: '21.10.2018',
     orderSum: '224,23 (SU)',
     deliverySum: '218,23(SU)',
-    orderDetail: [{param: 'RB EB 250 Kokos', value: 24}, {param: 'RB EB 250 Winter', value: 24},
-      {param: 'RB EB 250 Puszka', value: 24}, {param: 'RB EB 250 Tropical', value: 24}],
-    deliveryDetail: [{param: 'RB EB 250 Kokos', value: 20}, {param: 'RB EB 250 Winter', value: 20},
-      {param: 'RB EB 250 Puszka', value: 20}, {param: 'RB EB 250 Tropical', value: 20}]
+    orderDetail: [{param: 'Produkt 1', value: 24}, {param: 'Produkt 2', value: 24},
+      {param: 'Produkt 3', value: 24}, {param: 'Product 4', value: 24}],
+    deliveryDetail: [{param: 'Produkt 1', value: 20}, {param: 'Produkt 2', value: 20},
+      {param: 'Produkt 3', value: 20}, {param: 'Produkt 4', value: 20}]
   };
   constructor() {
   }

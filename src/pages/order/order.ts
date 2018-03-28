@@ -32,25 +32,25 @@ export interface Type {
 export class OrderPage {
   order: Array<OrderSection> = [
     {
-      title: 'Pakiet',
+      title: 'Kat. 1',
       productList: [
         {
           id: 0,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 1',
           order: 0,
           left: 1235,
           type: 'Sztuka'
         },
         {
           id: 1,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 2',
           order: 0,
           left: 123,
           type: 'Sztuka'
         },
         {
           id: 2,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 3',
           order: 0,
           left: 1555,
           type: 'Sztuka'
@@ -58,25 +58,25 @@ export class OrderPage {
       ],
     },
     {
-      title: 'Lista SKU',
+      title: 'Kat. 2',
       productList: [
         {
           id: 3,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 4',
           order: 0,
           left: 1235,
           type: 'Sztuka'
         },
         {
           id: 4,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 5',
           order: 0,
           left: 123,
           type: 'Sztuka'
         },
         {
           id: 5,
-          name: 'RB ED250 Puszka (3.24zł)',
+          name: 'Produkt 6',
           order: 0,
           left: 1555,
           type: 'Sztuka'

@@ -1,0 +1,36 @@
+page-promotion {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #fcfcfc) !important;
+  }
+  .action-card {
+    height: 6em;
+  }
+
+  .icon {
+    margin-right: 0 !important;
+    font-size: 2.5em;
+    background-color: #488aff;
+    width: 1.7em;
+    height: 1.7em;
+    color: white;
+    border-radius: 15%;
+    padding-top: 0.35em;
+    margin-bottom: .1em;
+    margin-top: 0 !important;
+  }
+  .product-name {
+    font-size: 1.2em;
+
+  }
+  .product-value {
+    color: #a0a0a0;
+    font-size: 0.9em;
+    b {
+      color: black;
+    }
+  }
+  .product-container {
+    height: 5em;
+    padding-left: 1em;
+  }
+}

@@ -16,19 +16,19 @@ import {Client} from "../../model/client";
 })
 export class SectionClientPage {
   clientList = [{
-    name: "name_one",
+    name: "Piotr i Paweł",
     adress: "asd",
     nip: 1234,
     pmigo: true
   }
     , {
-      name: "name_4",
+      name: "Żabka",
       adress: "qwe",
       nip: 1244,
       pmigo: true
     }
     , {
-      name: "name_6",
+      name: "Apteka",
       adress: "zxc",
       nip: 1244,
       pmigo: true

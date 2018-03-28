@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ClientMenuPage} from "../client-menu/client-menu";
+import {AddVisitPage} from "../add-visit/add-visit";
 
 /**
  * Generated class for the TargetComponentPage page.
@@ -13,6 +14,8 @@ export interface Shop {
   address: string;
   city: string;
   distance: number;
+  target: number;
+  current: number;
 }
 
 @IonicPage()
@@ -27,31 +30,39 @@ export class TargetComponentPage implements OnInit {
       address: 'Balcerskiego 2',
       city: 'Gdansk',
       distance: 234.5,
+      target: 100,
+      current: 52,
     },
     {
       name: 'IKS',
       address: 'Balcerskiego 2',
       city: 'Gdansk',
       distance: 122,
+      target: 100,
+      current: 72,
     },
     {
       name: 'ERBE',
       address: 'Balcerskiego 2',
       city: 'Gdansk',
       distance: 2,
+      target: 100,
+      current: 34,
     },
     {
       name: 'P.H.U. Bozena',
       address: 'Balcerskiego 2',
       city: 'Gdansk',
       distance: 223.5,
+      target: 100,
+      current: 89,
     },
   ]
   title: string;
   id: number;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController) {
 
   }
 
@@ -71,7 +82,8 @@ export class TargetComponentPage implements OnInit {
       nip: 1244,
       pmigo: true
     };
-    this.navCtrl.push(ClientMenuPage, {client: client})
+    this.navCtrl.push(AddVisitPage, {client: client})
   }
+
 
 }

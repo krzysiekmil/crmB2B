@@ -24,10 +24,11 @@ export interface knowlegdeData {
 
 export class KnowlegdeBasePage {
   headerShow = true;
-  knowledgeList: Array<knowlegdeData> = [{title: 'Akademia Perfect', subtitle: 'Store', numberOfPages: 124},
-    {title: 'Akademia Perfect', subtitle: 'Store', numberOfPages: 124},
-    {title: 'Promocja', numberOfPages: 72},
-    {title: 'Sklep', subtitle: '(Promocje/dokumenty)', numberOfPages: 123}];
+  knowledgeList: Array<knowlegdeData> = [
+    {title: 'Akademia Perfect', subtitle: 'Store', numberOfPages: 124, icon: 'albums'},
+    {title: 'Akademia Perfect', subtitle: 'Store', numberOfPages: 124, icon: 'beaker'},
+    {title: 'Promocja', numberOfPages: 72, icon: 'book'},
+    {title: 'Sklep', subtitle: '(Promocje/dokumenty)', numberOfPages: 123, icon: 'cart'}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.headerShow = this.navParams.get('header');

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the AddVisitPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dodaj wizyte</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="starter">
+    <ion-label text-wrap class="add-text">Ustaw datę i godzinę spotkania</ion-label>
+    <ion-card>
+      <ion-item>
+        <ion-datetime displayFormat="DD.MM.YYYY" placeholder="Dzień,Miesiąc,Rok" [(ngModel)]="myDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-datetime displayFormat="HH:mm" placeholder="Godzina,Minuta" [(ngModel)]="myTime"></ion-datetime>
+      </ion-item>
+    </ion-card>
+    <button ion-button full round block [disabled]="myTime==null||myDate==null" (click)="viewCtrl.dismiss()">Zapisz
+      wizyte
+    </button>
+  </div>
+  <div *ngIf="myDate">
+    <ion-label text-wrap class="text-remind">Wizyty zaplanowane w tym dniu</ion-label>
+    <ion-list>
+      <ion-card *ngFor="let visit of myVisit">
+        <div class="visit-box">
+          <div class="visit-line">
+            <div class="visit">Nazwa:</div>
+            <div class="value" text-end>{{visit.clientName}}</div>
+          </div>
+        </div>
+        <div class="visit-box">
+          <div class="visit-line">
+            <div class="visit">Cel wizyty:</div>
+            <div class="value" text-end>{{visit.type}}</div>
+          </div>
+        </div>
+        <div class="visit-box">
+          <div class="visit-line">
+            <div class="visit">Moment rozpoczęcia :</div>
+            <div class="value" text-end>{{myDate}} {{visit.time}}</div>
+          </div>
+        </div>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>

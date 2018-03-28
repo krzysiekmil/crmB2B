@@ -13,9 +13,7 @@
   <ion-list no-padding>
     <ion-card *ngFor="let data of knowledgeList">
       <ion-item no-padding>
-        <ion-thumbnail item-start>
-          <img class="logo" style="background-color: #7d60f6" src="assets/flag-black.png">
-        </ion-thumbnail>
+        <ion-icon item-start class="logo" [name]="data.icon"></ion-icon>
         <h2 class="title">{{data.title}}</h2>
         <h3 class="subtitle">{{data.subtitle}}</h3>
         <p class="extra-param">{{data.numberOfPages}} strony</p>

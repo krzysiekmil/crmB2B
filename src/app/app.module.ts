@@ -24,6 +24,15 @@ import {RealizationDetailPageModule} from "../pages/realization-detail/realizati
 import {ClientMessagesPageModule} from "../pages/client-messages/client-messages.module";
 import {TargetComponentPageModule} from "../pages/target-component/target-component.module";
 import {SectionTargetPageModule} from "../pages/section-target/section-target.module";
+import {Camera} from "@ionic-native/camera";
+import {AddVisitPageModule} from "../pages/add-visit/add-visit.module";
+import {CalendarPageModule} from "../pages/calendar/calendar.module";
+import {CalendarDateFormatter, CalendarEventTitleFormatter, CalendarUtils} from "angular-calendar";
+import {CalendarModule} from "angular-calendar";
+import {DraggableHelper} from "angular-draggable-droppable";
+import {CustomDateFormatterProvider} from '../providers/custom-date-formatter/custom-date-formatter';
+import {CustomEventTitleFormatterProvider} from '../providers/custom-event-title-formatter/custom-event-title-formatter';
+import {CalendarWeekHoursViewModule} from "angular-calendar-week-hours-view";
 
 
 @NgModule({
@@ -51,6 +60,8 @@ import {SectionTargetPageModule} from "../pages/section-target/section-target.mo
     ClientMessagesPageModule,
     TargetComponentPageModule,
     SectionTargetPageModule,
+    AddVisitPageModule,
+    CalendarPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -59,9 +70,24 @@ import {SectionTargetPageModule} from "../pages/section-target/section-target.mo
     MyApp,
   ],
   providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatterProvider
+    },
+    {
+      provide: CalendarEventTitleFormatter,
+      useClass: CustomEventTitleFormatterProvider
+    },
+    CalendarEventTitleFormatter,
+    DraggableHelper,
+    CalendarUtils,
+    CalendarDateFormatter,
+    Camera,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CustomDateFormatterProvider,
+    CustomEventTitleFormatterProvider
   ],
   exports: []
 })

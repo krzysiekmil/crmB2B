@@ -108,7 +108,7 @@ export class MenuPage implements OnInit {
       ,
       {
         iconName: 'ios-arrow-forward',
-        displayName: 'Cele',
+        displayName: 'Zadania',
         component: 'TargetPage'
       }
       ,
@@ -120,6 +120,7 @@ export class MenuPage implements OnInit {
       {
         iconName: 'ios-arrow-forward',
         displayName: 'Kalendarz pracy',
+        component: 'CalendarPage'
       },
       {
         displayName: 'Pomoc',

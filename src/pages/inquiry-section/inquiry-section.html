@@ -66,35 +66,19 @@
         <!--<ion-badge range-right>{{rangeMax}}</ion-badge>-->
         <!--</ion-range>-->
         <!--</ion-item>-->
-        <button ion-button text-wrap style="width:50px;
-        position: relative;
-    left: 34%;
-    height:50px;
-    line-height:50px;
-    border: 2px solid #f5f5f5;
-    border-radius: 50%;
-    text-align:center;
-    text-decoration:none;
-    font-size:20px;
-    font-weight:bold;"
-                [color]="question.state">
+        <div class="bottom-card">
+          <img class="picture">
+          <button ion-button text-wrap
+                  class="round-button"
+                  [color]="question.state" (click)="takePicture()">
           <ion-icon name="camera"></ion-icon>
         </button>
-        <button ion-button text-wrap style="width:50px;
-        position: relative;
-    left: 34%;
-    height:50px;
-    line-height:50px;
-    border: 2px solid #f5f5f5;
-    border-radius: 50%;
-    text-align:center;
-    text-decoration:none;
-    font-size:20px;
-    font-weight:bold;"
-                [color]="question.state"
-                (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
+          <button ion-button text-wrap class="round-button"
+                  [color]="question.state"
+                  (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
           <ion-icon name="checkmark"></ion-icon>
           </button>
+        </div>
       </div>
       </ion-card>
   </ion-list>

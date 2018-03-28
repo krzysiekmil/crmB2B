@@ -1,0 +1,38 @@
+page-add-visit {
+  .scroll-content {
+    background: linear-gradient(#dfe5ef, #f3f6f8) !important;
+  }
+  .add-text {
+    margin-top: 2em;
+    padding-left: 1em;
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+  }
+  .text-remind {
+    margin-top: 1.75em;
+    font-size: 1em;
+    margin-bottom: 1.5em;
+    padding-left: .8em;
+  }
+  .starter {
+    margin-top: 1em;
+  }
+  .visit {
+    margin-left: 1em;
+    color: #a0a0a0;
+    height: 2em;
+  }
+  .value {
+    margin-left: 1em;
+    color: #4a4a4a;
+  }
+  .visit-line {
+    display: inline-flex;
+  }
+  .visit-box {
+    margin-left: .5em;
+    padding-top: .5em;
+    padding-bottom: .15em;
+  }
+
+}
