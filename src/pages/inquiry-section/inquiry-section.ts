@@ -6,7 +6,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import {Content, Keyboard, NavController, NavParams} from 'ionic-angular';
+import {Content, Keyboard, NavController, NavParams, ActionSheetController} from 'ionic-angular';
 import {Question, Section} from "../../model/inguiry-model";
 import {Camera} from '@ionic-native/camera';
 /**
@@ -29,8 +29,8 @@ import {Camera} from '@ionic-native/camera';
       state('true', style({height: '*'})),
       state('false', style({height: '0'})),
       transition('void=>*', animate('0s')),
-      transition('false => true', animate('250ms linear')),
-      transition('true=>false', animate('100ms linear'))
+      transition('false => true', animate('200ms linear')),
+      transition('true=>false', animate('70ms linear'))
     ]),
     trigger('state', [
       state('active', style({backgroundColor: '#2790f4', boxShadow: '0 5px 15px -6px #007fd9'})),
@@ -59,7 +59,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
   picture: string;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public keyboard: Keyboard, public camera: Camera) {
     this.selectedQuestionId = 0;
 
   }
@@ -108,8 +108,38 @@ export class InquirySectionPage implements OnInit, OnChanges {
       correctOrientation: false,
       saveToPhotoAlbum: true,
     }).then(imageData => {
-      this.picture = "data:image/jpeg;base64," + imageData;
+      this.section.questionsList[this.selectedQuestionId].photo = "data:image/jpeg;base64," + imageData;
     }).catch(err => console.error(err));
+  }
+
+  presentActionSheet(question: Question) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Zarządzaj zdjeciem ',
+      buttons: [
+        {
+          text: 'Usuń',
+          role: 'destructive',
+          handler: () => {
+            question.photo = null
+          }
+        },
+        {
+          text: 'Powtórz',
+          handler: () => {
+            this.takePicture();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
   }
 
   doNothing() {
@@ -153,7 +183,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
 
 
   nextQuestionButton(question: Question, id?: number) {
-    this.setQuestionState(question, 'wrong');
+    this.setQuestionState(question, 'active');
     if (id >= this.section.questionsList.length - 1) {
         this.slides.next();
       }
@@ -180,7 +210,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
   clickQuestion(id: number) {
     if (this.selectedQuestionId != null) {
       this.section.questionsList[this.selectedQuestionId].selected = false;
-      this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'wrong');
+      this.setQuestionState(this.section.questionsList[this.selectedQuestionId], 'active');
     }
     if (this.selectedQuestionId == id) {
       this.selectedQuestionId = null;
@@ -336,7 +366,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
           }
         );
         if (answerValue < 100 && question.answer != null && question.answer !== '') {
-          question.state = 'wrong';
+          question.state = 'active';
         }
         else {
           question.state = 'correct';

@@ -12,7 +12,8 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  startOfTomorrow,
 } from 'date-fns';
 
 /**
@@ -52,9 +53,39 @@ export class CalendarPage {
 
   events: CalendarEvent[] = [
     {
-      start: addHours(startOfDay(new Date()), 8),
-      end: addHours(startOfDay(new Date()), 9),
-      title: 'Apteka Mokotów',
+      start: addHours(startOfTomorrow(), 10),
+      end: addHours(startOfTomorrow(), 11),
+      title: 'Sklep nr. 44',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#1e90ff',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfTomorrow(), 12),
+      end: addHours(startOfTomorrow(), 13),
+      title: 'Apteka nr. 23',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#1e90ff',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 13),
+      end: addHours(startOfDay(new Date()), 14),
+      title: 'Magazyn nr.3',
       cssClass: 'custom-event',
       color: {
         primary: '#1e90ff',
@@ -68,7 +99,7 @@ export class CalendarPage {
     },
     {
       start: addHours(startOfDay(new Date()), 10),
-      end: addHours(startOfDay(new Date()), 12),
+      end: addHours(startOfDay(new Date()), 11),
       title: 'Sklep Powiśle',
       cssClass: 'custom-event',
       color: {
@@ -80,7 +111,51 @@ export class CalendarPage {
         afterEnd: true
       },
       draggable: true
-    }
+    },
+    {
+      start: addHours(startOfDay(new Date()), 14),
+      end: addHours(startOfDay(new Date()), 15),
+      title: 'Sklep Powiśle',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#00d830',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(new Date(2018, 3, 31, 0, 0), 14),
+      end: addHours(new Date(2018, 3, 31, 0, 0), 15),
+      title: 'Sklep Powiśle',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#00d830',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    }, {
+      start: addHours(startOfDay(new Date()), 14),
+      end: addHours(startOfDay(new Date()), 15),
+      title: 'Sklep Powiśle',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#00d830',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
   ];
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController) {

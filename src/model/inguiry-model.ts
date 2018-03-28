@@ -27,6 +27,8 @@ export interface ActivityRule {
 }
 
 export interface Question {
+  camera?: boolean
+  photo?: any;
   id:number;
   label:string;
   type:string;

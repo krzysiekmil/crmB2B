@@ -60,7 +60,7 @@ export class SectionDailyPlanPage {
     }
   ];
   taskList: Array<Task> = [{
-    title: 'Wystawienie lodówki(nowy)',
+    title: 'Wprowadzenie nowego produktu',
     paramList: [
       {
         name: 'Id',
@@ -105,7 +105,7 @@ export class SectionDailyPlanPage {
     name: 'Cele miesięczne',
     componentName: 'OrderAndDeliveryPage'
   },
-    {name: 'Cele na dzisiaj', componentName: 'ClientDetailPage'},
+    {name: 'Zadania na dziś', componentName: 'ClientDetailPage'},
     {name: 'Sklepy na dzisiaj', componentName: 'TargetPage'},
   ];
 

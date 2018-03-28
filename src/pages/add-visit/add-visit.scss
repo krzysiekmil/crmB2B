@@ -15,7 +15,10 @@ page-add-visit {
     padding-left: .8em;
   }
   .starter {
-    margin-top: 1em;
+    z-index: 200000;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
   }
   .visit {
     margin-left: 1em;
@@ -33,6 +36,13 @@ page-add-visit {
     margin-left: .5em;
     padding-top: .5em;
     padding-bottom: .15em;
+  }
+  .button-save {
+    margin-left: 5%;
+    width: 90%;
+  }
+  .list-scroll {
+    height: 23.75em;
   }
 
 }

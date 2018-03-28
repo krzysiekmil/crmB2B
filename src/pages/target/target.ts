@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {Target} from "../section-daily-plan/section-daily-plan";
+import {Param, Target} from "../section-daily-plan/section-daily-plan";
 import {TargetComponentPage} from "../target-component/target-component";
 
 /**
@@ -9,6 +9,11 @@ import {TargetComponentPage} from "../target-component/target-component";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+export interface Task {
+  title: string;
+  paramList: Array<Param>;
+  layoutParam?: Array<Param>;
+}
 
 @IonicPage()
 @Component({
@@ -16,6 +21,124 @@ import {TargetComponentPage} from "../target-component/target-component";
   templateUrl: 'target.html',
 })
 export class TargetPage {
+  taskList: Array<Task> = [{
+    title: 'Wprowadzenie nowego produktu',
+    paramList: [
+      {
+        name: 'Id',
+        value: '852448'
+      },
+      {
+        name: 'Nazwa',
+        value: 'P.H.U Bozena Bozena Szymanska, Pawel Szymanski '
+      },
+      {
+        name: 'Adres',
+        value: 'Gdańsk, Trubadurów 6'
+      },
+      {
+        name: 'Data utworzenia',
+        value: '12-02-2018'
+      },
+      {
+        name: 'Planowana data zakonczenia',
+        value: '21-03-2018'
+      },
+      {
+        name: 'Zakonczenie',
+        value: '-'
+      },
+      {
+        name: 'Uwagi',
+        value: '-'
+      },
+    ],
+    layoutParam: [
+      {
+        name: 'icon',
+        value: 'alert'
+      }
+    ]
+  },
+    {
+      title: 'Poprawa pozycji na regale',
+      paramList: [
+        {
+          name: 'Id',
+          value: '852448'
+        },
+        {
+          name: 'Nazwa',
+          value: 'P.H.U Bozena Bozena Szymanska, Pawel Szymanski '
+        },
+        {
+          name: 'Adres',
+          value: 'Gdańsk, Trubadurów 6'
+        },
+        {
+          name: 'Data utworzenia',
+          value: '12-02-2018'
+        },
+        {
+          name: 'Planowana data zakonczenia',
+          value: '21-03-2018'
+        },
+        {
+          name: 'Zakonczenie',
+          value: '-'
+        },
+        {
+          name: 'Uwagi',
+          value: '-'
+        },
+      ],
+      layoutParam: [
+        {
+          name: 'icon',
+          value: 'basket'
+        }
+      ]
+    },
+    {
+      title: 'Podpisanie nowej umowy z klientem',
+      paramList: [
+        {
+          name: 'Id',
+          value: '852448'
+        },
+        {
+          name: 'Nazwa',
+          value: 'P.H.U Bozena Bozena Szymanska, Pawel Szymanski '
+        },
+        {
+          name: 'Adres',
+          value: 'Gdańsk, Trubadurów 6'
+        },
+        {
+          name: 'Data utworzenia',
+          value: '12-02-2018'
+        },
+        {
+          name: 'Planowana data zakonczenia',
+          value: '21-03-2018'
+        },
+        {
+          name: 'Zakonczenie',
+          value: '-'
+        },
+        {
+          name: 'Uwagi',
+          value: '-'
+        },
+      ],
+      layoutParam: [
+        {
+          name: 'icon',
+          value: 'flame'
+        }
+      ]
+    },
+  ];
   isEmpty: boolean = true;
   emptyInformationHeader = 'Brak celow dla tego sklepu'
   emptyInformationMessage = 'Dodaj cele, albo spytaj sie \n menagera czy takie mozna ustalic';

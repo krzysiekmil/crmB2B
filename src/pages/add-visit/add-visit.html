@@ -12,6 +12,33 @@
 
 
 <ion-content>
+  <div *ngIf="myDate">
+    <ion-label text-wrap class="text-remind">Wizyty zaplanowane w tym dniu</ion-label>
+    <ion-scroll class="list-scroll" scrollY>
+      <ion-list>
+        <ion-card *ngFor="let visit of myVisit">
+          <div class="visit-box">
+            <div class="visit-line">
+              <div class="visit">Nazwa:</div>
+              <div class="value" text-end>{{visit.clientName}}</div>
+            </div>
+          </div>
+          <div class="visit-box">
+            <div class="visit-line">
+              <div class="visit">Cel wizyty:</div>
+              <div class="value" text-end>{{visit.type}}</div>
+            </div>
+          </div>
+          <div class="visit-box">
+            <div class="visit-line">
+              <div class="visit">Moment rozpoczęcia :</div>
+              <div class="value" text-end>{{myDate}} {{visit.time}}</div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-list>
+    </ion-scroll>
+  </div>
   <div class="starter">
     <ion-label text-wrap class="add-text">Ustaw datę i godzinę spotkania</ion-label>
     <ion-card>
@@ -22,33 +49,8 @@
         <ion-datetime displayFormat="HH:mm" placeholder="Godzina,Minuta" [(ngModel)]="myTime"></ion-datetime>
       </ion-item>
     </ion-card>
-    <button ion-button full round block [disabled]="myTime==null||myDate==null" (click)="viewCtrl.dismiss()">Zapisz
-      wizyte
+    <button ion-button round class="button-save" [disabled]="myTime==null||myDate==null" (click)="viewCtrl.dismiss()">
+      Zapisz
     </button>
-  </div>
-  <div *ngIf="myDate">
-    <ion-label text-wrap class="text-remind">Wizyty zaplanowane w tym dniu</ion-label>
-    <ion-list>
-      <ion-card *ngFor="let visit of myVisit">
-        <div class="visit-box">
-          <div class="visit-line">
-            <div class="visit">Nazwa:</div>
-            <div class="value" text-end>{{visit.clientName}}</div>
-          </div>
-        </div>
-        <div class="visit-box">
-          <div class="visit-line">
-            <div class="visit">Cel wizyty:</div>
-            <div class="value" text-end>{{visit.type}}</div>
-          </div>
-        </div>
-        <div class="visit-box">
-          <div class="visit-line">
-            <div class="visit">Moment rozpoczęcia :</div>
-            <div class="value" text-end>{{myDate}} {{visit.time}}</div>
-          </div>
-        </div>
-      </ion-card>
-    </ion-list>
   </div>
 </ion-content>

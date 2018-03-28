@@ -33,7 +33,7 @@
           <ion-select [(ngModel)]="question.answer" (ngModelChange)="onChangeModel()" interface="popover"
                       [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
-                {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
+                {{answer.label}}
               </ion-option>
             </ion-select>
           </ion-item>
@@ -42,7 +42,7 @@
                       multiple="true"
                       [placeholder]="question.placeholder">
               <ion-option *ngFor="let answer of question.questionAnswers">
-                {{answer.label}} {{answer.value/100*question.defaultValue}} pkt.
+                {{answer.label}}
               </ion-option>
             </ion-select>
           </ion-item>
@@ -52,7 +52,7 @@
             <ion-item *ngFor="let answer of question.questionAnswers" class="radio-container" margin-top>
               <ion-radio item-start align-items-start padding-horizontal class="radio-value"
                          value="{{answer.label}}"></ion-radio>
-              <ion-label class="radio-label">{{answer.label}} {{answer.value}}pkt</ion-label>
+              <ion-label class="radio-label">{{answer.label}}</ion-label>
             </ion-item>
           </ion-list>
         </div>
@@ -66,9 +66,9 @@
         <!--<ion-badge range-right>{{rangeMax}}</ion-badge>-->
         <!--</ion-range>-->
         <!--</ion-item>-->
-        <div class="bottom-card">
-          <img class="picture">
-          <button ion-button text-wrap
+        <div class="bottom-card" float-left item-start>
+          <img *ngIf="question.photo" class="picture" [src]="question.photo" (press)="presentActionSheet(question)">
+          <button *ngIf="question.camera" ion-button text-wrap
                   class="round-button"
                   [color]="question.state" (click)="takePicture()">
           <ion-icon name="camera"></ion-icon>

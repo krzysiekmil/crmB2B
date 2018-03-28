@@ -36,7 +36,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionInput2: Question = {
     selected: false,
     id: 2,
-    label: "Czy krowa to ptak?",
+    label: "Czy produkt znajduje się w widocznym miejscu?",
     type: 'input',
     defaultValue: 10,
     answer: null,
@@ -48,19 +48,19 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionCheckBox2: Question = {
     selected: false,
     id: 4,
-    label: "Czy krowa to ptak?",
+    label: "Czy zostały sprzedane wszystkie produkty z kat. 2?",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
     active: 'active',
     disabled: null,
-    questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}],
+    questionAnswers: [{id: 1, label: 'nie', value: 0}, {id: 2, label: 'tak', value: 100}],
     activityRules: [this.activityRule]
   };
   questionInput: Question = {
     selected: false,
     id: 1,
-    label: "Czy krowa to ptak?",
+    label: "Wizyta się odbyła?",
     type: 'input',
     defaultValue: 10,
     answer: '',
@@ -69,9 +69,11 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionInput3: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 1,
-    label: "Czy krowa to ptak?",
+    label: "Sklep otwarty w niedziele",
     type: 'input',
     defaultValue: 10,
     answer: null,
@@ -80,9 +82,11 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionCheckBox: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 3,
-    label: "Czy krowa to ptak?proba jakiego dlugiego pytania jak sie nie skaluje ale tekst byl dalej byl za krotki zeby przekraczalo wieklosc kafelka obok tekstu Ciekawe czy juz bedzie dobrze",
+    label: "Czy nastąpiła zmiana danych osobowych ? ",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
@@ -91,9 +95,11 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'false', value: 0}, {id: 2, label: 'true', value: 100}]
   };
   questionCheckBox3: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 3,
-    label: "Czy krowa to ptak?",
+    label: "Reklamy firm zewnętrznych",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
@@ -104,7 +110,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionSelectBox: Question = {
     selected: false,
     id: 5,
-    label: "Czy krowa to ptak?",
+    label: "Zainteresowanie klienta większą współpracą ?",
     type: 'select',
     defaultValue: 10,
     answer: null,
@@ -113,20 +119,22 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBox3: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 5,
-    label: "Czy krowa to ptak?",
+    label: "Czy klient przejawia zainteresowanie nowymi produktami?",
     type: 'select',
     defaultValue: 10,
     answer: null,
     active: 'active',
     disabled: null,
-    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
+    questionAnswers: [{id: 1, label: 'TAK', value: 100}, {id: 2, label: 'NIE', value: 0}]
   };
   questionSelectBox2: Question = {
     selected: false,
     id: 6,
-    label: "Czy krowa to ptak?",
+    label: "Czy produkty znajduja się w widocznym miejscu?",
     type: 'select',
     defaultValue: 10,
     answer: null,
@@ -135,102 +143,122 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
   };
   questionSelectBoxMulti: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 7,
-    label: "Czy krowa to ptak?",
+    label: "Produkty z której kategorii cieszyły się najwiekszym zainteresowaniem?",
     type: 'selectMultiple',
     defaultValue: 12,
     answer: null,
     active: 'active',
     disabled: null,
-    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
+    questionAnswers: [{id: 1, label: 'kat. 1 ', value: 0}, {id: 2, label: 'kat. 2', value: 100}, {
+      id: 3,
+      label: 'kat. 3',
+      value: 12
+    }]
   };
   questionSelectBoxMulti3: Question = {
+    camera: true,
+    photo: null,
     selected: false,
     id: 7,
-    label: "Czy krowa to ptak?",
+    label: "Ułożenie produktów zgodne z planogramem?",
     type: 'selectMultiple',
     defaultValue: 12,
     answer: null,
     active: 'active',
     disabled: null,
-    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
-  };
-  questionSelectBoxMulti2: Question = {
-    selected: false,
-    id: 8,
-    label: "Czy krowa to ptak?",
-    type: 'selectMultiple',
-    defaultValue: 12,
-    answer: null,
-    active: 'active',
-    disabled: null,
-    questionAnswers: [{id: 1, label: 'TAK', value: 0}, {id: 2, label: 'NIE', value: 100}]
-  };
-  questionRange3: Question = {
-    selected: false,
-    id: 9,
-    label: "Czy krowa to ptak?",
-    type: 'range',
-    defaultValue: 10,
-    answer: null,
-    active: 'active',
-    disabled: null,
-    questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
-  };
-  questionRange: Question = {
-    selected: false,
-    id: 9,
-    label: "Czy krowa to ptak?",
-    type: 'range',
-    defaultValue: 10,
-    answer: null,
-    active: 'active',
-    disabled: null,
-    questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
-  };
-  questionRange2: Question = {
-    selected: false,
-    id: 10,
-    label: "Czy krowa to ptak?",
-    type: 'range',
-    defaultValue: 10,
-    answer: null,
-    active: 'active',
-    disabled: null,
-    questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
-  };
-  questionRadio: Question = {
-    selected: false,
-    id: 11,
-    label: 'Czy krowa to ptak',
-    type: 'radio',
-    defaultValue: 10,
-    active: 'active',
-    disabled: null,
-    questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
+    questionAnswers: [{id: 1, label: 'Planogram nr. 1', value: 0}, {
+      id: 2,
+      label: 'Planogram nr.2 ',
+      value: 100
+    }, {id: 3, label: 'Planogram nr.23 ', value: 100}]
   };
   section2: Section = {
     hint: false,
     result: 0,
     id: 1,
-    name: 'sekcja 2', maxValue: 100, relativeValue: 50,
+    name: 'Sprzedaż', maxValue: 100, relativeValue: 50,
     questionsList: [this.questionInput3
       , this.questionCheckBox3
       , this.questionSelectBox3
       , this.questionSelectBoxMulti3
-      , this.questionRange3]
+      ,]
+  };
+  // questionRange3: Question = {
+  //   selected: false,
+  //   id: 9,
+  //   label: "Czy krowa to ptak?",
+  //   type: 'range',
+  //   defaultValue: 10,
+  //   answer: null,
+  //   active: 'active',
+  //   disabled: null,
+  //   questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
+  // };
+  // questionRange: Question = {
+  //   selected: false,
+  //   id: 9,
+  //   label: "Czy krowa to ptak?",
+  //   type: 'range',
+  //   defaultValue: 10,
+  //   answer: null,
+  //   active: 'active',
+  //   disabled: null,
+  //   questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
+  // };
+  // questionRange2: Question = {
+  //   selected: false,
+  //   id: 10,
+  //   label: "Czy krowa to ptak?",
+  //   type: 'range',
+  //   defaultValue: 10,
+  //   answer: null,
+  //   active: 'active',
+  //   disabled: null,
+  //   questionAnswers: [{id: 1, label: '100%', value: 0}, {id: 2, label: '0%', value: 100}]
+  questionSelectBoxMulti2: Question = {
+    selected: false,
+    id: 8,
+    label: "Reklamy produktów ?",
+    type: 'selectMultiple',
+    defaultValue: 12,
+    answer: null,
+    active: 'active',
+    disabled: null,
+    questionAnswers: [{id: 1, label: 'Marka nr.1', value: 0}, {id: 2, label: 'Marka nr.2', value: 100}, {
+      id: 3,
+      label: 'Marka nr.3',
+      value: 100
+    }, {id: 4, label: 'Marka nr.4', value: 100}]
+  };
+  // };
+  questionRadio: Question = {
+    selected: false,
+    id: 11,
+    label: 'Lokalizacja produktu nr. 124',
+    type: 'radio',
+    defaultValue: 10,
+    active: 'active',
+    disabled: null,
+    questionAnswers: [{id: 1, label: 'Kasa', value: 0}, {id: 2, label: 'Regał w alejce', value: 100}, {
+      id: 2,
+      label: 'Regał w widocznym miejscu',
+      value: 100
+    }]
   };
   section: Section = {
     hint: true,
     result: 0,
     id: 0,
-    name: 'sekcja 1', maxValue: 100, relativeValue: 50,
+    name: 'Informacje ogólne', maxValue: 100, relativeValue: 50,
     questionsList: [this.questionInput, this.questionInput2
       , this.questionCheckBox, this.questionCheckBox2
       , this.questionSelectBox, this.questionSelectBox2
       , this.questionSelectBoxMulti, this.questionSelectBoxMulti2
-      , this.questionRange, this.questionRange2, this.questionRadio]
+      , this.questionRadio]
   };
   sectionList: Array<Section> = [this.section, this.section2];
   inquiry: Inquiry = {

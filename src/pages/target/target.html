@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Cele</ion-title>
+    <ion-title>Zadania</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -18,16 +18,34 @@
     <button class="empty-button" ion-button text-capitalize>Dodaj cel</button>
   </div>
   <ion-list *ngIf="targetList!==null" no-padding>
-    <ion-card *ngFor="let data of targetList;index as id" (click)="openShopList(id)">
-      <ion-item no-padding>
-        <ion-icon class="item-icon" large [name]="data.icon" item-start></ion-icon>
-        <h2 class="title">{{data.title}}</h2>
-        <h3 class="subtitle">{{data.subtitle}}</h3>
-        <p class="extra-param">{{data.numberOfPages}} sklepy</p>
-        <ion-icon float-end class="arrow-icon" item-end style="background-color: transparent;color: black"
-                  name="ios-arrow-forward">
-        </ion-icon>
-      </ion-item>
+    <!--<ion-card *ngFor="let data of targetList;index as id" (click)="openShopList(id)">-->
+    <!--<ion-item no-padding>-->
+    <!--<ion-icon class="item-icon" large [name]="data.icon" item-start></ion-icon>-->
+    <!--<h2 class="title">{{data.title}}</h2>-->
+    <!--<h3 class="subtitle">{{data.subtitle}}</h3>-->
+    <!--<p class="extra-param">{{data.numberOfPages}} sklepy</p>-->
+    <!--<ion-icon float-end class="arrow-icon" item-end style="background-color: transparent;color: black"-->
+    <!--name="ios-arrow-forward">-->
+    <!--</ion-icon>-->
+    <!--</ion-item>-->
+    <!--</ion-card>-->
+    <ion-card *ngFor="let task of taskList">
+      <ion-card-header no-padding no-margin>
+        <div class="title" text-left>
+          {{task.title}}
+          <div float-end>
+            <ion-icon class="title-icon" align-items-center [name]="task.layoutParam[0].value"></ion-icon>
+          </div>
+        </div>
+      </ion-card-header>
+      <ion-card-content no-padding padding-left>
+        <ion-list no-padding>
+          <ion-item style="height: auto" no-padding class="list-item" *ngFor="let param of task.paramList">
+            <div class="item-param" float-start>{{param.name}}:</div>
+            <div class="item-value" text-wrap item-end text-end>{{param.value}}</div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>

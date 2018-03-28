@@ -31,7 +31,7 @@ page-inquiry-section {
     }
   }
   .question-text-active {
-    font-size: large;
+    font-size: 1.1em;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.33;
@@ -40,7 +40,7 @@ page-inquiry-section {
   }
   .question-text-notActive {
     color: #a0a0a0;
-    font-size: large;
+    font-size: 1.1em;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.33;
@@ -108,14 +108,15 @@ page-inquiry-section {
     font-size: 1.2em;
   }
   .bottom-card {
+    margin-left: .5em;
     display: inline-flex;
   }
   .picture {
     margin-top: .5em;
     border: 1px solid gainsboro;
     border-radius: 15%;
-    width: 4em;
-    height: 3em;
+    width: 8em;
+    height: 6em;
 
   }
   .round-button {

@@ -33,7 +33,7 @@ export class PromotionPage {
       afterDiscount: '3,99',
     },
     {
-      icon: 'flame',
+      icon: 'alarm',
       name: 'Produkt 3',
       cost: '14.99',
       afterDiscount: '13,99',
