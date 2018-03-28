@@ -66,18 +66,21 @@
         <!--<ion-badge range-right>{{rangeMax}}</ion-badge>-->
         <!--</ion-range>-->
         <!--</ion-item>-->
-        <div class="bottom-card" float-left item-start>
+        <div class="bottom-card" style="width: 100%">
           <img *ngIf="question.photo" class="picture" [src]="question.photo" (press)="presentActionSheet(question)">
           <button *ngIf="question.camera" ion-button text-wrap
                   class="round-button"
                   [color]="question.state" (click)="takePicture()">
           <ion-icon name="camera"></ion-icon>
         </button>
-          <button ion-button text-wrap class="round-button"
-                  [color]="question.state"
-                  (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
-          <ion-icon name="checkmark"></ion-icon>
-          </button>
+          <div float-end>
+            <button ion-button item-end float-end text-wrap class="round-button"
+                    [color]="question.state"
+                    (click)="(question.state==='wrong'||question.state==='active')&&hint==true? nextQuestionButton(question,id):nextQuestionButton(question,id)">
+              <ion-icon name="checkmark"></ion-icon>
+            </button>
+          </div>
+
         </div>
       </div>
       </ion-card>

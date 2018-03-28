@@ -15,7 +15,7 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 })
 export class SectionTargetPage {
   @ViewChild(Slides) slides: Slides;
-  List: any = [{name: 'Informacje', id: 0}, {name: 'Zrealizowane', id: 1}];
+  List: any = [{name: 'Aktualne', id: 0}, {name: 'Zrealizowane', id: 1}];
   selectedId: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

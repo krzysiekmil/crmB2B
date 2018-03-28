@@ -33,6 +33,7 @@ import {DraggableHelper} from "angular-draggable-droppable";
 import {CustomDateFormatterProvider} from '../providers/custom-date-formatter/custom-date-formatter';
 import {CustomEventTitleFormatterProvider} from '../providers/custom-event-title-formatter/custom-event-title-formatter';
 import {CalendarWeekHoursViewModule} from "angular-calendar-week-hours-view";
+import {ExtraPageModule} from "../pages/extra/extra.module";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {CalendarWeekHoursViewModule} from "angular-calendar-week-hours-view";
     MyApp,
   ],
   imports: [
+    ExtraPageModule,
     BrowserModule,
     LoginPageModule,
     BrowserAnimationsModule,

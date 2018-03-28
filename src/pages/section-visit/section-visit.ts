@@ -21,6 +21,7 @@ export class SectionVisitPage {
   number: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {

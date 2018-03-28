@@ -59,7 +59,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
   picture: string;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public keyboard: Keyboard, public camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public keyboard: Keyboard, private camera: Camera) {
     this.selectedQuestionId = 0;
 
   }
@@ -130,7 +130,7 @@ export class InquirySectionPage implements OnInit, OnChanges {
           }
         },
         {
-          text: 'Cancel',
+          text: 'Wyjdź',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');

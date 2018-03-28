@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, ModalController, Nav, NavController, NavParams} from 'ionic-angular';
 import {SectionVisitPage} from "../section-visit/section-visit";
 import {SectionOrderPage} from "../section-order/section-order";
+import {ExtraPage} from "../extra/extra";
 
 /**
  * Generated class for the ActionListPage page.
@@ -22,18 +23,18 @@ export interface Action {
 export class ActionListPage {
   actionList: Array<Action> = [
     {
-      name: 'Przyjmij zamówienie',
+      name: 'Przyjmij zamówienię',
       component: SectionOrderPage,
       icon: 'cart'
     },
     {
-      name: 'Wypełnij ankiete',
+      name: 'Wypełnij ankietę',
       component: SectionVisitPage,
       icon: 'md-clipboard'
     },
     {
       name: 'Dołącz do Zysk +',
-      component: SectionVisitPage,
+      component: ExtraPage,
       icon: 'md-book'
     }
   ];
@@ -46,7 +47,7 @@ export class ActionListPage {
   }
 
   open(id) {
-    let modal = this.modalCtrl.create(this.actionList[id].component, {}, {showBackdrop: true})
+    let modal = this.modalCtrl.create(this.actionList[id].component, {id: 3}, {showBackdrop: true})
     modal.present();
   }
 
