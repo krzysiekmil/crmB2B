@@ -15,13 +15,13 @@ export interface OrderAndDeliveryData {
   data: string;
   orderSum: any;
   deliverySum: any;
-  orderDetail: Array<Data>;
-  deliveryDetail: Array<Data>;
+  detail: Array<Data>;
 }
 
 export interface Data {
   param: any;
-  value: any;
+  order: any;
+  delivery: any;
 }
 
 
@@ -225,10 +225,8 @@ export class OrderAndDeliveryPage {
     data: '21.10.2018',
     orderSum: '224,23 (SU)',
     deliverySum: '218,23(SU)',
-    orderDetail: [{param: 'Produkt 1', value: 24}, {param: 'Produkt 2', value: 24},
-      {param: 'Produkt 3', value: 24}, {param: 'Product 4', value: 24}],
-    deliveryDetail: [{param: 'Produkt 1', value: 20}, {param: 'Produkt 2', value: 20},
-      {param: 'Produkt 3', value: 20}, {param: 'Produkt 4', value: 20}]
+    detail: [{param: 'Produkt 1', order: 24, delivery: 20}, {param: 'Produkt 2', order: 24, delivery: 20},
+      {param: 'Produkt 3', order: 24, delivery: 20}, {param: 'Product 4', order: 24, delivery: 20}],
   };
   constructor() {
   }

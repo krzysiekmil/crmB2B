@@ -23,7 +23,7 @@ export interface Action {
 export class ActionListPage {
   actionList: Array<Action> = [
     {
-      name: 'Przyjmij zamówienię',
+      name: 'Przyjmij zamówienie',
       component: SectionOrderPage,
       icon: 'cart'
     },

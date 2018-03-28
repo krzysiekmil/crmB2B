@@ -27,7 +27,7 @@
   <ion-card>
     <ion-card-header class="card-header-legend">
       <ion-row>
-        <ion-col class="date">Data</ion-col>
+        <ion-col class="date">SKU</ion-col>
         <ion-col (click)="openSection('Zamowienie')" class="order">
           <img class="order-icon">Zamowienia
         </ion-col>
@@ -40,34 +40,17 @@
   <ion-card [@expand]="orderSeleceted">
       <ion-row class="card-header-order">
         <ion-col class="data-delivery">
-          <h1 class="h1">{{DataList.data}}</h1>
-          <p class="p">{{DataList.title}}</p>
+          <!--<h1 class="h1">{{DataList.data}}</h1>-->
+          <!--<p class="p">{{DataList.title}}</p>-->
         </ion-col>
         <ion-col class="order">{{DataList.orderSum}}</ion-col>
-        <ion-col class="delivery"></ion-col>
+        <ion-col class="delivery">{{DataList.deliverySum}}</ion-col>
       </ion-row>
       <ion-list class="order-container">
-        <ion-row *ngFor="let order of DataList.orderDetail">
+        <ion-row *ngFor="let order of DataList.detail">
           <ion-col class="order-param">{{order.param}}</ion-col>
-          <ion-col class="order-value">{{order.value}}</ion-col>
-          <ion-col></ion-col>
-        </ion-row>
-      </ion-list>
-  </ion-card>
-  <ion-card [@expand]="deliverySelected" class="delivery-container">
-    <ion-row class="delivery-header">
-        <ion-col>
-          <h1 class="delivery-header-date">{{DataList.data}}</h1>
-          <p class="delivery-header-title">{{DataList.title}}</p>
-        </ion-col>
-        <ion-col></ion-col>
-        <ion-col>{{DataList.deliverySum}}</ion-col>
-      </ion-row>
-    <ion-list class="delivery-list">
-        <ion-row *ngFor="let delivery of DataList.deliveryDetail">
-          <ion-col class="delivery-param">{{delivery.param}}</ion-col>
-          <ion-col></ion-col>
-          <ion-col class="delivery-value">{{delivery.value}}</ion-col>
+          <ion-col class="order-value" text-center>{{order.order}}</ion-col>
+          <ion-col class="order-delivery" text-center>{{order.delivery}}</ion-col>
         </ion-row>
       </ion-list>
   </ion-card>

@@ -31,7 +31,7 @@
               (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
       </button>
-      <img *ngIf="photo" class="picture" [src]="photo" (press)="presentActionSheet(question)">
+      <img *ngIf="photo" class="picture" [src]="photo" (press)="presentActionSheet()">
     </div>
   </ion-card>
 </ion-content>

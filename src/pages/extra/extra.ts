@@ -61,6 +61,7 @@ export class ExtraPage {
         }
       ]
     });
+    actionSheet.present();
   }
 
 }
