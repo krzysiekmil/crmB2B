@@ -33,7 +33,7 @@ export class ActionListPage {
       icon: 'md-clipboard'
     },
     {
-      name: 'Dołącz do Zysk +',
+      name: 'Dodaj klienta do Zysk+',
       component: ExtraPage,
       icon: 'md-book'
     }

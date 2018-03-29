@@ -24,13 +24,13 @@ export interface State {
 export class RealizationDetailPage implements OnInit {
   realization: Array<State> = [
     {
-      title: 'Zamowienie w sklepie',
+      title: 'Zamówienie w sklepie',
       startDate: '11.02.2018',
       endDate: '11.02.2018',
       comment: '-'
     },
     {
-      title: 'Realzacja w magazynie',
+      title: 'Realizacja w magazynie',
       startDate: '11.02.2018',
       endDate: '27.02.2018',
       comment: '-'

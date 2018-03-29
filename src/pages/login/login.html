@@ -1,4 +1,4 @@
-<ion-content class="login-content" padding-top>
+<ion-content class="login-content" padding-top no-bounce>
   <div padding-bottom>
     <img class="empty-logo" src="assets/imgs/neuca-icon.jpg">
   </div>
@@ -19,10 +19,11 @@
       </ion-item>
     </form>
   </div>
+  <div class="submit-btn" no-margin (click)="rak()">
+    <div class="submit-btn-text" padding-vertical>Zaloguj się</div>
+    <!--<button ion-button  full type="submit" no-margin-->
+    <!--[disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">-->
+    <!--</button>-->
+  </div>
 </ion-content>
-<ion-footer class="submit-btn" no-margin (click)="rak()">
-  <div class="submit-btn-text" padding-vertical>Zaloguj się</div>
-  <!--<button ion-button  full type="submit" no-margin-->
-  <!--[disabled]="!formValid.valid||formValid.value.name==''||formValid.value.password==''">-->
-  <!--</button>-->
-</ion-footer>
+

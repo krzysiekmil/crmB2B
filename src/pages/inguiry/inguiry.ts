@@ -73,7 +73,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     photo: null,
     selected: false,
     id: 1,
-    label: "Sklep otwarty w niedziele",
+    label: "Czy sklep jest otwarty w niedzielę?",
     type: 'input',
     defaultValue: 10,
     answer: null,
@@ -86,7 +86,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     photo: null,
     selected: false,
     id: 3,
-    label: "Czy nastąpiła zmiana danych osobowych ? ",
+    label: "Czy nastąpiła zmiana danych osobowych? ",
     type: 'checkbox',
     defaultValue: 10,
     answer: false,
@@ -110,7 +110,7 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
   questionSelectBox: Question = {
     selected: false,
     id: 5,
-    label: "Zainteresowanie klienta większą współpracą ?",
+    label: "Zainteresowanie klienta rozszerzeniem współpracy?",
     type: 'select',
     defaultValue: 10,
     answer: null,
@@ -337,20 +337,20 @@ export class InquiryPage implements DoCheck, OnInit, OnChanges {
     this.inquiry.sectionsList.forEach(section => {
       section.result = 0;
       section.questionsList.forEach(question => {
-        if (question.answer != null && question.answer !== '') {
-          let answerValue = 0;
-          question.questionAnswers.forEach(answer => {
-              if (question.answer.toString().toLowerCase().includes(answer.label.toString().toLowerCase().trim())) {
-                answerValue = answerValue + answer.value;
+          if (question.answer != null && question.answer !== '') {
+            let answerValue = 0;
+            question.questionAnswers.forEach(answer => {
+                if (question.answer.toString().toLowerCase().includes(answer.label.toString().toLowerCase().trim())) {
+                  answerValue = answerValue + answer.value;
+                }
               }
+            );
+            if (answerValue >= 100) {
+              section.result = section.result + question.defaultValue;
             }
-          );
-          if (answerValue >= 100) {
-            section.result = section.result + question.defaultValue;
           }
         }
-      }
-    );
+      );
     })
   }
 

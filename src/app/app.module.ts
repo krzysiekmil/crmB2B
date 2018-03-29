@@ -28,12 +28,11 @@ import {Camera} from "@ionic-native/camera";
 import {AddVisitPageModule} from "../pages/add-visit/add-visit.module";
 import {CalendarPageModule} from "../pages/calendar/calendar.module";
 import {CalendarDateFormatter, CalendarEventTitleFormatter, CalendarUtils} from "angular-calendar";
-import {CalendarModule} from "angular-calendar";
 import {DraggableHelper} from "angular-draggable-droppable";
 import {CustomDateFormatterProvider} from '../providers/custom-date-formatter/custom-date-formatter';
 import {CustomEventTitleFormatterProvider} from '../providers/custom-event-title-formatter/custom-event-title-formatter';
-import {CalendarWeekHoursViewModule} from "angular-calendar-week-hours-view";
 import {ExtraPageModule} from "../pages/extra/extra.module";
+import {ClientContainerPageModule} from "../pages/client-container/client-container.module";
 
 
 @NgModule({
@@ -64,6 +63,7 @@ import {ExtraPageModule} from "../pages/extra/extra.module";
     SectionTargetPageModule,
     AddVisitPageModule,
     CalendarPageModule,
+    ClientContainerPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],

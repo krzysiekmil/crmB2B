@@ -105,7 +105,7 @@ export class SectionDailyPlanPage {
     name: 'Cele miesięczne',
     componentName: 'OrderAndDeliveryPage'
   },
-    {name: 'Zadania na dziś', componentName: 'ClientDetailPage'},
+    {name: 'Zadania na dzisiaj', componentName: 'ClientDetailPage'},
     {name: 'Sklepy na dzisiaj', componentName: 'TargetPage'},
   ];
 

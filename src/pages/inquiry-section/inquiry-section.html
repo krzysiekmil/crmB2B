@@ -12,7 +12,7 @@
           </ion-col>
           <ion-col col-8>
             <ion-label [class]="!question.disabled? 'question-text-active':'question-text-notActive'" text-wrap
-                       text-justify>{{question.id}}. {{question.label}}
+                       text-justify>{{question.label}}
             </ion-label>
           </ion-col>
         </ion-row>
@@ -87,7 +87,7 @@
   </ion-list>
 </ion-content>
 <ion-footer class="footer" style="display: inline-flex" [hidden]="keyboard.isOpen()">
-  <ion-item item-start class="footer-param">
+  <ion-item item-start class="footer-param" style="border-bottom: 0 !important;">
     <ion-label class="footer-text">
       PSR:80
     </ion-label>

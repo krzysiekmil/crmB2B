@@ -55,12 +55,15 @@ page-login {
     font-size: 1.2em;
     color: white;
     position: absolute;
-    bottom: 0;
+    bottom: 11.5%;
     height: 57.5%;
     width: 100%;
     background-color: #009fe3;
   }
   .submit-btn {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
     height: 12%;
     color: white;
     background-color: #494948;

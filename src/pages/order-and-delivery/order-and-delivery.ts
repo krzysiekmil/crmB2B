@@ -197,7 +197,7 @@ export class OrderAndDeliveryPage {
     }
   ];
   // options
-  view: any[] = [1000, 195];
+  view: any[] = [1000, 190];
   animations: false;
   yScaleMax = 300;
   showXAxis = true;
@@ -223,10 +223,10 @@ export class OrderAndDeliveryPage {
   DataList: OrderAndDeliveryData = {
     title: 'Klient Gdansk',
     data: '21.10.2018',
-    orderSum: '224,23 (SU)',
-    deliverySum: '218,23(SU)',
-    detail: [{param: 'Produkt 1', order: 24, delivery: 20}, {param: 'Produkt 2', order: 24, delivery: 20},
-      {param: 'Produkt 3', order: 24, delivery: 20}, {param: 'Product 4', order: 24, delivery: 20}],
+    orderSum: '178 (SU)',
+    deliverySum: '176 (SU)',
+    detail: [{param: 'Produkt 1', order: 24, delivery: 24}, {param: 'Produkt 2', order: 44, delivery: 42},
+      {param: 'Produkt 3', order: 63, delivery: 62}, {param: 'Product 4', order: 47, delivery: 48}],
   };
   constructor() {
   }
@@ -242,27 +242,14 @@ export class OrderAndDeliveryPage {
   }
 
   onSelect(event) {
-    console.log(event);
-    if (event.name === 'Zamowienie')
-      this.orderSeleceted = true;
-    else
-      this.orderSeleceted = false;
+    this.orderSeleceted = true;
   }
 
-  openSection(name: string) {
-    console.log(name);
-    if (name === 'Zamowienie') {
-      if (this.orderSeleceted === false)
-        this.orderSeleceted = true;
-      else
-        this.orderSeleceted = false;
-    }
-    else {
-      if (this.deliverySelected === false)
-        this.deliverySelected = true;
-      else
-        this.deliverySelected = false;
-    }
+  openSection() {
+    if (this.orderSeleceted == true)
+      this.orderSeleceted = false;
+    else
+      this.orderSeleceted = true
   }
 
 

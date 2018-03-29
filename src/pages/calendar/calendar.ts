@@ -166,7 +166,6 @@ export class CalendarPage {
       title: event.title,
       subTitle: 'Adres: Puławska 11, Warszawa\n Rozpoczęcia spotkania : 8:00 \n ' +
       'Zakończenie spotkania : 9:00',
-      message: " Uwagi : -",
       buttons: [
         {
           text: 'Wróć'
@@ -174,7 +173,8 @@ export class CalendarPage {
         {
           text: 'Edytuj'
         }
-      ]
+      ],
+      cssClass: 'alert-sub-title',
     });
     alert.present();
   }

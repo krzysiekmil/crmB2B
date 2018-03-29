@@ -25,6 +25,7 @@ page-order-and-delivery {
     color: #a0a0a0;
   }
   ion-col.order.col {
+    text-align: end;
     font-size: 1.2em;
     font-weight: 600;
     color: #65a1db;
@@ -48,8 +49,8 @@ page-order-and-delivery {
     }
   }
   ion-col.order-param.col {
+    margin-left: .1em;
     color: #a0a0a0;
-    border-left: 1.25px solid #c6c6c6;
     max-width: 150%;
     width: 120%;
   }

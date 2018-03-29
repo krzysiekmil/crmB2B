@@ -103,7 +103,7 @@ export class MenuPage implements OnInit {
       {
         iconName: 'ios-arrow-forward',
         displayName: 'Baza klientów',
-        component: 'ClientListPage',
+        component: 'ClientContainerPage',
       }
       ,
       {

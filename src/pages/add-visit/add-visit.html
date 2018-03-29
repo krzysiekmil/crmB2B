@@ -6,14 +6,14 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Dodaj wizyte</ion-title>
+    <ion-title>Dodaj wizytę</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
   <div *ngIf="myDate">
-    <ion-label text-wrap class="text-remind">Wizyty zaplanowane w tym dniu</ion-label>
+    <ion-label text-wrap class="text-remind">Wizyty zaplanowane tego dnia</ion-label>
     <ion-scroll class="list-scroll" scrollY>
       <ion-list>
         <ion-card *ngFor="let visit of myVisit">
@@ -31,7 +31,7 @@
           </div>
           <div class="visit-box">
             <div class="visit-line">
-              <div class="visit">Moment rozpoczęcia :</div>
+              <div class="visit">Data rozpoczęcia :</div>
               <div class="value" text-end>{{myDate}} {{visit.time}}</div>
             </div>
           </div>
@@ -43,10 +43,10 @@
     <ion-label text-wrap class="add-text">Ustaw datę i godzinę spotkania</ion-label>
     <ion-card>
       <ion-item>
-        <ion-datetime displayFormat="DD.MM.YYYY" placeholder="Dzień,Miesiąc,Rok" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="DD.MM.YYYY" placeholder="Dzień, Miesiąc, Rok" [(ngModel)]="myDate"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-datetime displayFormat="HH:mm" placeholder="Godzina,Minuta" [(ngModel)]="myTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" placeholder="Godzina, Minuta" [(ngModel)]="myTime"></ion-datetime>
       </ion-item>
     </ion-card>
     <button ion-button round class="button-save" [disabled]="myTime==null||myDate==null" (click)="viewCtrl.dismiss()">

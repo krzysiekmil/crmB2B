@@ -31,6 +31,7 @@ page-inquiry-section {
     }
   }
   .question-text-active {
+    padding-top: .25em;
     font-size: 1.1em;
     font-style: normal;
     font-stretch: normal;
@@ -70,14 +71,17 @@ page-inquiry-section {
     align-items: center !important;
   }
   .footer {
+    border-bottom: 0;
     display: inline-flex;
     color: white;
     height: 3.3em;
     > .footer-param {
+      border-bottom: 0 !important;
       width: 35%;
       background-color: #5cdf6e;
     }
     > .footer-points {
+      border-bottom: 0 !important;
       width: 65%;
       background-color: #148eff;
     }
@@ -98,7 +102,7 @@ page-inquiry-section {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    font-size: 1em;
+    font-size: .9em;
     padding-right: 1em;
   }
   .radio-label {
@@ -130,6 +134,9 @@ page-inquiry-section {
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
+  }
+  .item-inner {
+    border-bottom: 0 !important;
   }
 
 }

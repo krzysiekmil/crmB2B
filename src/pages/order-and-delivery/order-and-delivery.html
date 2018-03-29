@@ -2,7 +2,7 @@
   <div padding-bottom padding-top class="header" text-start>Zamowienia i dostawy (SU)
     <ion-badge class="header-badge" align-items-end item-end>2017</ion-badge>
   </div>
-  <ion-scroll scrollX scrollY style="height:62.5%">
+  <ion-scroll scrollX scrollY style="height: 15em;">
     <ion-item no-padding class="chart" style="width: 1000px;">
       <ngx-charts-bar-vertical-2d
         [animations]="animations"
@@ -28,10 +28,10 @@
     <ion-card-header class="card-header-legend">
       <ion-row>
         <ion-col class="date">SKU</ion-col>
-        <ion-col (click)="openSection('Zamowienie')" class="order">
+        <ion-col (click)="openSection()" class="order">
           <img class="order-icon">Zamowienia
         </ion-col>
-        <ion-col (click)="openSection('Dostawa')" class="delivery">
+        <ion-col (click)="openSection()" class="delivery">
           <img class="delivery-icon">Dostawa
         </ion-col>
       </ion-row>

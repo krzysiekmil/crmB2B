@@ -12,7 +12,6 @@ import {trigger, state, transition, style, animate} from "@angular/animations";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   animations: [
     trigger('expand', [

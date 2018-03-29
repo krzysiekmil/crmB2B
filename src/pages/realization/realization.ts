@@ -17,22 +17,22 @@ import {RealizationDetailPage} from "../realization-detail/realization-detail";
 export class RealizationPage {
   TaskList: Array<Target> = [
     {
-      title: 'Zamowienie nr. 1234',
+      title: 'Zamówienie nr. 1234',
       status: 'Dostarczone',
       subtitle: 'P.H.U. Bozena Bozena Szymanska,\n Pawel Szymanski'
     },
     {
-      title: 'Zamowienie nr. 1521',
+      title: 'Zamówienie nr. 1521',
       status: 'Realizowane',
       subtitle: 'P.H.U. Bozena Bozena Szymanska,\n Pawel Szymanski'
     },
     {
-      title: 'Zamowienie nr. 4334',
+      title: 'Zamówienie nr. 4334',
       status: 'Relizowane',
       subtitle: 'P.H.U. Bozena Bozena Szymanska,\n Pawel Szymanski'
     },
     {
-      title: 'Zamowienie nr. 2234',
+      title: 'Zamówienie nr. 2234',
       status: 'Realizowane',
       subtitle: 'P.H.U. Bozena Bozena Szymanska,\n Pawel Szymanski'
     },
